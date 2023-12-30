@@ -1,0 +1,53 @@
+/**
+ * OderPage.css
+ *
+ * @format
+ */
+
+.popup {
+	position: fixed;
+	height: 500px;
+	width: 800px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: white;
+	padding: 20px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+	z-index: 1000;
+}
+
+.popup-content {
+	display: flex;
+	height: 100%;
+}
+
+.address {
+	width: 50%;
+	height: 100%;
+	background: lightblue; /* Adjust color as needed */
+}
+
+.totalPrice {
+	background: lightgreen; /* Adjust color as needed */
+	width: 50%;
+	height: 100%;
+}
+
+.oderPageBtn {
+	display: flex;
+	position: relative;
+	top: 400px;
+}
+
+.close-button {
+	position: absolute;
+	right: 0;
+	top: 0;
+	background-color: #f44336;
+	color: white;
+	border: none;
+	padding: 7px 14px;
+	cursor: pointer;
+	font-size: 16px;
+}
