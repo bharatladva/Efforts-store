@@ -31,6 +31,7 @@ const ProductPage = () => {
 						key={product.id}
 					>
 						<div className='big-img'>
+							{console.log(product.mainImage)}
 							<img
 								src={product.mainImage}
 								alt=''

@@ -9,6 +9,7 @@ export default function OderPage({ onClose, price }) {
 	const { currentUser } = useAuth();
 
 	const amount = price * 100;
+	console.log(amount);
 	const currency = "INR";
 	const receiptId = "qwsaq1";
 
@@ -28,7 +29,7 @@ export default function OderPage({ onClose, price }) {
 		console.log(order);
 
 		var options = {
-			key: "rzp_live_DpYY2HqyIwGXKC", // Enter the Key ID generated from the Dashboard
+			key: process.env.RAZORPAY_KEY_ID, // Enter the Key ID generated from the Dashboard
 			amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
 			currency,
 			name: "Efforts Store", //your business name
@@ -87,13 +88,118 @@ export default function OderPage({ onClose, price }) {
 					X
 				</button>
 				<div className='address'>
-					Address Content
-					<button className='oderPageBtn  submitAddres'>Submit Addres</button>
+					<div class='container'>
+						<h1>Shipping</h1>
+						<p>Please enter your shipping details.</p>
+
+						<div class='form'>
+							<div class='fields fields--2'>
+								<label class='field'>
+									<span
+										class='field__label'
+										for='firstname'
+									>
+										Full name
+									</span>
+									<input
+										class='field__input'
+										type='text'
+										id='firstname'
+									/>
+								</label>
+								<label class='field'>
+									<span
+										class='field__label'
+										for='lastname'
+									>
+										Phone number
+									</span>
+									<input
+										class='field__input'
+										type='text'
+										id='phone'
+									/>
+								</label>
+							</div>
+							<label class='field'>
+								<span
+									class='field__label'
+									for='address'
+								>
+									Address
+								</span>
+								<input
+									class='field__input'
+									type='text'
+									id='address'
+								/>
+							</label>
+							<label class='field'>
+								<span
+									class='field__label'
+									for='country'
+								>
+									Country
+								</span>
+								<select
+									class='field__input'
+									id='country'
+								>
+									<option value=''></option>
+									<option value='unitedstates'>United States</option>
+								</select>
+							</label>
+							<div class='fields fields--3'>
+								<label class='field'>
+									<span
+										class='field__label'
+										for='zipcode'
+									>
+										Zip code
+									</span>
+									<input
+										class='field__input'
+										type='text'
+										id='zipcode'
+									/>
+								</label>
+								<label class='field'>
+									<span
+										class='field__label'
+										for='city'
+									>
+										City
+									</span>
+									<input
+										class='field__input'
+										type='text'
+										id='city'
+									/>
+								</label>
+								<label class='field'>
+									<span
+										class='field__label'
+										for='state'
+									>
+										State
+									</span>
+									<select
+										class='field__input'
+										id='state'
+									>
+										<option value=''>gujrat</option>
+									</select>
+								</label>
+							</div>
+						</div>
+						<hr />
+						<button class='button'>Submit</button>
+					</div>
 				</div>
 				<div className='totalPrice'>
 					Total Price Content
 					<button
-						className='oderPageBtn chackOut'
+						className='button chackOut'
 						onClick={paymentHandler}
 					>
 						Chack Out
