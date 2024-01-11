@@ -16,6 +16,8 @@ import SignInPage from "./components/user/SignInPage";
 import UpdateProfile from "./components/user/UpdateProfile";
 import ForgotPassword from "./components/user/ForgotPassword";
 import Account from "./components/user/Account";
+import AdminDaskbord from "./components/admin/AdminDaskbord";
+import ManageProduct from "./components/admin/ManageProduct";
 
 function ScrollToTop() {
 	const location = useLocation();
@@ -35,6 +37,15 @@ function App() {
 				<AuthProvider>
 					<Header />
 					<Routes>
+						<Route
+							path='/admin'
+							element={<AdminDaskbord />}
+						/>
+						<Route
+							path='/manageProduct'
+							element={<ManageProduct />}
+						/>
+
 						<Route
 							path='/'
 							element={<Pages />}

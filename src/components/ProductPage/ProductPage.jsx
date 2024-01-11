@@ -66,6 +66,8 @@ const ProductPage = () => {
 								<OderPage
 									onClose={closePopup}
 									price={product.price}
+									name={product.name}
+									stock={product.stock}
 								/>
 							)}
 						</div>

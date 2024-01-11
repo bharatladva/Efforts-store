@@ -1,14 +1,38 @@
 /** @format */
 
 // OderPage.js
-import React from "react";
+import React, { useState } from "react";
 import "./OderPage.css";
 import { useAuth } from "../../components/user/AuthContext";
 
-export default function OderPage({ onClose, price }) {
+export default function OderPage({ onClose, price, name, stock }) {
 	const { currentUser } = useAuth();
+	const [quantity, setQuantity] = useState(1);
+	const [errorMessage, setErrorMessage] = useState(null);
 
-	const amount = price * 100;
+	const handleDecreaseQuantity = () => {
+		if (quantity > 1) {
+			setQuantity(quantity - 1);
+		}
+	};
+
+	const handleIncreaseQuantity = () => {
+		setQuantity(quantity + 1);
+	};
+
+	const calculateTotalPrice = () => {
+		return (quantity * price).toFixed(2);
+	};
+
+	const handleIncreaseQuantityForStock = () => {
+		if (quantity < stock) {
+			setQuantity(quantity + 1);
+		} else {
+			setErrorMessage("Order Quantity cannot exceed the available stock.");
+		}
+	};
+
+	const amount = calculateTotalPrice() * 100;
 	console.log(amount);
 	const currency = "INR";
 	const receiptId = "qwsaq1";
@@ -66,6 +90,15 @@ export default function OderPage({ onClose, price }) {
 		};
 		var rzp1 = new window.Razorpay(options);
 		rzp1.on("payment.failed", function (response) {
+			setErrorMessage(
+				response.error.code,
+				response.error.description,
+				response.error.source,
+				response.error.step,
+				response.error.reason,
+				response.error.metadata.order_id,
+				response.error.metadata.payment_id
+			);
 			alert(response.error.code);
 			alert(response.error.description);
 			alert(response.error.source);
@@ -85,8 +118,14 @@ export default function OderPage({ onClose, price }) {
 					className='close-button'
 					onClick={onClose}
 				>
-					X
+					x
 				</button>
+				{errorMessage && (
+					<div className='error-popup'>
+						<p>{errorMessage}</p>
+						<button onClick={() => setErrorMessage(null)}>Ok</button>
+					</div>
+				)}
 				<div className='address'>
 					<div class='container'>
 						<h1>Shipping</h1>
@@ -196,14 +235,52 @@ export default function OderPage({ onClose, price }) {
 						<button class='button'>Submit</button>
 					</div>
 				</div>
-				<div className='totalPrice'>
-					Total Price Content
-					<button
-						className='button chackOut'
-						onClick={paymentHandler}
-					>
-						Chack Out
-					</button>
+				<div className='totalPrice address'>
+					<div className='container '>
+						<h1>Invoice</h1>
+						<div>
+							<div className='invoiceDiv'>
+								<strong>Invoice ID:</strong> #12345
+							</div>
+							<div className='invoiceDiv'>
+								<strong>Invoice Date:</strong> {new Date().toLocaleDateString()}
+							</div>
+							<hr />
+							<div className='invoiceDiv'>
+								<strong>Product Name:</strong> {name}
+							</div>
+							<div className='invoiceDiv'>
+								<strong>Quantity:</strong>
+								<div>
+									<button onClick={handleDecreaseQuantity}>-</button>
+									{quantity}
+									<button
+										onClick={
+											(handleIncreaseQuantity, handleIncreaseQuantityForStock)
+										}
+									>
+										+
+									</button>
+								</div>
+							</div>
+							<div className='invoiceDiv'>
+								<strong>Product Price:</strong> ₹{price.toFixed(2)}
+							</div>
+							<hr />
+							<div className='invoiceDiv'>
+								<strong>Total Price:</strong> ₹{calculateTotalPrice()}
+							</div>
+						</div>
+						<hr />
+						<br />
+						<br />
+						<button
+							className='button chackOut'
+							onClick={paymentHandler}
+						>
+							Chack Out
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>

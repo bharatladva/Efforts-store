@@ -38,6 +38,9 @@ const Navbar = () => {
 								<Link to='/vendor'>Blogs</Link>
 							</li>
 							<li>
+								<Link to='/admin'>Admin</Link>
+							</li>
+							<li>
 								<Link to='/track'>track my order</Link>
 							</li>
 							<li>

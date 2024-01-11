@@ -1,0 +1,32 @@
+/** @format */
+
+.adminDaskbordcontainer {
+	display: flex;
+	justify-content: space-between;
+	padding: 20px;
+	height: 100vh;
+	padding: 100px;
+}
+
+.adminDaskbordcontainer .box {
+	width: 45%;
+	padding: 20px;
+	height: 45%;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s ease-in-out;
+}
+
+.adminDaskbordcontainer .box:hover {
+	transform: scale(1.05);
+}
+
+.adminDaskbordcontainer .box1 {
+	background-color: #f5f5f5;
+}
+
+.adminDaskbordcontainer .box2 {
+	/*background-color: #e0e0e0;*/
+	background-color: #f5f5f5;
+}
