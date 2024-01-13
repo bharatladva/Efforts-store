@@ -17,7 +17,7 @@ import UpdateProfile from "./components/user/UpdateProfile";
 import ForgotPassword from "./components/user/ForgotPassword";
 import Account from "./components/user/Account";
 import AdminDaskbord from "./components/admin/AdminDaskbord";
-import ManageProduct from "./components/admin/ManageProduct";
+import ManageProduct from "./components/admin/mangaeProduct/ManageProduct";
 
 function ScrollToTop() {
 	const location = useLocation();
