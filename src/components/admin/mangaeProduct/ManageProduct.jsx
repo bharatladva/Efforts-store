@@ -87,8 +87,10 @@ export default function ManageProduct() {
 
 	return (
 		<ProductContext.Provider value={productContextValue}>
-			<ProductList products={products} />
-			{selectedproduct && <ProductEdit product={selectedproduct} />}
+			<div className='mangeProduct'>
+				<ProductList products={products} />
+				{selectedproduct && <ProductEdit product={selectedproduct} />}
+			</div>
 		</ProductContext.Provider>
 	);
 }
