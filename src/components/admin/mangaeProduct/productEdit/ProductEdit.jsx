@@ -28,15 +28,23 @@ export default function ProductEdit({ product }) {
 		};
 		handleChange({ reviews: [...product.reviews, newReview] });
 	}
-
 	function handleReviewDelete(id) {
 		handleChange({
-			reviews: product.reviewss.filter((i) => i.id !== id),
+			reviews: product.reviews.filter((i) => i.id !== id),
 		});
 	}
 
+	function handleSubmit(event) {
+		event.preventDefault();
+
+		console.log("Form submitted:", product);
+	}
+
 	return (
-		<div className='recipe-edit'>
+		<form
+			className='recipe-edit'
+			onSubmit={handleSubmit}
+		>
 			<div className='recipe-edit__remove-button-container'>
 				<button
 					className='btn recipe-edit__remove-button'
@@ -134,6 +142,25 @@ export default function ProductEdit({ product }) {
 					className='recipe-edit__input'
 				/>
 				<label
+					htmlFor='addTo'
+					className='recipe-edit__label'
+				>
+					addTo
+				</label>
+				<select
+					className='recipe-edit__input'
+					name='addTo'
+					id='addTo'
+					value={product.addTo}
+					onChange={(e) => handleChange({ addTo: e.target.value })}
+				>
+					<option value='Flash Delas'>Flash Delas</option>
+					<option value='Big Discounts'>Big Discounts</option>
+					<option value='Top products'>Top products</option>
+					<option value='New Arrivals'>New Arrivals</option>
+				</select>
+
+				<label
 					htmlFor='discription'
 					className='recipe-edit__label'
 				>
@@ -170,6 +197,16 @@ export default function ProductEdit({ product }) {
 					Add Ingredient
 				</button>
 			</div>
-		</div>
+			<br />
+
+			<div className='recipe-edit__add-ingredient-btn-container'>
+				<button
+					type='submit'
+					className='btn btn--primary'
+				>
+					Submit
+				</button>
+			</div>
+		</form>
 	);
 }

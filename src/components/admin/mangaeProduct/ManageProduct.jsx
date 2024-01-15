@@ -1,11 +1,14 @@
 /** @format */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
+import { v4 as uuidv4 } from "uuid";
+
 import ProductList from "./productList/PmProductList";
 import "./mangeProduct.css";
 
 import ProductEdit from "./productEdit/ProductEdit";
 
-export const ProductContext = React.createContext();
+export const ProductContext = createContext();
+
 const LOCAL_STORAGE_KEY = "cookingWithReact.products";
 
 export default function ManageProduct() {
@@ -39,7 +42,7 @@ export default function ManageProduct() {
 			name: "BenuX 2022",
 			price: 250,
 
-			id: 1,
+			id: uuidv4(),
 			otherImage: [
 				"./images/discount/discount-1.png",
 				"./images/discount/discount-1.png",
@@ -52,12 +55,7 @@ export default function ManageProduct() {
 			discription:
 				"Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, amet, neque id cupiditate esse deserunt labore veniam perspiciatis illum libero recusandae velit distinctio dolor voluptatum blanditiis eaque earum in ratione eligendi porro? Facere, nemo! Tempore at explicabo laboriosam, fuga pariatur enim nihil quisquam atque, ratione totam deleniti quis officia dolores.",
 
-			addTo: [
-				{
-					name: "flash",
-					display: true,
-				},
-			],
+			addTo: "flash",
 
 			reviews: [
 				{
@@ -82,7 +80,7 @@ export default function ManageProduct() {
 		if (selectedProductId != null && selectedProductId === id) {
 			setSelectedProductId(undefined);
 		}
-		setProducts(products.filter((product) => product.id !== id));
+		setProducts((prevProducts) => prevProducts.filter((product) => product.id !== id));
 	}
 
 	return (
@@ -114,12 +112,7 @@ const SampleProduct = [
 		discription:
 			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, amet, neque id cupiditate esse deserunt labore veniam perspiciatis illum libero recusandae velit distinctio dolor voluptatum blanditiis eaque earum in ratione eligendi porro? Facere, nemo! Tempore at explicabo laboriosam, fuga pariatur enim nihil quisquam atque, ratione totam deleniti quis officia dolores.",
 
-		addTo: [
-			{
-				name: "flash",
-				display: true,
-			},
-		],
+		addTo: "flash",
 
 		reviews: [
 			{
@@ -146,12 +139,7 @@ const SampleProduct = [
 		discription:
 			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, amet, neque id cupiditate esse deserunt labore veniam perspiciatis illum libero recusandae velit distinctio dolor voluptatum blanditiis eaque earum in ratione eligendi porro? Facere, nemo! Tempore at explicabo laboriosam, fuga pariatur enim nihil quisquam atque, ratione totam deleniti quis officia dolores.",
 
-		addTo: [
-			{
-				name: "flash",
-				display: true,
-			},
-		],
+		addTo: "flash",
 
 		reviews: [
 			{
