@@ -2,7 +2,7 @@
 
 import React from "react";
 import "./style.css";
-import logo from "../../components/assets/images/984024fe-c3a8-4d83-8d7b-fcbb34e068f8.jpg";
+import logo from "../../components/assets/images/logo.jpeg";
 
 const Footer = () => {
 	return (
@@ -10,7 +10,7 @@ const Footer = () => {
 			<footer>
 				<div className='container grid2'>
 					<div className='box'>
-						<div className='logo width '>
+						<div className='logo'>
 							{
 								<img
 									src={logo}

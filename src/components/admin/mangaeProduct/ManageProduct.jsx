@@ -39,8 +39,8 @@ export default function ManageProduct() {
 	function handleProductAdd() {
 		const newProduct = {
 			mainImage: "./images/discount/discount-1.png",
-			name: "BenuX 2022",
-			price: 250,
+			name: "name",
+			price: 0,
 
 			id: uuidv4(),
 			otherImage: [
@@ -49,13 +49,13 @@ export default function ManageProduct() {
 				"./images/discount/discount-1.png",
 			],
 			tital: "Lorem ipsum dolor sit amet.",
-			catagoriy: "1",
-			discount: 10,
+			catagoriy: "catagoriy",
+			discount: 0,
 			stock: 5,
 			discription:
 				"Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, amet, neque id cupiditate esse deserunt labore veniam perspiciatis illum libero recusandae velit distinctio dolor voluptatum blanditiis eaque earum in ratione eligendi porro? Facere, nemo! Tempore at explicabo laboriosam, fuga pariatur enim nihil quisquam atque, ratione totam deleniti quis officia dolores.",
 
-			addTo: "flash",
+			addTo: "Flash Delas",
 
 			reviews: [
 				{

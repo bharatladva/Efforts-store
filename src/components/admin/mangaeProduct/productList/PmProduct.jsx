@@ -2,7 +2,6 @@
 
 import React, { useContext } from "react";
 
-import ReviewsList from "../reviews/ReviewsList";
 import { ProductContext } from "./../ManageProduct";
 export default function PmProduct(props) {
 	const { handleProductDelete, handleProductSelect } = useContext(ProductContext);
