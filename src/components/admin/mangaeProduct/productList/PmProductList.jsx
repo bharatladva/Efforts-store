@@ -10,7 +10,7 @@ export default function PmProductList(props) {
 
 	return (
 		<div className='recipe-list'>
-			<div>
+			<div className='recipe-list-values'>
 				{products.map((product) => {
 					return (
 						<Product

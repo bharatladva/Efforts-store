@@ -5,12 +5,13 @@ import React, { useContext } from "react";
 import ReviewEdit from "./../reviews/ReviewEdit";
 import { ProductContext } from "./../ManageProduct";
 import { v4 as uuidv4 } from "uuid";
+const API_URL = "http://localhost:5000/products";
 
 export default function ProductEdit({ product }) {
 	const { handleProductChange, handleProductSelect } = useContext(ProductContext);
 
 	function handleChange(changes) {
-		handleProductChange(product.id, { ...product, ...changes });
+		handleProductChange(product._id, { ...product, ...changes });
 	}
 
 	function handleReviewChange(id, review) {
@@ -34,10 +35,28 @@ export default function ProductEdit({ product }) {
 		});
 	}
 
-	function handleSubmit(event) {
+	async function handleSubmit(event) {
 		event.preventDefault();
 
-		console.log("Form submitted:", product);
+		try {
+			// Make a PUT request to update the product on the server
+			const response = await fetch(`${API_URL}/${product._id}`, {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(product),
+			});
+
+			const data = await response.json();
+
+			// Update the local state with the updated product
+			handleChange(data.data.product);
+
+			console.log("Form submitted:", data.data.product);
+		} catch (error) {
+			console.error("Error updating product:", error);
+		}
 	}
 
 	return (
