@@ -5,7 +5,7 @@ import React, { useContext } from "react";
 import { ProductContext } from "./../ManageProduct";
 export default function PmProduct(props) {
 	const { handleProductDelete, handleProductSelect } = useContext(ProductContext);
-	const { id, name, price, catagoriy, discount } = props;
+	const { _id, id, name, price, catagoriy, discount } = props;
 	return (
 		<div className='recipe'>
 			<div className='recipe__header'>
@@ -19,7 +19,7 @@ export default function PmProduct(props) {
 					</button>
 					<button
 						className='btn btn--danger'
-						onClick={() => handleProductDelete(id)}
+						onClick={() => handleProductDelete(_id)}
 					>
 						Delete
 					</button>

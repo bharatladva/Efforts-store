@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 import ReviewEdit from "./../reviews/ReviewEdit";
 import { ProductContext } from "./../ManageProduct";
@@ -9,10 +9,16 @@ const API_URL = "http://localhost:5000/products";
 
 export default function ProductEdit({ product }) {
 	const { handleProductChange, handleProductSelect } = useContext(ProductContext);
+	const [formData, setFormData] = useState(product);
 
 	function handleChange(changes) {
 		handleProductChange(product._id, { ...product, ...changes });
+		setFormData({ ...formData, ...changes });
 	}
+
+	useEffect(() => {
+		setFormData(product);
+	}, [product]);
 
 	function handleReviewChange(id, review) {
 		const newReviews = [...product.reviews];
@@ -45,7 +51,7 @@ export default function ProductEdit({ product }) {
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify(product),
+				body: JSON.stringify(formData),
 			});
 
 			const data = await response.json();
@@ -83,10 +89,11 @@ export default function ProductEdit({ product }) {
 					type='text'
 					name='name'
 					id='name'
-					value={product.name}
-					onChange={(e) => handleChange({ name: e.target.value })}
+					value={formData.name}
+					onChange={(e) => setFormData({ ...formData, name: e.target.value })}
 					className='recipe-edit__input'
 				/>
+
 				<label
 					htmlFor='tital'
 					className='recipe-edit__label'
@@ -97,8 +104,8 @@ export default function ProductEdit({ product }) {
 					type='text'
 					name='tital'
 					id='tital'
-					value={product.tital}
-					onChange={(e) => handleChange({ tital: e.target.value })}
+					value={formData.tital}
+					onChange={(e) => setFormData({ ...formData, tiral: e.target.value })}
 					className='recipe-edit__input'
 				/>
 				<label
@@ -111,8 +118,8 @@ export default function ProductEdit({ product }) {
 					type='text'
 					name='catagoriy'
 					id='catagoriy'
-					value={product.catagoriy}
-					onChange={(e) => handleChange({ catagoriy: e.target.value })}
+					value={formData.catagoriy}
+					onChange={(e) => setFormData({ ...formData, catagoriy: e.target.value })}
 					className='recipe-edit__input'
 				/>
 				<label
@@ -126,8 +133,10 @@ export default function ProductEdit({ product }) {
 					min='1'
 					name='servings'
 					id='servings'
-					value={product.price}
-					onChange={(e) => handleChange({ price: parseInt(e.target.value) || "" })}
+					value={formData.price}
+					onChange={(e) =>
+						setFormData({ ...formData, price: parseInt(e.target.value) || "" })
+					}
 					className='recipe-edit__input'
 				/>
 				<label
@@ -141,8 +150,10 @@ export default function ProductEdit({ product }) {
 					min='1'
 					name='discount'
 					id='discount'
-					value={product.discount}
-					onChange={(e) => handleChange({ discount: parseInt(e.target.value) || "" })}
+					value={formData.discount}
+					onChange={(e) =>
+						setFormData({ ...formData, discount: parseInt(e.target.value) || "" })
+					}
 					className='recipe-edit__input'
 				/>
 				<label
@@ -156,8 +167,10 @@ export default function ProductEdit({ product }) {
 					min='1'
 					name='stock'
 					id='stock'
-					value={product.stock}
-					onChange={(e) => handleChange({ stock: parseInt(e.target.value) || "" })}
+					value={formData.stock}
+					onChange={(e) =>
+						setFormData({ ...formData, stock: parseInt(e.target.value) || "" })
+					}
 					className='recipe-edit__input'
 				/>
 				<label
@@ -170,8 +183,8 @@ export default function ProductEdit({ product }) {
 					className='recipe-edit__input'
 					name='addTo'
 					id='addTo'
-					value={product.addTo}
-					onChange={(e) => handleChange({ addTo: e.target.value })}
+					value={formData.addTo}
+					onChange={(e) => setFormData({ ...formData, addTo: e.target.value })}
 				>
 					<option value='Flash Delas'>Flash Delas</option>
 					<option value='Big Discounts'>Big Discounts</option>
@@ -188,8 +201,8 @@ export default function ProductEdit({ product }) {
 				<textarea
 					name='discription'
 					className='recipe-edit__input'
-					onChange={(e) => handleChange({ discription: e.target.value })}
-					value={product.discription}
+					onChange={(e) => setFormData({ ...formData, discription: e.target.value })}
+					value={formData.discription}
 					id='discription'
 				/>
 			</div>
@@ -199,7 +212,7 @@ export default function ProductEdit({ product }) {
 				<div>Name</div>
 				<div>msg</div>
 				<div></div>
-				{product.reviews.map((review) => (
+				{formData.reviews.map((review) => (
 					<ReviewEdit
 						key={review.id}
 						handleReviewChange={handleReviewChange}
@@ -217,6 +230,10 @@ export default function ProductEdit({ product }) {
 				</button>
 			</div>
 			<br />
+			<input
+				type='file'
+				accept='image/*'
+			/>
 
 			<div className='recipe-edit__add-ingredient-btn-container'>
 				<button
