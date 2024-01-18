@@ -1,19 +1,56 @@
 /** @format */
 
-import React, { useContext, useState, useEffect } from "react";
+/** @format */
 
+import React, { useContext, useState, useEffect } from "react";
 import ReviewEdit from "./../reviews/ReviewEdit";
 import { ProductContext } from "./../ManageProduct";
 import { v4 as uuidv4 } from "uuid";
+import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
+import { Cloudinary } from "@cloudinary/url-gen";
+
+import { AdvancedImage, responsive, placeholder } from "@cloudinary/react";
+
 const API_URL = "http://localhost:5000/products";
 
 export default function ProductEdit({ product }) {
 	const { handleProductChange, handleProductSelect } = useContext(ProductContext);
 	const [formData, setFormData] = useState(product);
 
+	const [publicId, setPublicId] = useState("");
+
+	const [cloudName] = useState("drpsngpm1");
+
+	const [uploadPreset] = useState("ml_default");
+
+	const [uwConfig] = useState({
+		cloudName,
+		uploadPreset,
+		// cropping: true, //add a cropping step
+		// showAdvancedOptions: true,  //add advanced options (public_id and tag)
+		// sources: [ "local", "url"], // restrict the upload sources to URL and local files
+		// multiple: false,  //restrict upload to a single file
+		// folder: "user_images", //upload files to the specified folder
+		// tags: ["users", "profile"], //add the given tags to the uploaded files
+		// context: {alt: "user_uploaded"}, //add the given context data to the uploaded files
+		// clientAllowedFormats: ["images"], //restrict uploading to image files only
+		// maxImageFileSize: 2000000,  //restrict file size to less than 2MB
+		// maxImageWidth: 2000, //Scales the image down to a width of 2000 pixels before uploading
+		theme: "purple", //change to a purple theme
+	});
+
+	const cld = new Cloudinary({
+		cloud: {
+			cloudName,
+		},
+	});
+
+	const myImage = cld.image(publicId);
+
 	function handleChange(changes) {
-		handleProductChange(product._id, { ...product, ...changes });
-		setFormData({ ...formData, ...changes });
+		const updatedProduct = { ...product, ...changes };
+		handleProductChange(product._id, updatedProduct);
+		setFormData(updatedProduct);
 	}
 
 	useEffect(() => {
@@ -45,7 +82,6 @@ export default function ProductEdit({ product }) {
 		event.preventDefault();
 
 		try {
-			// Make a PUT request to update the product on the server
 			const response = await fetch(`${API_URL}/${product._id}`, {
 				method: "PUT",
 				headers: {
@@ -56,7 +92,6 @@ export default function ProductEdit({ product }) {
 
 			const data = await response.json();
 
-			// Update the local state with the updated product
 			handleChange(data.data.product);
 
 			console.log("Form submitted:", data.data.product);
@@ -186,6 +221,7 @@ export default function ProductEdit({ product }) {
 					value={formData.addTo}
 					onChange={(e) => setFormData({ ...formData, addTo: e.target.value })}
 				>
+					<option value=''>Select AddTo</option>
 					<option value='Flash Delas'>Flash Delas</option>
 					<option value='Big Discounts'>Big Discounts</option>
 					<option value='Top products'>Top products</option>
@@ -230,10 +266,35 @@ export default function ProductEdit({ product }) {
 				</button>
 			</div>
 			<br />
-			<input
-				type='file'
-				accept='image/*'
-			/>
+			<div className='App'>
+				<CloudinaryUploadWidget
+					uwConfig={uwConfig}
+					setPublicId={(publicId) => {
+						setPublicId(publicId);
+						handleChange({
+							mainImage: `https://res.cloudinary.com/${cloudName}/image/upload/${publicId}`,
+						});
+					}}
+				/>
+
+				{formData.mainImage ? (
+					<img
+						src={formData.mainImage}
+						alt='not found'
+						style={{ width: "200px" }}
+					/>
+				) : (
+					<p>No main image.</p>
+				)}
+
+				<div style={{ width: "200px" }}>
+					<AdvancedImage
+						style={{ maxWidth: "100%" }}
+						cldImg={myImage}
+						plugins={[responsive(), placeholder()]}
+					/>
+				</div>
+			</div>
 
 			<div className='recipe-edit__add-ingredient-btn-container'>
 				<button

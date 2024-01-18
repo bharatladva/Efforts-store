@@ -1,11 +1,12 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import data from "./Data";
 import { Link } from "react-router-dom";
+const API_URL = "http://localhost:5000/products";
 
 const SampleNextArrow = (props) => {
 	const { onClick } = props;
@@ -34,12 +35,27 @@ const SamplePrevArrow = (props) => {
 		</div>
 	);
 };
-const { productItems } = data;
 
 const FlashCard = () => {
+	const [products, setProducts] = useState();
 	const [count, setCount] = useState(0);
 	const increment = () => {
 		setCount(count + 1);
+	};
+
+	useEffect(() => {
+		fetchProducts();
+	}, []);
+
+	const fetchProducts = async () => {
+		try {
+			const response = await fetch(`${API_URL}?addTo=Flash Delas`);
+			const data = await response.json();
+			console.log(data);
+			setProducts(data.data.products);
+		} catch (error) {
+			console.error("Error fetching products:", error);
+		}
 	};
 
 	const settings = {
@@ -56,10 +72,13 @@ const FlashCard = () => {
 
 	return (
 		<>
-			<Slider {...settings}>
-				{productItems.map((productItems) => {
-					return (
-						<Link to={`/productPage/${productItems.id}`}>
+			{products ? (
+				<Slider {...settings}>
+					{products.map((productItems) => (
+						<Link
+							key={productItems.id}
+							to={`/productPage/${productItems._id}`}
+						>
 							<div className='box'>
 								<div className='product mtop'>
 									<div className='img'>
@@ -99,9 +118,11 @@ const FlashCard = () => {
 								</div>
 							</div>
 						</Link>
-					);
-				})}
-			</Slider>
+					))}
+				</Slider>
+			) : (
+				<p>Loading...</p>
+			)}
 		</>
 	);
 };

@@ -4,6 +4,8 @@
 	"private": true,
 	"author": "bharat ladva",
 	"dependencies": {
+		"@cloudinary/react": "^1.11.2",
+		"@cloudinary/url-gen": "^1.16.0",
 		"axios": "^1.6.2",
 		"firebase": "^10.7.1",
 		"react": "^18.2.0",

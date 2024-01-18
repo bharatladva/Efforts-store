@@ -5,7 +5,7 @@
 
 .mangeProduct {
 	display: flex;
-	height: 100vh;
+	height: 120vh;
 }
 /*//----------------------------*/
 
@@ -170,6 +170,11 @@ textarea.recipe-edit__input {
 	font-size: 1.75rem;
 }
 
+.recipe-Values {
+	display: flex;
+	gap: 20px;
+}
+
 .recipe__row {
 	margin-top: 10px;
 }
@@ -177,8 +182,7 @@ textarea.recipe-edit__input {
 .recipe__label {
 	margin-right: 5px;
 }
-
-.recipe__value {
+.recipe-edit__add-ingredient-btn-container .recipe__value {
 	font-weight: 300;
 }
 
