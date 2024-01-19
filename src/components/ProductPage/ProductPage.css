@@ -80,6 +80,7 @@
 	line-height: 1.5;
 	margin: 15px 0;
 	text-align: justify;
+	height: fit-content;
 }
 .thumb {
 	width: 100%;

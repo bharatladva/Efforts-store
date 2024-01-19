@@ -8,23 +8,22 @@ const API_URL = "http://localhost:5000/products";
 
 const ProductPage = () => {
 	let { _id } = useParams();
+
 	const [product, setProduct] = useState();
 
 	useEffect(() => {
 		fetchProducts();
-	}, []);
+	}, [_id]);
 
 	const fetchProducts = async () => {
 		try {
 			const response = await fetch(`${API_URL}/${_id}`);
 			const data = await response.json();
-			console.log(data);
-			setProduct(data.data.products);
+			setProduct(data.data.product);
 		} catch (error) {
 			console.error("Error fetching products:", error);
 		}
 	};
-
 	const [isPopupOpen, setPopupOpen] = useState(false);
 
 	const openPopup = () => {
@@ -45,7 +44,6 @@ const ProductPage = () => {
 							key={product.id}
 						>
 							<div className='big-img'>
-								{console.log("mainImage", product.mainImage)}
 								<img
 									src={product.mainImage}
 									alt=''
@@ -53,9 +51,9 @@ const ProductPage = () => {
 								<div className='otherImage'>
 									{product.otherImage.map((image, index) => (
 										<img
-											key={index} // Provide a unique key for each image
+											key={index}
 											src={image}
-											alt={`Other Image ${index + 1}`}
+											alt={` `}
 										/>
 									))}
 								</div>

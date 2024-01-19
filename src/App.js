@@ -59,7 +59,7 @@ function App() {
 							element={<Cart />}
 						/>
 						<Route
-							path='/productPage/:id'
+							path='/productPage/:_id'
 							element={<ProductPage />}
 						/>
 						<Route

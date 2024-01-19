@@ -4,6 +4,7 @@
 import React, { useState } from "react";
 import "./OderPage.css";
 import { useAuth } from "../../components/user/AuthContext";
+const API_URL = "http://localhost:5000";
 
 export default function OderPage({ onClose, price, name, stock }) {
 	const { currentUser } = useAuth();
@@ -38,7 +39,7 @@ export default function OderPage({ onClose, price, name, stock }) {
 	const receiptId = "qwsaq1";
 
 	const paymentHandler = async (e) => {
-		const response = await fetch("http://localhost:4000/order", {
+		const response = await fetch(`${API_URL}/order`, {
 			method: "POST",
 			body: JSON.stringify({
 				amount,
@@ -65,7 +66,7 @@ export default function OderPage({ onClose, price, name, stock }) {
 					...response,
 				};
 
-				const validateRes = await fetch("http://localhost:4000/order/validate", {
+				const validateRes = await fetch(`${API_URL}/validate`, {
 					method: "POST",
 					body: JSON.stringify(body),
 					headers: {

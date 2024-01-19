@@ -76,7 +76,7 @@ const FlashCard = () => {
 				<Slider {...settings}>
 					{products.map((productItems) => (
 						<Link
-							key={productItems.id}
+							key={productItems._id}
 							to={`/productPage/${productItems._id}`}
 						>
 							<div className='box'>
