@@ -1,128 +1,141 @@
+/** @format */
+
 import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
-
 import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  GoogleAuthProvider,
-  sendPasswordResetEmail,
-  signInWithPopup,
-  signInWithRedirect,
-  signOut,
-  onAuthStateChanged,
-  updateProfile,
+	createUserWithEmailAndPassword,
+	signInWithEmailAndPassword,
+	GoogleAuthProvider,
+	sendPasswordResetEmail,
+	signInWithPopup,
+	signInWithRedirect,
+	signOut,
+	onAuthStateChanged,
+	updateProfile,
 } from "firebase/auth";
 
-import {
-  reauthenticateWithCredential,
-  EmailAuthProvider,
-  updatePassword,
-} from "firebase/auth";
+import { reauthenticateWithCredential, EmailAuthProvider, updatePassword } from "firebase/auth";
 
 import { auth } from "../../firebase.js";
 
+const API_URL = "http://localhost:5000";
 const AuthContext = React.createContext();
 
 export function useAuth() {
-  return useContext(AuthContext);
+	return useContext(AuthContext);
 }
 
 export function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState();
-  const [loading, setLoading] = useState(true);
+	const [currentUser, setCurrentUser] = useState();
+	const [loading, setLoading] = useState(true);
 
-  async function signup(email, password, username) {
-    return createUserWithEmailAndPassword(auth, email, password)
-      .then(async (userCredential) => {
-        const user = userCredential.user;
+	async function signup(email, password, username) {
+		return createUserWithEmailAndPassword(auth, email, password)
+			.then(async (userCredential) => {
+				const user = userCredential.user;
 
-        // Update the user's profile with the provided username
-        try {
-          await updateProfile(user, {
-            displayName: username,
-          });
+				// Update the user's profile with the provided username
+				try {
+					await updateProfile(user, {
+						displayName: username,
+					});
 
-          axios
-						.post("https://moviemind-server.onrender.com/createUser", {
-							uid: user.uid,
-							name: user.displayName,
-							email: user.email,
-						})
-						.then((response) => {
-							console.log("Response:", response.data);
-						})
-						.catch((error) => {
-							console.error("Error:", error);
-						});
-          return user;
-        } catch (error) {
-          // Handle the error when updating the user's profile
-          throw error;
-        }
-      })
-      .catch((error) => {
-        // Handle the error when creating the user
-        throw error;
-      });
-  }
+					const newUser = {
+						uid: user.uid,
+						username: user.displayName,
+						email: user.email,
+						favorites: [],
+						orders: [],
+						ratings: [],
+						cart: [],
+						address: [],
+					};
 
-  const googleSignIn = () => {
-    const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider);
-    // signInWithRedirect(auth, provider);
-  };
+					const response = await fetch(`${API_URL}/user/createUser`, {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify(newUser),
+					});
 
-  function login(email, password) {
-    return signInWithEmailAndPassword(auth, email, password);
-  }
+					const data = await response.json();
+					console.log("userCreated", data);
 
-  function logout() {
-    return auth.signOut();
-  }
+					//axios
+					//	.post("https://moviemind-server.onrender.com/createUser", {
+					//		uid: user.uid,
+					//		name: user.displayName,
+					//		email: user.email,
+					//	})
+					//	.then((response) => {
+					//		console.log("Response:", response.data);
+					//	})
+					//	.catch((error) => {
+					//		console.error("Error:", error);
+					//	});
+					return user;
+				} catch (error) {
+					// Handle the error when updating the user's profile
+					throw error;
+				}
+			})
+			.catch((error) => {
+				console.error("Error:", error);
+				throw error;
+			});
+	}
 
-  function resetPassword(email) {
-    return sendPasswordResetEmail(auth, email);
-  }
+	const googleSignIn = () => {
+		const provider = new GoogleAuthProvider();
+		signInWithPopup(auth, provider);
+		// signInWithRedirect(auth, provider);
+	};
 
-  function updateEmail(email) {
-    return updateEmail(auth, currentUser, email);
-  }
+	function login(email, password) {
+		return signInWithEmailAndPassword(auth, email, password);
+	}
 
-  function updatePassword(currentPassword, newPassword) {
-    const user = auth.currentUser;
-    const credential = EmailAuthProvider.credential(
-      user.email,
-      currentPassword
-    );
+	function logout() {
+		return auth.signOut();
+	}
 
-    return reauthenticateWithCredential(user, credential).then(() => {
-      return updatePassword(user, newPassword);
-    });
-  }
+	function resetPassword(email) {
+		return sendPasswordResetEmail(auth, email);
+	}
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
-      setLoading(false);
-    });
+	function updateEmail(email) {
+		return updateEmail(auth, currentUser, email);
+	}
 
-    return unsubscribe;
-  }, []);
+	function updatePassword(currentPassword, newPassword) {
+		const user = auth.currentUser;
+		const credential = EmailAuthProvider.credential(user.email, currentPassword);
 
-  const value = {
-    currentUser,
-    login,
-    signup,
-    logout,
-    resetPassword,
-    updateEmail,
-    updatePassword,
-    googleSignIn,
-  };
+		return reauthenticateWithCredential(user, credential).then(() => {
+			return updatePassword(user, newPassword);
+		});
+	}
 
-  return (
-    <AuthContext.Provider value={value}>
-      {!loading && children}
-    </AuthContext.Provider>
-  );
+	useEffect(() => {
+		const unsubscribe = auth.onAuthStateChanged((user) => {
+			setCurrentUser(user);
+			setLoading(false);
+		});
+
+		return unsubscribe;
+	}, []);
+
+	const value = {
+		currentUser,
+		login,
+		signup,
+		logout,
+		resetPassword,
+		updateEmail,
+		updatePassword,
+		googleSignIn,
+	};
+
+	return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>;
 }

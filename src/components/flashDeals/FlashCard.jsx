@@ -51,7 +51,7 @@ const FlashCard = () => {
 		try {
 			const response = await fetch(`${API_URL}?addTo=Flash Delas`);
 			const data = await response.json();
-			console.log(data);
+
 			setProducts(data.data.products);
 		} catch (error) {
 			console.error("Error fetching products:", error);
