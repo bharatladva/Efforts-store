@@ -12,12 +12,14 @@ import Footer from "./common/footer/Footer";
 import ProductPage from "./components/ProductPage/ProductPage";
 
 import { AuthProvider } from "./components/user/AuthContext";
+
 import SignInPage from "./components/user/SignInPage";
 import UpdateProfile from "./components/user/UpdateProfile";
 import ForgotPassword from "./components/user/ForgotPassword";
 import Account from "./components/user/Account";
 import AdminDaskbord from "./components/admin/AdminDaskbord";
 import ManageProduct from "./components/admin/mangaeProduct/ManageProduct";
+import PrivateRoute from "./components/user/PrivateRoute";
 
 function ScrollToTop() {
 	const location = useLocation();
@@ -36,6 +38,11 @@ function App() {
 				<ScrollToTop />
 				<AuthProvider>
 					<Header />
+					<PrivateRoute
+						path='/'
+						element={<Pages />}
+					/>
+
 					<Routes>
 						<Route
 							path='/admin'

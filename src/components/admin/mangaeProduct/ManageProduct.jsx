@@ -9,7 +9,7 @@ import ProductEdit from "./productEdit/ProductEdit";
 export const ProductContext = createContext();
 
 // API URL for your server
-const API_URL = "http://localhost:5000/products";
+const API_URL = "http://localhost:5000";
 
 export default function ManageProduct() {
 	const [selectedProductId, setSelectedProductId] = useState();
@@ -23,7 +23,7 @@ export default function ManageProduct() {
 
 	const fetchProducts = async () => {
 		try {
-			const response = await fetch(API_URL);
+			const response = await fetch(`${API_URL}/products`);
 			const data = await response.json();
 			console.log(data);
 			setProducts(data.data.products);
@@ -74,7 +74,7 @@ export default function ManageProduct() {
 			};
 
 			// Make a POST request to add a new product
-			const response = await fetch(API_URL, {
+			const response = await fetch(`${API_URL}/products`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -97,7 +97,7 @@ export default function ManageProduct() {
 	async function handleProductChange(_id, product) {
 		try {
 			// Make a PUT request to update the product
-			const response = await fetch(`${API_URL}/${_id}`, {
+			const response = await fetch(`${API_URL}/products/${_id}`, {
 				method: "PUT",
 				headers: {
 					"Content-Type": "application/json",
@@ -117,7 +117,7 @@ export default function ManageProduct() {
 	async function handleProductDelete(_id) {
 		try {
 			// Make a DELETE request to remove the product
-			await fetch(`${API_URL}/${_id}`, {
+			await fetch(`${API_URL}/products/${_id}`, {
 				method: "DELETE",
 			});
 

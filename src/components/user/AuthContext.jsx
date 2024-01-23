@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useContext, useState, useEffect } from "react";
-import axios from "axios";
+
 import {
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
@@ -62,21 +62,8 @@ export function AuthProvider({ children }) {
 					const data = await response.json();
 					console.log("userCreated", data);
 
-					//axios
-					//	.post("https://moviemind-server.onrender.com/createUser", {
-					//		uid: user.uid,
-					//		name: user.displayName,
-					//		email: user.email,
-					//	})
-					//	.then((response) => {
-					//		console.log("Response:", response.data);
-					//	})
-					//	.catch((error) => {
-					//		console.error("Error:", error);
-					//	});
 					return user;
 				} catch (error) {
-					// Handle the error when updating the user's profile
 					throw error;
 				}
 			})

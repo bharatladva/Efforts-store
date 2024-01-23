@@ -242,7 +242,7 @@ export default function ProductEdit({ product }) {
 					id='discription'
 				/>
 			</div>
-			<br />
+
 			<label className='recipe-edit__label'>reviews</label>
 			<div className='recipe-edit__ingredient-grid'>
 				<div>Name</div>
@@ -265,17 +265,27 @@ export default function ProductEdit({ product }) {
 					Add Ingredient
 				</button>
 			</div>
-			<br />
-			<div className='App'>
-				<CloudinaryUploadWidget
-					uwConfig={uwConfig}
-					setPublicId={(publicId) => {
-						setPublicId(publicId);
-						handleChange({
-							mainImage: `https://res.cloudinary.com/${cloudName}/image/upload/${publicId}`,
-						});
-					}}
-				/>
+
+			<div className='edit-image'>
+				<div>
+					<CloudinaryUploadWidget
+						uwConfig={uwConfig}
+						setPublicId={(publicId) => {
+							setPublicId(publicId);
+							handleChange({
+								mainImage: `https://res.cloudinary.com/${cloudName}/image/upload/${publicId}`,
+							});
+						}}
+					/>
+
+					<div style={{ width: "200px" }}>
+						<AdvancedImage
+							style={{ maxWidth: "100%" }}
+							cldImg={myImage}
+							plugins={[responsive(), placeholder()]}
+						/>
+					</div>
+				</div>
 
 				{formData.mainImage ? (
 					<img
@@ -286,14 +296,6 @@ export default function ProductEdit({ product }) {
 				) : (
 					<p>No main image.</p>
 				)}
-
-				<div style={{ width: "200px" }}>
-					<AdvancedImage
-						style={{ maxWidth: "100%" }}
-						cldImg={myImage}
-						plugins={[responsive(), placeholder()]}
-					/>
-				</div>
 			</div>
 
 			<div className='recipe-edit__add-ingredient-btn-container'>

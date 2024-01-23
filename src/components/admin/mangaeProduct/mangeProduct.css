@@ -115,6 +115,10 @@ textarea.recipe-edit__input {
 	text-align: center;
 }
 
+.edit-image {
+	display: flex;
+}
+
 @media (max-width: 1000px) {
 	.recipe-edit__details-grid,
 	.recipe-edit__ingredient-grid {
@@ -131,14 +135,24 @@ textarea.recipe-edit__input {
 	border-radius: 10px;
 	min-height: 100vh;
 	width: 50%;
+	background: #f6f9fc;
 	padding: 10px;
-	overflow-y: scroll;
 }
 
 .recipe-list__add-recipe-btn-container {
 	padding-top: 30px;
 	padding-bottom: 30px;
 	text-align: center;
+	height: 5%;
+}
+
+.recipe-list-values {
+	gap: 2.5%;
+	display: flex;
+	width: 100%;
+	flex-wrap: wrap;
+	height: 95%;
+	overflow-y: scroll;
 }
 
 /*//-------------------------------------------*/
@@ -147,10 +161,11 @@ textarea.recipe-edit__input {
 
 .recipe {
 	padding: 20px;
-	padding-bottom: 40px;
-	border: 1px solid black;
+
 	border-radius: 10px;
-	margin-bottom: 5px;
+	background-color: white;
+	width: 47%;
+	height: 300px;
 }
 
 .recipe:last-child {

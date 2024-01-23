@@ -4,13 +4,16 @@ import React from "react";
 import logo from "../../components/assets/images/logo.jpeg";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../components/user/AuthContext";
+import Navbar from "./Navbar";
 
 const Search = () => {
 	let { currentUser } = useAuth();
 	// fixed Header
 	window.addEventListener("scroll", function () {
 		const search = document.querySelector(".search");
-		search.classList.toggle("active", window.scrollY > 100);
+		if (search) {
+			search.classList.toggle("active", window.scrollY > 100);
+		}
 	});
 
 	return (
@@ -18,12 +21,14 @@ const Search = () => {
 			<section className='search'>
 				<div className='container c_flex'>
 					<div className='logo width '>
-						{
-							<img
-								src={logo}
-								alt=''
-							/>
-						}
+						<Link to='/'>
+							{
+								<img
+									src={logo}
+									alt=''
+								/>
+							}
+						</Link>
 					</div>
 
 					<div className='search-box f_flex'>
@@ -32,8 +37,9 @@ const Search = () => {
 							type='text'
 							placeholder='Search and hit enter...'
 						/>
-						<span>All Category</span>
+						<span>All</span>
 					</div>
+					<Navbar />
 
 					<div className='icon f_flex width'>
 						{currentUser ? (
@@ -47,14 +53,10 @@ const Search = () => {
 						)}
 
 						<div className='cart'>
-							{currentUser ? (
-								<Link to='/cart'>
-									<i className='fa fa-shopping-bag icon-circle'></i>
-									{/*<span>{CartItem.length === 0 ? "" : CartItem.length}</span>*/}
-								</Link>
-							) : (
-								""
-							)}
+							<Link to='/cart'>
+								<i className='fa fa-shopping-bag icon-circle'></i>
+								{/*<span>{CartItem.length === 0 ? "" : CartItem.length}</span>*/}
+							</Link>
 						</div>
 					</div>
 				</div>

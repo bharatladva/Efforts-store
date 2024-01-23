@@ -31,7 +31,7 @@
 	width: 20%;
 }
 .search-box {
-	width: 80%;
+	width: 50%;
 	border: 2px solid rgba(0, 0, 0, 0.1);
 	/*padding: 10px;*/
 	border-radius: 50px;
@@ -52,7 +52,7 @@
 	font-size: 15px;
 }
 .search-box span {
-	width: 20%;
+	width: 10%;
 	opacity: 0.5;
 	border-left: 2px solid rgba(0, 0, 0, 0.1);
 	padding: 10px;
@@ -77,28 +77,11 @@
 	justify-content: end;
 }
 /*------search-----------*/
-.catgrories {
-	background-color: #f6f9fc;
-	padding: 0px 30px;
-	border-radius: 5px;
-	height: 6vh;
-	margin-top: 5px;
-}
-.catgrories span {
-	margin-right: 20px;
-	font-size: 30px;
-	margin-top: 10px;
-}
-.catgrories h4 {
-	font-weight: 500;
-	margin-top: 12px;
-}
-.catgrories h4 i {
-	margin-left: 10px;
-}
+
 header {
-	height: 8vh;
-	box-shadow: -1px 15px 17px -8px rgba(0, 0, 0, 0.1);
+	/*height: 8vh;*/
+	/*box-shadow: -1px 15px 17px -8px rgba(0, 0, 0, 0.1);*/
+	width: 50%;
 }
 header ul {
 	line-height: 8vh;

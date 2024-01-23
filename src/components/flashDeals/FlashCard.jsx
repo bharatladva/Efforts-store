@@ -4,8 +4,9 @@ import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import data from "./Data";
-import { Link } from "react-router-dom";
+
+import { useNavigate } from "react-router-dom";
+
 const API_URL = "http://localhost:5000/products";
 
 const SampleNextArrow = (props) => {
@@ -37,11 +38,11 @@ const SamplePrevArrow = (props) => {
 };
 
 const FlashCard = () => {
+	const navigate = useNavigate();
+	function sanitizePath(path) {
+		return path.replace(/\/+/g, "/");
+	}
 	const [products, setProducts] = useState();
-	const [count, setCount] = useState(0);
-	const increment = () => {
-		setCount(count + 1);
-	};
 
 	useEffect(() => {
 		fetchProducts();
@@ -70,54 +71,56 @@ const FlashCard = () => {
 		prevArrow: <SamplePrevArrow />,
 	};
 
+	function navigateToProductPage(e, _id) {
+		e.preventDefault();
+		navigate(sanitizePath(`/productPage/${_id}`));
+	}
+
 	return (
 		<>
 			{products ? (
 				<Slider {...settings}>
 					{products.map((productItems) => (
-						<Link
-							key={productItems._id}
-							to={`/productPage/${productItems._id}`}
+						<div
+							className='box'
+							onClick={(e) => navigateToProductPage(e, productItems._id)}
 						>
-							<div className='box'>
-								<div className='product mtop'>
-									<div className='img'>
-										<span className='discount'>
-											{productItems.discount}% Off
-										</span>
-										<img
-											src={productItems.mainImage}
-											alt=''
-										/>
-										<div className='product-like'>
-											<label>{count}</label> <br />
-											<i
-												className='fa-regular fa-heart'
-												onClick={increment}
-											></i>
-										</div>
+							<div className='product mtop'>
+								<div className='img'>
+									<span className='discount'>{productItems.discount}% Off</span>
+									<img
+										src={productItems.mainImage}
+										alt=''
+									/>
+									<div className='product-like'>
+										<i
+											className='fa-regular fa-heart'
+											onClick={(e) => {
+												e.stopPropagation();
+											}}
+										></i>
 									</div>
-									<div className='product-details'>
-										<h3>{productItems.name}</h3>
-										<div className='rate'>
-											<i className='fa fa-star'></i>
-											<i className='fa fa-star'></i>
-											<i className='fa fa-star'></i>
-											<i className='fa fa-star'></i>
-											<i className='fa fa-star'></i>
-										</div>
-										<div className='price'>
-											<h4>₹{productItems.price}.00 </h4>
-											<button
-											//</div>onClick={() => addToCart(productItems)}
-											>
-												<i className='fa fa-plus'></i>
-											</button>
-										</div>
+								</div>
+								<div className='product-details'>
+									<h3>{productItems.name}</h3>
+									<div className='rate'>
+										<i className='fa fa-star'></i>
+										<i className='fa fa-star'></i>
+										<i className='fa fa-star'></i>
+										<i className='fa fa-star'></i>
+										<i className='fa fa-star'></i>
+									</div>
+									<div className='price'>
+										<h4>₹{productItems.price}.00 </h4>
+										<button
+										//</div>onClick={() => addToCart(productItems)}
+										>
+											<i className='fa fa-plus'></i>
+										</button>
 									</div>
 								</div>
 							</div>
-						</Link>
+						</div>
 					))}
 				</Slider>
 			) : (
