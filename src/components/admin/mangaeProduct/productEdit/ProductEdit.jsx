@@ -278,7 +278,7 @@ export default function ProductEdit({ product }) {
 						}}
 					/>
 
-					<div style={{ width: "200px" }}>
+					<div style={{ width: "100px" }}>
 						<AdvancedImage
 							style={{ maxWidth: "100%" }}
 							cldImg={myImage}
@@ -291,7 +291,7 @@ export default function ProductEdit({ product }) {
 					<img
 						src={formData.mainImage}
 						alt='not found'
-						style={{ width: "200px" }}
+						style={{ width: "150px" }}
 					/>
 				) : (
 					<p>No main image.</p>

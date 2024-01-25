@@ -5,7 +5,7 @@
 
 .mangeProduct {
 	display: flex;
-	height: 120vh;
+	height: 100vh;
 }
 /*//----------------------------*/
 
@@ -99,7 +99,7 @@
 
 textarea.recipe-edit__input {
 	resize: none;
-	height: 200px;
+	height: 150px;
 }
 
 .recipe-edit__ingredient-grid {
@@ -140,7 +140,7 @@ textarea.recipe-edit__input {
 }
 
 .recipe-list__add-recipe-btn-container {
-	padding-top: 30px;
+	padding-top: 20px;
 	padding-bottom: 30px;
 	text-align: center;
 	height: 5%;
@@ -161,7 +161,7 @@ textarea.recipe-edit__input {
 
 .recipe {
 	padding: 20px;
-
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	border-radius: 10px;
 	background-color: white;
 	width: 47%;
