@@ -8,6 +8,7 @@ const Cart = () => {
 	//  const totalPrice = CartItem.reduce((price, item) => price + item.qty * item.price, 0)
 
 	// prodcut qty total
+
 	const CartItem = {};
 	return (
 		<>

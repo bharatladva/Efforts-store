@@ -20,6 +20,7 @@ import Account from "./components/user/Account";
 import AdminDaskbord from "./components/admin/AdminDaskbord";
 import ManageProduct from "./components/admin/mangaeProduct/ManageProduct";
 import PrivateRoute from "./components/user/PrivateRoute";
+import UserDataLists from "./components/user/UserDataList";
 
 function ScrollToTop() {
 	const location = useLocation();
@@ -84,6 +85,10 @@ function App() {
 						<Route
 							path='/account'
 							element={<Account />}
+						/>
+						<Route
+							path='/user/:dataType'
+							element={<UserDataLists />}
 						/>
 					</Routes>
 					<Footer />

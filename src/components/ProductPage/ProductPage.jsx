@@ -13,6 +13,7 @@ const ProductPage = () => {
 
 	const [product, setProduct] = useState();
 	const [isFavorite, setIsFavorite] = useState(false);
+	const [inCart, setInCart] = useState(false);
 	const [selectedRating, setSelectedRating] = useState(0);
 
 	const handleFavoriteClick = async () => {
@@ -40,6 +41,37 @@ const ProductPage = () => {
 
 			setIsFavorite((old) => {
 				return responseData.isAdded ? !old : old;
+			});
+		} catch (error) {
+			// Handle error
+			console.error(error);
+		}
+	};
+	const handleAddToCartClick = async () => {
+		if (!currentUser) {
+			window.alert(`Please Log in to your Account to Add This To Your Favorites`);
+			return;
+		}
+
+		try {
+			let itemToAdd = { _id };
+			let uid = currentUser.uid;
+			const response = await fetch(`${API_URL}/user/add-to-cart`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					uid,
+					itemToAdd,
+					inCart,
+				}),
+			});
+
+			const responseData = await response.json();
+
+			setInCart((old) => {
+				return responseData.isAddedInCart ? !old : old;
 			});
 		} catch (error) {
 			// Handle error
@@ -201,7 +233,14 @@ const ProductPage = () => {
 										onClick={() => handleRateClick(1)}
 									></label>
 								</div>
-								<button className='cart'>Add to cart</button>
+								<button
+									className='cart'
+									onClick={() => {
+										handleAddToCartClick();
+									}}
+								>
+									Add to cart
+								</button>
 								<button
 									className='cart'
 									onClick={openPopup}

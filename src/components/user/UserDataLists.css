@@ -1,0 +1,51 @@
+/**
+ * UserDataLists.css
+ *
+ * @format
+ */
+
+.dataList {
+	background: #f6f9fc;
+}
+
+.list-titele h1 {
+	margin-left: 5%;
+}
+
+.movies-slides {
+	position: relative;
+	justify-content: center;
+	width: 100%;
+	height: fit-content;
+	background-color: transparent;
+	row-gap: 20px;
+	overflow: hidden;
+	display: flex;
+}
+
+.dataList .img {
+	width: 300px;
+	height: 300px;
+}
+
+.login-container {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	justify-content: center;
+	align-items: center;
+}
+
+.login-container p {
+	font-size: 30px;
+	letter-spacing: 2px;
+}
+
+.normal-button {
+	width: 150px;
+	height: 60px;
+	background: brown;
+	font-size: 20px;
+}
