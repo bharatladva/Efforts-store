@@ -9,6 +9,9 @@
 	--primary-font-color-2: #b745e0;
 	--primary-font-color-3: darkred;
 	--primary-font-color-4: #cf1414;
+	--color-gray: #737888;
+	--color-lighter-gray: #e3e5ed;
+	--color-light-gray: #f7f7fa;
 }
 * {
 	padding: 0;
@@ -209,9 +212,12 @@ button {
 .control-btn .next,
 .control-btn .prev {
 	position: absolute;
+	display: flex;
+	align-items: center;
+	padding: 5px;
 	top: 40%;
-	width: 50px;
-	height: 50px;
+	width: 30px;
+	height: 30px;
 	line-height: 60px;
 	background: #0f3460;
 	border-radius: 50%;

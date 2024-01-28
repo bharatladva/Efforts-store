@@ -97,6 +97,7 @@ header ul li {
 	margin-left: 30px;
 }
 header ul li a {
+	text-wrap: nowrap;
 	transition: 0.5s;
 	font-size: 15px;
 	font-weight: 400;
@@ -119,9 +120,13 @@ header ul li a:hover {
 	transition: 0.5s;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
 	header ul {
 		padding-top: 30px;
+	}
+
+	.search-box {
+		width: 70%;
 	}
 	.nav-links-mobile {
 		position: absolute;

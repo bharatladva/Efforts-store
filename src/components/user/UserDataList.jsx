@@ -23,6 +23,7 @@ export default function UserDataLists() {
 	}
 
 	const { dataType } = useParams();
+
 	const { currentUser } = useAuth();
 
 	const [dbList, setDbList] = useState([]);

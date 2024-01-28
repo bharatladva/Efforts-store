@@ -38,14 +38,12 @@ export default function Dashboard() {
 	return (
 		<div className='signin-page-container'>
 			<div className='signin-page-main'>
-				<div>
+				<div className='account-head'>
 					<h2 className='form_title title'>User Profile</h2>
 					{error && <div className='alert'>{error}</div>}
+
 					<p style={{ fontFamily: "Oswald , sans-serif", fontSize: "18px" }}>Email</p>
-					<p
-						className='account-email'
-						style={{ fontSize: "15px" }}
-					>
+					<p>
 						{currentUser ? currentUser.email : "No email available"}
 						{currentUser ? currentUser.name : "No name available"}
 					</p>
@@ -53,24 +51,10 @@ export default function Dashboard() {
 					<div className='userimage'></div>
 				</div>
 
-				<div
-					className='userdata'
-					style={{
-						display: "flex",
-						justifyContent: "center",
-						gap: "10%",
-					}}
-				>
+				<div className='accout-userdata'>
 					<div
 						className='category-box'
 						onClick={navigateTofavorites}
-						style={{
-							cursor: "pointer",
-							display: "flex",
-							justifyContent: "center",
-							paddingTop: "30px",
-							zIndex: "100",
-						}}
 					>
 						<div>
 							<div className='icon-button acc-heart-btn'></div>
@@ -79,13 +63,6 @@ export default function Dashboard() {
 					</div>
 					<div
 						className='category-box'
-						style={{
-							cursor: "pointer",
-							display: "flex",
-							justifyContent: "center",
-							paddingTop: "30px",
-							zIndex: "100",
-						}}
 						onClick={navigateToWatchList}
 					>
 						<div>
@@ -96,13 +73,6 @@ export default function Dashboard() {
 
 					<div
 						className='category-box'
-						style={{
-							cursor: "pointer",
-							display: "flex",
-							justifyContent: "center",
-							paddingTop: "30px",
-							zIndex: "100",
-						}}
 						onClick={navigateToRatings}
 					>
 						<div>
@@ -112,13 +82,6 @@ export default function Dashboard() {
 					</div>
 					<div
 						className='category-box'
-						style={{
-							cursor: "pointer",
-							display: "flex",
-							justifyContent: "center",
-							paddingTop: "30px",
-							zIndex: "100",
-						}}
 						onClick={navigateToRatings}
 					>
 						<div>

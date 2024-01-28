@@ -73,12 +73,6 @@
 
 /*@import url("https://rsms.me/inter/inter.css");*/
 
-:root {
-	--color-gray: #737888;
-	--color-lighter-gray: #e3e5ed;
-	--color-light-gray: #f7f7fa;
-}
-
 .address h1 {
 	margin-bottom: 0.5rem;
 }
@@ -87,7 +81,7 @@
 	color: var(--color-gray);
 }
 
-.address hr {
+hr {
 	height: 1px;
 	width: 100%;
 	background-color: var(--color-light-gray);

@@ -32,7 +32,7 @@ const SlideCard = () => {
 									<p>{value.desc}</p>
 									<button className='btn-primary'>Visit Collections</button>
 								</div>
-								<div className='right'>
+								<div className='home-slide-right'>
 									<img
 										src={value.mainImage}
 										alt=''

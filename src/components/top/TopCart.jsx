@@ -6,6 +6,33 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Tdata from "./Tdata";
 import { Link } from "react-router-dom";
+const SampleNextArrow = (props) => {
+	const { onClick } = props;
+	return (
+		<div
+			className='control-btn'
+			onClick={onClick}
+		>
+			<button className='next'>
+				<i className='fa fa-long-arrow-alt-right'></i>
+			</button>
+		</div>
+	);
+};
+
+const SamplePrevArrow = (props) => {
+	const { onClick } = props;
+	return (
+		<div
+			className='control-btn'
+			onClick={onClick}
+		>
+			<button className='prev'>
+				<i className='fa fa-long-arrow-alt-left'></i>
+			</button>
+		</div>
+	);
+};
 
 const TopCart = () => {
 	const settings = {
@@ -14,6 +41,8 @@ const TopCart = () => {
 		slidesToShow: 3,
 		slidesToScroll: 1,
 		autoplay: true,
+		nextArrow: <SampleNextArrow />,
+		prevArrow: <SamplePrevArrow />,
 	};
 	return (
 		<>

@@ -4,25 +4,41 @@
 	font-size: 45px;
 	line-height: 55px;
 	margin: 50px 0 20px 0;
+	width: 100%;
+}
+
+.home-slide-right {
+	width: 50%;
+}
+
+.home-slide-right img {
+	height: 450px;
+	width: 100%;
 }
 .homeSlide p {
 	margin: 20px 0;
+	width: 90%;
 }
 .homeSlide ul {
 	position: absolute;
 	bottom: 20px;
+	display: flex;
+	justify-content: center;
 }
 .homeSlide ul li {
 	border: 2px solid #b8b7b7;
 	border-radius: 50%;
 	padding: 10px;
+	display: flex;
+	justify-content: center;
 }
 .homeSlide ul li button {
 	background: transparent !important;
 	color: transparent !important;
 }
+
 .homeSlide ul li button::before {
-	font-size: 15px !important;
+	font-size: 10px !important;
 	color: #0f3460;
 	position: absolute;
 	top: 2px;

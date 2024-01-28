@@ -3,11 +3,11 @@
 	border: 1px solid red;
 }*/
 .mainpage {
-	height: 100vh;
+	height: fit-content;
 	background: #f6f9fc;
-	display: flex;
+	display: block;
 	justify-content: center;
-	flex-direction: column;
+	position: relative;
 }
 
 .heart-btn {
@@ -69,20 +69,23 @@
 	width: 100%;
 	margin: 100px auto;
 	box-shadow: 0 0 5px #ccc;
-	height: 65dvh;
+	min-height: 65dvh;
 	background: white;
+	position: relative;
 }
 .details {
 	display: flex;
+	position: relative;
 	justify-content: space-around;
 	flex-wrap: wrap;
 	padding: 30px 0;
 	width: 100%;
+	height: fit-content;
 }
 .details .big-img {
 	max-width: 500px;
 	min-width: 290px;
-	/*overflow: hidden;*/
+
 	margin: 25px 25px 0 25px;
 }
 .big-img img {
@@ -165,6 +168,7 @@
 }
 .box .cart {
 	background: #333;
+	border-radius: 5px;
 	color: white;
 	outline: none;
 	border: none;
@@ -174,8 +178,13 @@
 	margin-right: 20px;
 }
 
+.cart-selected {
+	background: red;
+}
+
 .reviewsSection {
 	margin: 0 100px 0px 100px;
+	position: relative;
 }
 
 .reviewsSection h1 {

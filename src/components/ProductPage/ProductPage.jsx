@@ -198,43 +198,46 @@ const ProductPage = () => {
 								<span>₹{product.price} </span>
 								<span>{product.discount} % discount </span>
 								<br />
-								<button
-									className={`icon-button ${
-										isFavorite ? "heart-btn-selected " : "heart-btn"
-									}`}
-									onClick={() => {
-										handleFavoriteClick();
-									}}
-								></button>
-								<div className='rating'>
-									<label
-										htmlFor='star6'
-										className={selectedRating >= 5 ? "in-rate-range" : ""}
-										onClick={() => handleRateClick(5)}
-									></label>
-									<label
-										htmlFor='star7'
-										className={selectedRating >= 4 ? "in-rate-range" : ""}
-										onClick={() => handleRateClick(4)}
-									></label>
-									<label
-										htmlFor='star8'
-										className={selectedRating >= 3 ? "in-rate-range" : ""}
-										onClick={() => handleRateClick(3)}
-									></label>
-									<label
-										htmlFor='star9'
-										className={selectedRating >= 2 ? "in-rate-range" : ""}
-										onClick={() => handleRateClick(2)}
-									></label>
-									<label
-										htmlFor='star10'
-										className={selectedRating >= 1 ? "in-rate-range" : ""}
-										onClick={() => handleRateClick(1)}
-									></label>
+								<div className='userdata'>
+									<button
+										className={`icon-button ${
+											isFavorite ? "heart-btn-selected " : "heart-btn"
+										}`}
+										onClick={() => {
+											handleFavoriteClick();
+										}}
+									></button>
+									<div className='rating'>
+										<label
+											htmlFor='star6'
+											className={selectedRating >= 5 ? "in-rate-range" : ""}
+											onClick={() => handleRateClick(5)}
+										></label>
+										<label
+											htmlFor='star7'
+											className={selectedRating >= 4 ? "in-rate-range" : ""}
+											onClick={() => handleRateClick(4)}
+										></label>
+										<label
+											htmlFor='star8'
+											className={selectedRating >= 3 ? "in-rate-range" : ""}
+											onClick={() => handleRateClick(3)}
+										></label>
+										<label
+											htmlFor='star9'
+											className={selectedRating >= 2 ? "in-rate-range" : ""}
+											onClick={() => handleRateClick(2)}
+										></label>
+										<label
+											htmlFor='star10'
+											className={selectedRating >= 1 ? "in-rate-range" : ""}
+											onClick={() => handleRateClick(1)}
+										></label>
+									</div>
 								</div>
 								<button
-									className='cart'
+									className={`cart ${inCart ? "cart-selected " : "cart"}`}
+									//className='cart'
 									onClick={() => {
 										handleAddToCartClick();
 									}}
