@@ -5,7 +5,7 @@
 
 .mangeProduct {
 	display: flex;
-	height: 100vh;
+	height: 88vh;
 }
 /*//----------------------------*/
 
@@ -133,7 +133,7 @@ textarea.recipe-edit__input {
 .recipe-list {
 	border-right: 1px solid black;
 	border-radius: 10px;
-	min-height: 100vh;
+	min-height: 100%;
 	width: 50%;
 	background: #f6f9fc;
 	padding: 10px;

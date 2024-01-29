@@ -7,6 +7,11 @@
 	width: 100%;
 }
 
+.homeSlide {
+	height: 60vh;
+	display: flex;
+	flex-wrap: wrap;
+}
 .home-slide-right {
 	width: 50%;
 }
@@ -64,4 +69,17 @@
 }
 .catgrories h4 i {
 	margin-left: 100px;
+}
+
+@media (max-width: 900px) {
+	.catagori-name {
+		display: none;
+	}
+	.category {
+		width: 12%;
+	}
+
+	.homeSlide h1 {
+		font-size: 2rem;
+	}
 }

@@ -12,7 +12,7 @@ const Footer = () => {
 		<>
 			{currentUser ? (
 				<footer>
-					<div className='container grid2'>
+					<div className='footer-contener'>
 						<div className='box'>
 							<div className='logo'>
 								{

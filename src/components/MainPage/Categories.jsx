@@ -55,7 +55,7 @@ const Categories = () => {
 			<div className='category'>
 				<div className='catgrories d_flex'>
 					<span className='fa-solid fa-border-all'></span>
-					<h4>
+					<h4 className='catagori-name'>
 						Categories <i className='fa fa-chevron-down'></i>
 					</h4>
 				</div>
@@ -70,7 +70,7 @@ const Categories = () => {
 								src={value.cateImg}
 								alt=''
 							/>
-							<span>{value.cateName}</span>
+							<span className='catagori-name'>{value.cateName}</span>
 						</div>
 					);
 				})}

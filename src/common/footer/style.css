@@ -2,8 +2,20 @@
 
 footer {
 	background-color: #ffffff;
-	padding: 100px 0;
+	padding: 100px 50px;
 	color: #000000;
+}
+
+.footer-contener {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+
+.footer-contener .box {
+	width: 350px;
+	height: 100%;
 }
 footer h1 {
 	margin-bottom: 30px;

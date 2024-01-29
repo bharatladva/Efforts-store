@@ -39,7 +39,14 @@ export default function Dashboard() {
 		<div className='signin-page-container'>
 			<div className='signin-page-main'>
 				<div className='account-head'>
-					<h2 className='form_title title'>User Profile</h2>
+					<h2
+						className='form_title title'
+						style={{
+							color: "#0f3460",
+						}}
+					>
+						User Profile
+					</h2>
 					{error && <div className='alert'>{error}</div>}
 
 					<p style={{ fontFamily: "Oswald , sans-serif", fontSize: "18px" }}>Email</p>
