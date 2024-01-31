@@ -9,7 +9,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 import "./UserDataLists.css"; // Import CSS file for styling
 
-const API_URL = "http://localhost:5000";
+const API_URL = process.env.API_URL;
 
 export default function UserDataLists() {
 	const navigate = useNavigate();

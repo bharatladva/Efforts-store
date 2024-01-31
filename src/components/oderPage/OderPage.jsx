@@ -4,7 +4,7 @@
 import React, { useState } from "react";
 import "./OderPage.css";
 import { useAuth } from "../../components/user/AuthContext";
-const API_URL = "http://localhost:5000";
+const API_URL = process.env.API_URL;
 
 export default function OderPage({ onClose, price, name, stock }) {
 	const { currentUser } = useAuth();

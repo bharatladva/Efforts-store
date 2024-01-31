@@ -3,13 +3,9 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
 import { useAuth } from "../../components/user/AuthContext";
-const API_URL = "http://localhost:5000";
+const API_URL = process.env.API_URL;
 
 const Cart = () => {
-	// Stpe: 7   calucate total of items
-
-	// prodcut qty total
-
 	const dataType = "cart";
 	const { currentUser } = useAuth();
 	const [dbList, setDbList] = useState([]);
@@ -143,7 +139,7 @@ const Cart = () => {
 							<h2>Cart Summary</h2>
 							<div className=' d_flex'>
 								<h4>Total Price :</h4>
-								{/*<h3>₹{totalPrice}.00</h3>*/}
+								<h3>₹{totalPrice}.00</h3>
 							</div>
 						</div>
 					</div>

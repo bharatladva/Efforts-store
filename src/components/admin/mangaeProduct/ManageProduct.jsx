@@ -9,7 +9,7 @@ import ProductEdit from "./productEdit/ProductEdit";
 export const ProductContext = createContext();
 
 // API URL for your server
-const API_URL = "http://localhost:5000";
+const API_URL = process.env.API_URL;
 
 export default function ManageProduct() {
 	const [selectedProductId, setSelectedProductId] = useState();

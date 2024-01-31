@@ -11,7 +11,7 @@ import { Cloudinary } from "@cloudinary/url-gen";
 
 import { AdvancedImage, responsive, placeholder } from "@cloudinary/react";
 
-const API_URL = "http://localhost:5000/products";
+const API_URL = process.env.API_URL;
 
 export default function ProductEdit({ product }) {
 	const { handleProductChange, handleProductSelect } = useContext(ProductContext);
@@ -82,7 +82,7 @@ export default function ProductEdit({ product }) {
 		event.preventDefault();
 
 		try {
-			const response = await fetch(`${API_URL}/${product._id}`, {
+			const response = await fetch(`${API_URL}/products/${product._id}`, {
 				method: "PUT",
 				headers: {
 					"Content-Type": "application/json",

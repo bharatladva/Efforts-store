@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 import { useNavigate } from "react-router-dom";
 
-const API_URL = "http://localhost:5000/products";
+const API_URL = process.env.REACT_APP_API_URL;
 
 const SampleNextArrow = (props) => {
 	const { onClick } = props;
@@ -50,7 +50,7 @@ const FlashCard = () => {
 
 	const fetchProducts = async () => {
 		try {
-			const response = await fetch(`${API_URL}?addTo=Flash Delas`);
+			const response = await fetch(`${API_URL}/products?addTo=Flash Delas`);
 			const data = await response.json();
 
 			setProducts(data.data.products);
