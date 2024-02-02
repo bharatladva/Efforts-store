@@ -11,7 +11,7 @@ import { Cloudinary } from "@cloudinary/url-gen";
 
 import { AdvancedImage, responsive, placeholder } from "@cloudinary/react";
 
-const API_URL = process.env.API_URL;
+const API_URL = process.env.REACT_APP_API_URL;
 
 export default function ProductEdit({ product }) {
 	const { handleProductChange, handleProductSelect } = useContext(ProductContext);

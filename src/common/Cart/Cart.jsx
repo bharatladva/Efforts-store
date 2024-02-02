@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
 import { useAuth } from "../../components/user/AuthContext";
-const API_URL = process.env.API_URL;
+const API_URL = process.env.REACT_APP_API_URL;
 
 const Cart = () => {
 	const dataType = "cart";

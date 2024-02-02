@@ -5,7 +5,7 @@ import "./ProductPage.css";
 import { useAuth } from "./../user/AuthContext";
 
 import OderPage from "../oderPage/OderPage";
-const API_URL = process.env.API_URL;
+const API_URL = process.env.REACT_APP_API_URL;
 
 const ProductPage = () => {
 	let { _id } = useParams();
