@@ -11,6 +11,8 @@ import Footer from "./common/footer/Footer";
 import ProductPage from "./components/ProductPage/ProductPage";
 
 import { AuthProvider } from "./components/user/AuthContext";
+import { UserDataProvider } from "./components/user/UserDataContext";
+
 import SignInPage from "./components/user/SignInPage";
 import UpdateProfile from "./components/user/UpdateProfile";
 import Account from "./components/user/Account";
@@ -38,60 +40,62 @@ function App() {
 			<Router>
 				<ScrollToTop />
 				<AuthProvider>
-					<Header />
-					<PrivateRoute
-						path='/'
-						element={<Pages />}
-					/>
-
-					<Routes>
-						<Route
-							path='/admin'
-							element={<AdminDaskbord />}
-						/>
-						<Route
-							path='/manageProduct'
-							element={<ManageProduct />}
-						/>
-
-						<Route
+					<UserDataProvider>
+						<Header />
+						<PrivateRoute
 							path='/'
 							element={<Pages />}
 						/>
-						<Route
-							path='/cart'
-							element={<Cart />}
-						/>
-						<Route
-							path='/about'
-							element={<Cart />}
-						/>
-						<Route
-							path='/productPage/:_id'
-							element={<ProductPage />}
-						/>
-						<Route
-							path='/update-profile'
-							element={<UpdateProfile />}
-						/>
-						<Route
-							path='/signup'
-							element={<SignInPage />}
-						/>
-						<Route
-							path='/forgot-password'
-							element={<ForgotPassword />}
-						/>
-						<Route
-							path='/account'
-							element={<Account />}
-						/>
-						<Route
-							path='/user/:dataType'
-							element={<UserDataLists />}
-						/>
-					</Routes>
-					<Footer />
+
+						<Routes>
+							<Route
+								path='/admin'
+								element={<AdminDaskbord />}
+							/>
+							<Route
+								path='/manageProduct'
+								element={<ManageProduct />}
+							/>
+
+							<Route
+								path='/'
+								element={<Pages />}
+							/>
+							<Route
+								path='/cart'
+								element={<Cart />}
+							/>
+							<Route
+								path='/about'
+								element={<Cart />}
+							/>
+							<Route
+								path='/productPage/:_id'
+								element={<ProductPage />}
+							/>
+							<Route
+								path='/update-profile'
+								element={<UpdateProfile />}
+							/>
+							<Route
+								path='/signup'
+								element={<SignInPage />}
+							/>
+							<Route
+								path='/forgot-password'
+								element={<ForgotPassword />}
+							/>
+							<Route
+								path='/account'
+								element={<Account />}
+							/>
+							<Route
+								path='/user/:dataType'
+								element={<UserDataLists />}
+							/>
+						</Routes>
+						<Footer />
+					</UserDataProvider>
 				</AuthProvider>
 			</Router>
 		</>

@@ -51,11 +51,7 @@ export default function ManageProduct() {
 				price: 0,
 
 				id: uuidv4(),
-				otherImage: [
-					"./images/discount/discount-1.png",
-					"./images/discount/discount-1.png",
-					"./images/discount/discount-1.png",
-				],
+				otherImage: [],
 				tital: "Lorem ipsum dolor sit amet.",
 				catagoriy: "catagoriy",
 				discount: 0,

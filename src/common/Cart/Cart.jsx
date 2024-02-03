@@ -89,7 +89,7 @@ const Cart = () => {
 								return (
 									<div
 										className='cart-list product d_flex'
-										key={data.id}
+										key={data._id}
 									>
 										<div className='img'>
 											<img

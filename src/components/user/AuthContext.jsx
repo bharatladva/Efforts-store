@@ -35,7 +35,6 @@ export function AuthProvider({ children }) {
 			.then(async (userCredential) => {
 				const user = userCredential.user;
 
-				// Update the user's profile with the provided username
 				try {
 					await updateProfile(user, {
 						displayName: username,
