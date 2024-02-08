@@ -18,7 +18,10 @@ function CloudinaryUploadWidget({ uwConfig, setPublicId }) {
 				script.setAttribute("async", "");
 				script.setAttribute("id", "uw");
 				script.src = "https://upload-widget.cloudinary.com/global/all.js";
-				script.addEventListener("load", () => setLoaded(true));
+				script.addEventListener("load", (e) => {
+					e.preventDefault();
+					setLoaded(true);
+				});
 				document.body.appendChild(script);
 			} else {
 				// If already loaded, update the state
@@ -51,7 +54,10 @@ function CloudinaryUploadWidget({ uwConfig, setPublicId }) {
 			<button
 				id='upload_widget'
 				className='cloudinary-button'
-				onClick={initializeCloudinaryWidget}
+				onClick={(e) => {
+					e.preventDefault();
+					initializeCloudinaryWidget();
+				}}
 			>
 				Upload MainImage
 			</button>

@@ -22,6 +22,7 @@ import UserDataLists from "./components/user/UserDataList";
 
 import AdminDaskbord from "./components/admin/AdminDaskbord";
 import ManageProduct from "./components/admin/mangaeProduct/ManageProduct";
+import Products from "./components/products/Products";
 
 function ScrollToTop() {
 	const location = useLocation();
@@ -64,8 +65,8 @@ function App() {
 								element={<Cart />}
 							/>
 							<Route
-								path='/about'
-								element={<Cart />}
+								path='/products'
+								element={<Products />}
 							/>
 							<Route
 								path='/productPage/:_id'

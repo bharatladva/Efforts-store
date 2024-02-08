@@ -2,10 +2,15 @@
 
 import React from "react";
 import Catg from "./Catg";
-import ShopCart from "./ShopCart";
-import "./style.css";
 
-const Shop = ({ addToCart }) => {
+import "./style.css";
+import FlashCard from "../flashDeals/FlashCard";
+
+import sdata from "./Sdata";
+
+const { shopItems } = sdata;
+
+const Shop = () => {
 	return (
 		<>
 			<section className='shop background'>
@@ -23,7 +28,14 @@ const Shop = ({ addToCart }) => {
 							</div>
 						</div>
 						<div className='product-content  grid1'>
-							<ShopCart />
+							{shopItems.map((productItem) => (
+								<div>
+									<FlashCard
+										key={productItem._id}
+										productItems={productItem}
+									/>
+								</div>
+							))}
 						</div>
 					</div>
 				</div>

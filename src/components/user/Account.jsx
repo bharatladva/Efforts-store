@@ -9,7 +9,7 @@ export default function Dashboard() {
 	const { currentUser, logout } = useAuth();
 
 	const favorites = "favorites";
-	const Watchlist = "cart";
+	const Cart = "cart";
 	const Ratings = "ratings";
 	const MyOders = "My Oders";
 
@@ -28,8 +28,8 @@ export default function Dashboard() {
 	function navigateTofavorites() {
 		navigate(`/user/${favorites}`);
 	}
-	function navigateToWatchList() {
-		navigate(`/user/${Watchlist}`);
+	function navigateToCart() {
+		navigate(`/user/${Cart}`);
 	}
 	function navigateToRatings() {
 		navigate(`/user/${Ratings}`);
@@ -68,15 +68,6 @@ export default function Dashboard() {
 							<label htmlFor=''>{favorites}</label>
 						</div>
 					</div>
-					<div
-						className='category-box'
-						onClick={navigateToWatchList}
-					>
-						<div>
-							<div className='icon-button acc-bookmark-btn'></div>
-							<label htmlFor=''>{Watchlist}</label>
-						</div>
-					</div>
 
 					<div
 						className='category-box'
@@ -87,6 +78,16 @@ export default function Dashboard() {
 							<label htmlFor=''>{Ratings}</label>
 						</div>
 					</div>
+					<div
+						className='category-box'
+						onClick={navigateToCart}
+					>
+						<div>
+							<div className='icon-button acc-bookmark-btn'></div>
+							<label htmlFor=''>{Cart}</label>
+						</div>
+					</div>
+
 					<div
 						className='category-box'
 						onClick={navigateToRatings}

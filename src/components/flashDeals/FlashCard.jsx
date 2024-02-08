@@ -53,13 +53,14 @@ const FlashCard = ({ productItems }) => {
 	return (
 		<>
 			<div
-				className='box'
+				className='FlashCard-box'
 				onClick={(e) => navigateToProductPage(e, _id)}
 			>
 				<div className='product mtop'>
 					<div className='img'>
 						<span className='discount'>{discount}% Off</span>
 						<img
+							className='product-mainImage'
 							src={mainImage}
 							alt=''
 						/>

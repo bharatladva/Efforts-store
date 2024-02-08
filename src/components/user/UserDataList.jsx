@@ -100,7 +100,7 @@ export default function UserDataLists() {
 					<div className='list-titele'>
 						<h1>{dataType}</h1>
 					</div>
-					<div className='movies-slides'>{renderMovieCards()}</div>
+					<div className='user-data-slides'>{renderMovieCards()}</div>
 				</div>
 			) : (
 				<div className='login-container'>

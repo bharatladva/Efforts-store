@@ -10,13 +10,6 @@ const Navbar = () => {
 		<>
 			<header className='header'>
 				<div className='container d_flex'>
-					{/*<div className='catgrories d_flex'>
-						<span className='fa-solid fa-border-all'></span>
-						<h4>
-							Categories <i className='fa fa-chevron-down'></i>
-						</h4>
-					</div>*/}
-
 					<div className='navlink'>
 						<ul
 							className={
@@ -24,17 +17,14 @@ const Navbar = () => {
 							}
 							onClick={() => setMobileMenu(false)}
 						>
-							{/*<ul className='link f_flex uppercase {MobileMenu ? "nav-links-MobileMenu" : "nav-links"} onClick={() => setMobileMenu(false)}'>*/}
-
 							<li>
-								<Link to='/user'>Products</Link>
+								<Link to='/Products'>Products</Link>
+							</li>
+							<li>
+								<Link to='/admin'>Admin</Link>
 							</li>
 							<li>
 								<Link to='/Abaut'>Abaut us</Link>
-							</li>
-
-							<li>
-								<Link to='/admin'>Admin</Link>
 							</li>
 							<li>
 								<Link to='/track'>order</Link>

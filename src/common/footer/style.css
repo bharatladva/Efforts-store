@@ -29,8 +29,8 @@ footer .img {
 	border-radius: 5px;
 }
 footer .logo {
-	width: 300px;
-	height: 40%;
+	width: 300px !important;
+	height: 40% !important;
 }
 footer .img i {
 	font-size: 20px;

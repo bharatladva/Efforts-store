@@ -68,6 +68,9 @@ export default function UpdateProfile() {
 
 				<form
 					className='signin-form'
+					style={{
+						height: "60%",
+					}}
 					onSubmit={handleSubmit}
 				>
 					<label className='label-text'>Email</label>
