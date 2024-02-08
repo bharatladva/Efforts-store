@@ -3,8 +3,9 @@
 	border: 1px solid red;
 }*/
 .mainpage {
-	height: fit-content;
 	background: #f6f9fc;
+	height: fit-content;
+	padding: 30px 0;
 	display: block;
 	justify-content: center;
 	position: relative;
@@ -64,6 +65,7 @@
 }
 
 .productPage {
+	height: 100%;
 	max-width: 1200px;
 	border-radius: 10px;
 	width: 100%;

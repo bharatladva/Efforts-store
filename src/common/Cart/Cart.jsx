@@ -1,8 +1,10 @@
 /** @format */
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./style.css";
 import { useAuth } from "../../components/user/AuthContext";
+import { UserDataContext } from "../../components/user/UserDataContext";
+import OderPage from "../../components/oderPage/OderPage";
 const API_URL = process.env.REACT_APP_API_URL;
 
 const Cart = () => {
@@ -10,6 +12,22 @@ const Cart = () => {
 	const { currentUser } = useAuth();
 	const [dbList, setDbList] = useState([]);
 	const [productData, setProductData] = useState([]);
+
+	const { handleAddToCart, inCart } = useContext(UserDataContext);
+
+	const handleAddToCartClick = async (_id) => {
+		handleAddToCart(_id);
+	};
+
+	const [isPopupOpen, setPopupOpen] = useState(false);
+
+	const openPopup = () => {
+		setPopupOpen(true);
+	};
+
+	const closePopup = () => {
+		setPopupOpen(false);
+	};
 
 	useEffect(() => {
 		if (currentUser) {
@@ -34,7 +52,7 @@ const Cart = () => {
 					console.error(error);
 				});
 		}
-	}, [dataType, currentUser]);
+	}, [dataType, currentUser, inCart]);
 
 	useEffect(() => {
 		const fetchDataForProductCards = async () => {
@@ -51,7 +69,13 @@ const Cart = () => {
 			try {
 				const resolvedProductData = await Promise.all(ProductDataPromises);
 
-				setProductData(resolvedProductData);
+				// Initialize quantity for each product to 1
+				const updatedProductData = resolvedProductData.map((product) => ({
+					...product,
+					quantity: 1,
+				}));
+
+				setProductData(updatedProductData);
 			} catch (error) {
 				console.error("Error fetching product data:", error);
 			}
@@ -62,7 +86,28 @@ const Cart = () => {
 		}
 	}, [dbList]);
 
-	const totalPrice = productData.reduce((price, item) => price + item.qty * item.price, 0);
+	const handleDecreaseQuantity = (index) => {
+		const updatedProductData = [...productData];
+		if (updatedProductData[index].quantity > 1) {
+			updatedProductData[index].quantity -= 1;
+			setProductData(updatedProductData);
+		}
+	};
+
+	const handleIncreaseQuantity = (index) => {
+		const updatedProductData = [...productData];
+		updatedProductData[index].quantity += 1;
+		setProductData(updatedProductData);
+	};
+
+	const totalPrice = productData.reduce((total, product) => {
+		const itemPrice = product.data.product.price || 0; // Use 0 if price is missing or falsy
+		const itemQuantity = product.quantity || 0; // Use 0 if quantity is missing or falsy
+		return total + itemPrice * itemQuantity;
+	}, 0);
+
+	const productNames = productData.map((product) => product.data.product.name);
+	console.log(productNames);
 
 	if (
 		Array.isArray(productData) &&
@@ -82,9 +127,9 @@ const Cart = () => {
 
 							{/* yasma hami le cart item lai display garaaxa */}
 
-							{productData.map((response, index) => {
-								const data = response.data.product;
-								const productQty = data.price * data.qty;
+							{productData.map((product, index) => {
+								const data = product.data.product;
+								const productQty = data.price * product.quantity;
 
 								return (
 									<div
@@ -100,29 +145,32 @@ const Cart = () => {
 										<div className='cart-details'>
 											<h3>{data.name}</h3>
 											<h4>
-												${data.price}.00 * {data.qty}
-												<span>${productQty}.00</span>``
+												${data.price}.00 * {product.quantity}
+												<span>${productQty}.00</span>
 											</h4>
 										</div>
 										<div className='cart-items-function'>
 											<div className='removeCart'>
-												<button className='removeCart'>
+												<button
+													className='removeCart'
+													onClick={() => {
+														handleAddToCartClick(data._id);
+													}}
+												>
 													<i className='fa-solid fa-xmark'></i>
 												</button>
 											</div>
-											{/* stpe: 5 
-                    product ko qty lai inc ra des garne
-                    */}
+
 											<div className='cartControl d_flex'>
 												<button
 													className='incCart'
-													//onClick={() => addToCart(item)}
+													onClick={() => handleIncreaseQuantity(index)}
 												>
 													<i className='fa-solid fa-plus'></i>
 												</button>
 												<button
 													className='desCart'
-													//onClick={() => decreaseQty(item)}
+													onClick={() => handleDecreaseQuantity(index)}
 												>
 													<i className='fa-solid fa-minus'></i>
 												</button>
@@ -141,6 +189,19 @@ const Cart = () => {
 								<h4>Total Price :</h4>
 								<h3>₹{totalPrice}.00</h3>
 							</div>
+							<button
+								className='cart-btn'
+								onClick={openPopup}
+							>
+								Buy Now
+							</button>
+							{isPopupOpen && (
+								<OderPage
+									onClose={closePopup}
+									price={totalPrice}
+									productNames={productNames}
+								/>
+							)}
 						</div>
 					</div>
 				</section>

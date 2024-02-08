@@ -25,8 +25,6 @@ import ManageProduct from "./components/admin/mangaeProduct/ManageProduct";
 
 function ScrollToTop() {
 	const location = useLocation();
-	console.log(location);
-
 	useEffect(() => {
 		window.scroll({ top: 0, behavior: "smooth" });
 	}, [location]);

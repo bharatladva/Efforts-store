@@ -1,131 +1,99 @@
 /** @format */
 
-import React, { useState, useEffect } from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { useContext, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-const API_URL = process.env.REACT_APP_API_URL;
+import { UserDataContext } from "./../user/UserDataContext";
 
-const SampleNextArrow = (props) => {
-	const { onClick } = props;
-	return (
-		<div
-			className='control-btn'
-			onClick={onClick}
-		>
-			<button className='next'>
-				<i className='fa fa-long-arrow-alt-right'></i>
-			</button>
-		</div>
-	);
-};
+const FlashCard = ({ productItems }) => {
+	const { _id, name, price, mainImage, discount } = productItems;
+	const {
+		handleFavorite,
+		isFavorite,
+		handleAddToCart,
+		inCart,
+		fetchUserData,
+		handleRate,
+		selectedRating,
+	} = useContext(UserDataContext);
 
-const SamplePrevArrow = (props) => {
-	const { onClick } = props;
-	return (
-		<div
-			className='control-btn'
-			onClick={onClick}
-		>
-			<button className='prev'>
-				<i className='fa fa-long-arrow-alt-left'></i>
-			</button>
-		</div>
-	);
-};
+	const handleFavoriteClick = async (_id) => {
+		console.log(_id);
+		handleFavorite(_id);
+	};
 
-const FlashCard = () => {
+	const handleAddToCartClick = async () => {
+		handleAddToCart(_id);
+	};
+
+	const handleRateClick = async (value) => {
+		handleRate(_id, value);
+	};
+
+	useEffect(() => {
+		const fetchData = async () => {
+			await fetchUserData(_id);
+		};
+
+		fetchData();
+	}, []);
+
 	const navigate = useNavigate();
 	function sanitizePath(path) {
 		return path.replace(/\/+/g, "/");
 	}
-	const [products, setProducts] = useState();
-
-	useEffect(() => {
-		fetchProducts();
-	}, []);
-
-	const fetchProducts = async () => {
-		try {
-			const response = await fetch(`${API_URL}/products?addTo=Flash Delas`);
-			const data = await response.json();
-
-			setProducts(data.data.products);
-		} catch (error) {
-			console.error("Error fetching products:", error);
-		}
-	};
-
-	const settings = {
-		dots: false,
-		infinite: true,
-		speed: 500,
-		slidesToShow: 4,
-		slidesToScroll: 1,
-
-		autoplay: true,
-		nextArrow: <SampleNextArrow />,
-		prevArrow: <SamplePrevArrow />,
-	};
-
 	function navigateToProductPage(e, _id) {
 		e.preventDefault();
 		navigate(sanitizePath(`/productPage/${_id}`));
 	}
 
+	//--------------------
+
 	return (
 		<>
-			{products ? (
-				<Slider {...settings}>
-					{products.map((productItems) => (
-						<div
-							className='box'
-							onClick={(e) => navigateToProductPage(e, productItems._id)}
-						>
-							<div className='product mtop'>
-								<div className='img'>
-									<span className='discount'>{productItems.discount}% Off</span>
-									<img
-										src={productItems.mainImage}
-										alt=''
-									/>
-									<div className='product-like'>
-										<i
-											className='fa-regular fa-heart'
-											onClick={(e) => {
-												e.stopPropagation();
-											}}
-										></i>
-									</div>
-								</div>
-								<div className='product-details'>
-									<h3>{productItems.name}</h3>
-									<div className='rate'>
-										<i className='fa fa-star'></i>
-										<i className='fa fa-star'></i>
-										<i className='fa fa-star'></i>
-										<i className='fa fa-star'></i>
-										<i className='fa fa-star'></i>
-									</div>
-									<div className='price'>
-										<h4>₹{productItems.price}.00 </h4>
-										<button
-										//</div>onClick={() => addToCart(productItems)}
-										>
-											<i className='fa fa-plus'></i>
-										</button>
-									</div>
-								</div>
-							</div>
+			<div
+				className='box'
+				onClick={(e) => navigateToProductPage(e, _id)}
+			>
+				<div className='product mtop'>
+					<div className='img'>
+						<span className='discount'>{discount}% Off</span>
+						<img
+							src={mainImage}
+							alt=''
+						/>
+						<div className='product-like'>
+							<button
+								//className={`icon-button ${
+								//	isFavorite ? "heart-btn-selected " : "heart-btn"
+								//}`}
+
+								className='icon-button heart-btn-selected'
+								onClick={(e) => {
+									e.stopPropagation();
+									handleFavoriteClick(_id);
+								}}
+							></button>
 						</div>
-					))}
-				</Slider>
-			) : (
-				<p>Loading...</p>
-			)}
+					</div>
+					<div className='product-details'>
+						<h3>{name}</h3>
+
+						<div className='price'>
+							<h4>₹{price}.00 </h4>
+							<button
+								onClick={(e) => {
+									e.stopPropagation();
+									handleAddToCartClick();
+								}}
+							>
+								<i className={`fa fa-plus  ${inCart ? "fa fa-plus  " : " "}`}></i>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
 		</>
 	);
 };

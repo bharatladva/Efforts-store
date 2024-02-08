@@ -2,7 +2,6 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import "./ProductPage.css";
-import { useAuth } from "./../user/AuthContext";
 import { UserDataContext } from "./../user/UserDataContext";
 
 import OderPage from "../oderPage/OderPage";
@@ -10,7 +9,6 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 const ProductPage = () => {
 	let { _id } = useParams();
-	let { currentUser } = useAuth();
 
 	const {
 		handleFavorite,
@@ -157,8 +155,7 @@ const ProductPage = () => {
 									<OderPage
 										onClose={closePopup}
 										price={product.price}
-										name={product.name}
-										stock={product.stock}
+										productNames={[product.name]}
 									/>
 								)}
 							</div>

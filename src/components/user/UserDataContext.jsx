@@ -4,6 +4,7 @@ import React, { createContext, useState } from "react";
 import { useAuth } from "./AuthContext";
 
 const API_URL = process.env.REACT_APP_API_URL;
+
 export const UserDataContext = createContext();
 
 export function UserDataProvider({ children }) {
@@ -39,7 +40,6 @@ export function UserDataProvider({ children }) {
 				return responseData.isAdded ? !old : old;
 			});
 		} catch (error) {
-			// Handle error
 			console.error(error);
 		}
 	}
@@ -49,7 +49,6 @@ export function UserDataProvider({ children }) {
 			window.alert(`Please Log in to your Account to Add This To Your Cart`);
 			return;
 		}
-
 		try {
 			let itemToAdd = { _id };
 			let uid = currentUser.uid;
@@ -61,9 +60,14 @@ export function UserDataProvider({ children }) {
 				body: JSON.stringify({
 					uid,
 					itemToAdd,
-					inCart, // Sending the current state might not be necessary
+					inCart,
 				}),
 			});
+
+			if (!response.ok) {
+				const errorMessage = await response.text();
+				throw new Error(`Failed to add item to cart: ${errorMessage}`);
+			}
 
 			const responseData = await response.json();
 
@@ -71,8 +75,7 @@ export function UserDataProvider({ children }) {
 				return responseData.isAddedInCart ? !old : old;
 			});
 		} catch (error) {
-			// Handle error
-			console.error(error);
+			console.error("Error adding item to cart:", error);
 		}
 	}
 
@@ -107,7 +110,6 @@ export function UserDataProvider({ children }) {
 			} else if (error.request) {
 				console.log(error.request);
 			} else {
-				// Something happened in setting up the request that triggered an Error
 				console.log("Error", error.message);
 			}
 			console.log(error.config);
@@ -121,7 +123,7 @@ export function UserDataProvider({ children }) {
 					`${API_URL}/user/search-media-data?uid=${currentUser.uid}&id=${_id}`
 				);
 				const data = await response.json();
-				console.log(data);
+
 				setIsFavorite(data.favorited);
 				setSelectedRating(data.rated);
 				setInCart(data.cart);

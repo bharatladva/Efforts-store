@@ -6,7 +6,7 @@ import "./OderPage.css";
 import { useAuth } from "../../components/user/AuthContext";
 const API_URL = process.env.REACT_APP_API_URL;
 
-export default function OderPage({ onClose, price, name, stock }) {
+export default function OderPage({ onClose, price, productNames }) {
 	const { currentUser } = useAuth();
 	const [quantity, setQuantity] = useState(1);
 	const [errorMessage, setErrorMessage] = useState(null);
@@ -248,20 +248,21 @@ export default function OderPage({ onClose, price, name, stock }) {
 							</div>
 							<hr />
 							<div className='invoiceDiv'>
-								<strong>Product Name:</strong> {name}
+								<strong>Product Names:</strong>
+
+								<div>
+									{Array.isArray(productNames) &&
+										productNames.map((name, index) => (
+											<div key={index}>{name}</div>
+										))}
+								</div>
 							</div>
 							<div className='invoiceDiv'>
 								<strong>Quantity:</strong>
 								<div>
 									<button onClick={handleDecreaseQuantity}>-</button>
 									{quantity}
-									<button
-										onClick={
-											(handleIncreaseQuantity, handleIncreaseQuantityForStock)
-										}
-									>
-										+
-									</button>
+									<button onClick={handleIncreaseQuantity}>+</button>
 								</div>
 							</div>
 							<div className='invoiceDiv'>

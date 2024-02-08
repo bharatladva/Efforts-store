@@ -11,17 +11,9 @@ import "./UserDataLists.css"; // Import CSS file for styling
 
 const API_URL = process.env.REACT_APP_API_URL;
 
+import FlashCard from "../flashDeals/FlashCard";
+
 export default function UserDataLists() {
-	const navigate = useNavigate();
-	function sanitizePath(path) {
-		return path.replace(/\/+/g, "/");
-	}
-
-	function navigateToProductPage(e, _id) {
-		e.preventDefault();
-		navigate(sanitizePath(`/productPage/${_id}`));
-	}
-
 	const { dataType } = useParams();
 
 	const { currentUser } = useAuth();
@@ -90,50 +82,12 @@ export default function UserDataLists() {
 			Array.isArray(dbList) &&
 			productData.length === dbList.length
 		) {
-			return productData.map((response, index) => {
-				const data = response.data.product;
-				return (
-					<div
-						className='box'
-						key={index}
-						onClick={(e) => navigateToProductPage(e, data._id)}
-					>
-						<div className='product mtop'>
-							<div className='img'>
-								<span className='discount'>{data.discount}% Off</span>
-								<img
-									src={data.mainImage}
-									alt=''
-								/>
-								<div className='product-like'>
-									<i
-										className='fa-regular fa-heart'
-										onClick={(e) => {
-											e.stopPropagation();
-										}}
-									></i>
-								</div>
-							</div>
-							<div className='product-details'>
-								<h3>{data.name}</h3>
-								<div className='rate'>
-									<i className='fa fa-star'></i>
-									<i className='fa fa-star'></i>
-									<i className='fa fa-star'></i>
-									<i className='fa fa-star'></i>
-									<i className='fa fa-star'></i>
-								</div>
-								<div className='price'>
-									<h4>₹{data.price}.00 </h4>
-									<button>
-										<i className='fa fa-plus'></i>
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				);
-			});
+			return productData.map((response, index) => (
+				<FlashCard
+					key={index}
+					productItems={response.data.product}
+				/>
+			));
 		} else {
 			return "Loading...";
 		}

@@ -166,6 +166,8 @@ button {
 	margin: 5px 5px 5px 0;
 }
 .product .price {
+	margin: 10px 0;
+	font-size: 1rem;
 	display: flex;
 	justify-content: space-between;
 	color: #e94560;
