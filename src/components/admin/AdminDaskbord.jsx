@@ -20,6 +20,14 @@ const AdminDaskbord = () => {
 				<h2>Orders</h2>
 				<p>manage your products</p>
 			</div>
+			<div className='box box2'>
+				<h2>FAQ'S</h2>
+				<p>manage your FAQ'S</p>
+			</div>
+			<div className='box box2'>
+				<h2>Services</h2>
+				<p>manage your services</p>
+			</div>
 		</div>
 	);
 };

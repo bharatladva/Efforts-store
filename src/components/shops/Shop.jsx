@@ -29,12 +29,10 @@ const Shop = () => {
 						</div>
 						<div className='product-content  grid1'>
 							{shopItems.map((productItem) => (
-								<div>
-									<FlashCard
-										key={productItem._id}
-										productItems={productItem}
-									/>
-								</div>
+								<FlashCard
+									key={productItem._id}
+									productItems={productItem}
+								/>
 							))}
 						</div>
 					</div>

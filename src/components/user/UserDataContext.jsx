@@ -10,9 +10,7 @@ export const UserDataContext = createContext();
 export function UserDataProvider({ children }) {
 	let { currentUser } = useAuth();
 
-	const [isFavorite, setIsFavorite] = useState(false);
-	const [inCart, setInCart] = useState(false);
-	const [selectedRating, setSelectedRating] = useState(0);
+	const [itemsState, setItemsState] = useState({});
 
 	async function handleFavorite(_id) {
 		if (!currentUser) {
@@ -22,6 +20,11 @@ export function UserDataProvider({ children }) {
 		try {
 			let itemToAdd = { _id };
 			let uid = currentUser.uid;
+
+			// Retrieve the current state of the item
+			const currentItemState = itemsState[_id] || {};
+			const currentIsFavoriteState = currentItemState.isFavorite || false;
+
 			const response = await fetch(`${API_URL}/user/add-to-favorites`, {
 				method: "POST",
 				headers: {
@@ -30,15 +33,21 @@ export function UserDataProvider({ children }) {
 				body: JSON.stringify({
 					uid,
 					itemToAdd,
-					isFavorite,
+					isFavorite: currentIsFavoriteState, // Use the retrieved state
 				}),
 			});
 
 			const responseData = await response.json();
 
-			setIsFavorite((old) => {
-				return responseData.isAdded ? !old : old;
-			});
+			setItemsState((prevState) => ({
+				...prevState,
+				[_id]: {
+					...prevState[_id],
+					isFavorite: responseData.isAdded
+						? !currentIsFavoriteState
+						: currentIsFavoriteState,
+				},
+			}));
 		} catch (error) {
 			console.error(error);
 		}
@@ -52,6 +61,10 @@ export function UserDataProvider({ children }) {
 		try {
 			let itemToAdd = { _id };
 			let uid = currentUser.uid;
+
+			const isProductInCart = itemsState[_id]?.inCart;
+			console.log(isProductInCart);
+
 			const response = await fetch(`${API_URL}/user/add-to-cart`, {
 				method: "POST",
 				headers: {
@@ -60,20 +73,19 @@ export function UserDataProvider({ children }) {
 				body: JSON.stringify({
 					uid,
 					itemToAdd,
-					inCart,
+					inCart: isProductInCart, // Use the retrieved state
 				}),
 			});
 
-			if (!response.ok) {
-				const errorMessage = await response.text();
-				throw new Error(`Failed to add item to cart: ${errorMessage}`);
-			}
-
 			const responseData = await response.json();
 
-			setInCart((old) => {
-				return responseData.isAddedInCart ? !old : old;
-			});
+			setItemsState((prevState) => ({
+				...prevState,
+				[_id]: {
+					...prevState[_id],
+					inCart: responseData.isAddedInCart ? !isProductInCart : isProductInCart,
+				},
+			}));
 		} catch (error) {
 			console.error("Error adding item to cart:", error);
 		}
@@ -101,7 +113,14 @@ export function UserDataProvider({ children }) {
 			// Handle success
 			const responseData = await response.json();
 			console.log(responseData);
-			setSelectedRating(responseData.updatedTo);
+
+			setItemsState((prevState) => ({
+				...prevState,
+				[_id]: {
+					...prevState[_id],
+					selectedRating: responseData.updatedTo,
+				},
+			}));
 		} catch (error) {
 			if (error.response) {
 				console.log(error.response.data);
@@ -124,9 +143,25 @@ export function UserDataProvider({ children }) {
 				);
 				const data = await response.json();
 
-				setIsFavorite(data.favorited);
-				setSelectedRating(data.rated);
-				setInCart(data.cart);
+				// Ensure that the item state has all necessary properties
+				const initialItemState = {
+					isFavorite: false,
+					inCart: false,
+					selectedRating: 0,
+				};
+
+				setItemsState((prevState) => ({
+					...prevState,
+					[_id]: {
+						...initialItemState, // Spread the initial state here
+						...prevState[_id], // Then spread the previous state
+						isFavorite: data.favorited
+							? !prevState[_id]?.isFavorite // Use optional chaining to prevent accessing undefined
+							: prevState[_id]?.isFavorite,
+						inCart: data.cart ? !prevState[_id]?.inCart : prevState[_id]?.inCart,
+						selectedRating: data.rated,
+					},
+				}));
 			} catch (error) {
 				console.error("Error fetching user data:", error);
 			}
@@ -135,11 +170,9 @@ export function UserDataProvider({ children }) {
 
 	const value = {
 		handleFavorite,
-		isFavorite,
 		handleAddToCart,
-		inCart,
 		handleRate,
-		selectedRating,
+		itemsState,
 		fetchUserData,
 	};
 

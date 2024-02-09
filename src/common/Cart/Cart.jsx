@@ -13,7 +13,7 @@ const Cart = () => {
 	const [dbList, setDbList] = useState([]);
 	const [productData, setProductData] = useState([]);
 
-	const { handleAddToCart, inCart } = useContext(UserDataContext);
+	const { handleAddToCart, itemsState } = useContext(UserDataContext);
 
 	const handleAddToCartClick = async (_id) => {
 		handleAddToCart(_id);
@@ -52,12 +52,13 @@ const Cart = () => {
 					console.error(error);
 				});
 		}
-	}, [dataType, currentUser, inCart]);
+	}, [dataType, currentUser, itemsState]);
 
 	useEffect(() => {
 		const fetchDataForProductCards = async () => {
 			const ProductDataPromises = dbList.map((item) => {
 				console.log("item id", item._id);
+
 				return fetch(`${API_URL}/products/${item._id}`).then((response) => {
 					if (!response.ok) {
 						throw new Error("Network response was not ok");
@@ -75,6 +76,8 @@ const Cart = () => {
 					quantity: 1,
 				}));
 
+				console.log(updatedProductData);
+
 				setProductData(updatedProductData);
 			} catch (error) {
 				console.error("Error fetching product data:", error);
@@ -85,6 +88,8 @@ const Cart = () => {
 			fetchDataForProductCards();
 		}
 	}, [dbList]);
+
+	console.log("dblist", dbList);
 
 	const handleDecreaseQuantity = (index) => {
 		const updatedProductData = [...productData];

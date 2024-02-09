@@ -78,12 +78,10 @@ const FlashDeals = () => {
 					{products ? (
 						<Slider {...settings}>
 							{products.map((productItem) => (
-								<div>
-									<FlashCard
-										key={productItem._id}
-										productItems={productItem}
-									/>
-								</div>
+								<FlashCard
+									key={productItem._id}
+									productItems={productItem}
+								/>
 							))}
 						</Slider>
 					) : (

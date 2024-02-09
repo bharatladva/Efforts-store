@@ -112,6 +112,17 @@ export default function OderPage({ onClose, price, productNames }) {
 		e.preventDefault();
 	};
 
+	const [formValues, setFormValues] = useState({});
+
+	const handleChange = (e) => {
+		setFormValues({ ...formValues, [e.target.id]: e.target.value });
+	};
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		console.log(formValues);
+	};
+
 	return (
 		<div className='popup'>
 			<div className='popup-content'>
@@ -131,109 +142,129 @@ export default function OderPage({ onClose, price, productNames }) {
 					<div class='container'>
 						<h1>Shipping</h1>
 						<p>Please enter your shipping details.</p>
-
-						<div class='form'>
-							<div class='fields fields--2'>
+						<form onSubmit={handleSubmit}>
+							<div class='form'>
+								<div class='fields fields--2'>
+									<label class='field'>
+										<span
+											class='field__label'
+											for='firstname'
+										>
+											Full name
+										</span>
+										<input
+											class='field__input'
+											type='text'
+											id='firstname'
+											value={formValues.firstname || ""}
+											onChange={handleChange}
+										/>
+									</label>
+									<label class='field'>
+										<span
+											class='field__label'
+											for='phonenumber'
+										>
+											Phone number
+										</span>
+										<input
+											class='field__input'
+											type='text'
+											id='phone'
+											value={formValues.phone || ""}
+											onChange={handleChange}
+										/>
+									</label>
+								</div>
 								<label class='field'>
 									<span
 										class='field__label'
-										for='firstname'
+										for='address'
 									>
-										Full name
+										Address
 									</span>
 									<input
 										class='field__input'
 										type='text'
-										id='firstname'
+										id='address'
+										value={formValues.address || ""}
+										onChange={handleChange}
 									/>
 								</label>
 								<label class='field'>
 									<span
 										class='field__label'
-										for='lastname'
+										for='country'
 									>
-										Phone number
-									</span>
-									<input
-										class='field__input'
-										type='text'
-										id='phone'
-									/>
-								</label>
-							</div>
-							<label class='field'>
-								<span
-									class='field__label'
-									for='address'
-								>
-									Address
-								</span>
-								<input
-									class='field__input'
-									type='text'
-									id='address'
-								/>
-							</label>
-							<label class='field'>
-								<span
-									class='field__label'
-									for='country'
-								>
-									Country
-								</span>
-								<select
-									class='field__input'
-									id='country'
-								>
-									<option value=''></option>
-									<option value='unitedstates'>United States</option>
-								</select>
-							</label>
-							<div class='fields fields--3'>
-								<label class='field'>
-									<span
-										class='field__label'
-										for='zipcode'
-									>
-										Zip code
-									</span>
-									<input
-										class='field__input'
-										type='text'
-										id='zipcode'
-									/>
-								</label>
-								<label class='field'>
-									<span
-										class='field__label'
-										for='city'
-									>
-										City
-									</span>
-									<input
-										class='field__input'
-										type='text'
-										id='city'
-									/>
-								</label>
-								<label class='field'>
-									<span
-										class='field__label'
-										for='state'
-									>
-										State
+										Country
 									</span>
 									<select
 										class='field__input'
-										id='state'
+										id='country'
+										value={formValues.country || ""}
+										onChange={handleChange}
 									>
-										<option value=''>gujrat</option>
+										<option value=''></option>
+										<option value='india'>India</option>
 									</select>
 								</label>
+								<div class='fields fields--3'>
+									<label class='field'>
+										<span
+											class='field__label'
+											for='zipcode'
+										>
+											Zip code
+										</span>
+										<input
+											class='field__input'
+											type='text'
+											id='zipcode'
+											value={formValues.zipcode || ""}
+											onChange={handleChange}
+										/>
+									</label>
+									<label class='field'>
+										<span
+											class='field__label'
+											for='city'
+										>
+											City
+										</span>
+										<input
+											class='field__input'
+											type='text'
+											id='city'
+											value={formValues.city || ""}
+											onChange={handleChange}
+										/>
+									</label>
+									<label class='field'>
+										<span
+											class='field__label'
+											for='state'
+										>
+											State
+										</span>
+										<select
+											class='field__input'
+											id='state'
+											value={formValues.state || ""}
+											onChange={handleChange}
+										>
+											<option value='gujrat'>gujrat</option>
+										</select>
+									</label>
+								</div>
 							</div>
-						</div>
-						<hr />
-						<button class='button'>Submit</button>
+							<hr />
+							<button
+								class='button'
+								type='submit'
+							>
+								Submit
+							</button>
+						</form>
 					</div>
 				</div>
 				<div className='totalPrice address'>

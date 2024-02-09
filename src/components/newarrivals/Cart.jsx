@@ -10,7 +10,10 @@ const Cart = () => {
 			<div className='content grid product'>
 				{Ndata.map((val, index) => {
 					return (
-						<Link to={`/productPage/${val.id}`}>
+						<Link
+							key={index}
+							to={`/productPage/${val.id}`}
+						>
 							<div
 								className='box'
 								key={index}

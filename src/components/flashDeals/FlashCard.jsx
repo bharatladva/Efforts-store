@@ -10,12 +10,11 @@ const FlashCard = ({ productItems }) => {
 	const { _id, name, price, mainImage, discount } = productItems;
 	const {
 		handleFavorite,
-		isFavorite,
+
 		handleAddToCart,
-		inCart,
+
 		fetchUserData,
 		handleRate,
-		selectedRating,
 	} = useContext(UserDataContext);
 
 	const handleFavoriteClick = async (_id) => {
@@ -25,10 +24,6 @@ const FlashCard = ({ productItems }) => {
 
 	const handleAddToCartClick = async () => {
 		handleAddToCart(_id);
-	};
-
-	const handleRateClick = async (value) => {
-		handleRate(_id, value);
 	};
 
 	useEffect(() => {
@@ -89,7 +84,10 @@ const FlashCard = ({ productItems }) => {
 									handleAddToCartClick();
 								}}
 							>
-								<i className={`fa fa-plus  ${inCart ? "fa fa-plus  " : " "}`}></i>
+								<i
+									//className={`fa fa-plus  ${inCart ? "fa fa-plus  " : " "}`
+									className='fa fa-plus'
+								></i>
 							</button>
 						</div>
 					</div>

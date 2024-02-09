@@ -22,10 +22,13 @@ const Dcard = () => {
 				{Ddata.map((value, index) => {
 					return (
 						<>
-							<Link to={`/productPage/${value.id}`}>
+							<Link
+								key={value.id}
+								to={`/productPage/${value.id}`}
+							>
 								<div
 									className='box product'
-									key={index}
+									key={value.id}
 								>
 									<div className='img'>
 										<img

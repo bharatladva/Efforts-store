@@ -19,7 +19,7 @@ export default function UserDataLists() {
 	const { currentUser } = useAuth();
 
 	const [dbList, setDbList] = useState([]);
-	const [productData, setProductData] = useState([]);
+	const [productData, setProductData, itemsState] = useState([]);
 
 	useEffect(() => {
 		if (currentUser) {
@@ -46,12 +46,13 @@ export default function UserDataLists() {
 					console.error(error);
 				});
 		}
-	}, [dataType, currentUser]);
+	}, [dataType, currentUser, itemsState]);
 
 	useEffect(() => {
 		const fetchDataForProductCards = async () => {
 			const ProductDataPromises = dbList.map((item) => {
 				console.log("item id", item._id);
+
 				return fetch(`${API_URL}/products/${item._id}`).then((response) => {
 					if (!response.ok) {
 						throw new Error("Network response was not ok");

@@ -10,15 +10,8 @@ const API_URL = process.env.REACT_APP_API_URL;
 const ProductPage = () => {
 	let { _id } = useParams();
 
-	const {
-		handleFavorite,
-		isFavorite,
-		handleAddToCart,
-		inCart,
-		fetchUserData,
-		handleRate,
-		selectedRating,
-	} = useContext(UserDataContext);
+	const { handleFavorite, handleAddToCart, fetchUserData, handleRate, itemsState } =
+		useContext(UserDataContext);
 
 	const [product, setProduct] = useState();
 
@@ -65,6 +58,8 @@ const ProductPage = () => {
 		setPopupOpen(false);
 	};
 
+	console.log("itemsState pp");
+
 	return (
 		<>
 			{product ? (
@@ -102,7 +97,9 @@ const ProductPage = () => {
 								<div className='userdata'>
 									<button
 										className={`icon-button ${
-											isFavorite ? "heart-btn-selected " : "heart-btn"
+											itemsState?.[_id]?.isFavorite
+												? "heart-btn-selected "
+												: "heart-btn"
 										}`}
 										onClick={() => {
 											handleFavoriteClick();
@@ -111,33 +108,55 @@ const ProductPage = () => {
 									<div className='rating'>
 										<label
 											htmlFor='star6'
-											className={selectedRating >= 5 ? "in-rate-range" : ""}
+											className={
+												itemsState?.[_id]?.selectedRating >= 5
+													? "in-rate-range"
+													: ""
+											}
 											onClick={() => handleRateClick(5)}
 										></label>
 										<label
 											htmlFor='star7'
-											className={selectedRating >= 4 ? "in-rate-range" : ""}
+											className={
+												itemsState?.[_id]?.selectedRating >= 4
+													? "in-rate-range"
+													: ""
+											}
 											onClick={() => handleRateClick(4)}
 										></label>
 										<label
 											htmlFor='star8'
-											className={selectedRating >= 3 ? "in-rate-range" : ""}
+											className={
+												itemsState?.[_id]?.selectedRating >= 3
+													? "in-rate-range"
+													: ""
+											}
 											onClick={() => handleRateClick(3)}
 										></label>
 										<label
 											htmlFor='star9'
-											className={selectedRating >= 2 ? "in-rate-range" : ""}
+											className={
+												itemsState?.[_id]?.selectedRating >= 2
+													? "in-rate-range"
+													: ""
+											}
 											onClick={() => handleRateClick(2)}
 										></label>
 										<label
 											htmlFor='star10'
-											className={selectedRating >= 1 ? "in-rate-range" : ""}
+											className={
+												itemsState?.[_id]?.selectedRating >= 1
+													? "in-rate-range"
+													: ""
+											}
 											onClick={() => handleRateClick(1)}
 										></label>
 									</div>
 								</div>
 								<button
-									className={`cart ${inCart ? "cart-selected " : "cart"}`}
+									className={`cart ${
+										itemsState?.[_id]?.inCart ? "cart-selected " : "cart"
+									}`}
 									//className='cart'
 									onClick={() => {
 										handleAddToCartClick();

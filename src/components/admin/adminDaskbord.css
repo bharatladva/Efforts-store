@@ -2,17 +2,19 @@
 
 .adminDaskbordcontainer {
 	display: flex;
-	justify-content: space-between;
-	padding: 20px;
-	height: 100vh;
-	padding: 100px;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 20px;
+	padding: 50px;
+	height: 80vh;
+
 	background: #f6f9fc;
 }
 
 .adminDaskbordcontainer .box {
-	width: 45%;
+	width: 600px;
 	padding: 20px;
-	height: 45%;
+	height: 300px;
 	border: 1px solid #fff;
 	border-radius: 8px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
