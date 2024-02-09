@@ -12,20 +12,20 @@ const AdminDaskbord = () => {
 				to={`/manageProduct`}
 			>
 				<div>
-					<h2>Products</h2>
+					<h1>Products</h1>
 					<p>manage your products </p>
 				</div>
 			</Link>
 			<div className='box box2'>
-				<h2>Orders</h2>
+				<h1>Orders</h1>
 				<p>manage your products</p>
 			</div>
 			<div className='box box2'>
-				<h2>FAQ'S</h2>
+				<h1>FAQ'S</h1>
 				<p>manage your FAQ'S</p>
 			</div>
 			<div className='box box2'>
-				<h2>Services</h2>
+				<h1>Services</h1>
 				<p>manage your services</p>
 			</div>
 		</div>

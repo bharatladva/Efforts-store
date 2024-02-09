@@ -21,11 +21,19 @@
 	transition: transform 0.3s ease-in-out;
 }
 
+.adminDaskbordcontainer .box h1 {
+	color: #0f3460;
+}
+
 .adminDaskbordcontainer .box:hover {
 	transform: scale(1.05);
 }
 
 .adminDaskbordcontainer .box1 {
+	background: url(./../assets/images/solar-penal-sun.svg);
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
 	background-color: #fff;
 }
 

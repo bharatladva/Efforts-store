@@ -290,37 +290,6 @@ const Sdata = {
 				},
 			],
 		},
-		{
-			id: 40,
-			mainImage: "./images/shops/shops-9.png",
-			name: "Airpod",
-			price: 120,
-			discount: 10,
-			otherImage: [
-				"./images/discount/discount-1.png",
-				"./images/discount/discount-1.png",
-				"./images/discount/discount-1.png",
-			],
-			tital: "Lorem ipsum dolor sit amet.",
-			catagoriy: "1",
-			stock: 5,
-			discription:
-				"Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, amet, neque id cupiditate esse deserunt labore veniam perspiciatis illum libero recusandae velit distinctio dolor voluptatum blanditiis eaque earum in ratione eligendi porro? Facere, nemo! Tempore at explicabo laboriosam, fuga pariatur enim nihil quisquam atque, ratione totam deleniti quis officia dolores.",
-
-			addTo: [
-				{
-					name: "flash",
-					display: true,
-				},
-			],
-
-			reviews: [
-				{
-					name: "bharat",
-					msg: "good product",
-				},
-			],
-		},
 	],
 };
 export default Sdata;

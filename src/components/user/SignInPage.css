@@ -281,6 +281,11 @@
 	}
 }
 
+.account-head {
+	background: #fff;
+	padding: 10px;
+	border-radius: 10px;
+}
 .account-head p {
 	color: #0f3460;
 	font-size: 17px;

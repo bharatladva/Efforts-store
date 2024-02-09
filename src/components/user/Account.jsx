@@ -49,10 +49,12 @@ export default function Dashboard() {
 					</h2>
 					{error && <div className='alert'>{error}</div>}
 
-					<p style={{ fontFamily: "Oswald , sans-serif", fontSize: "18px" }}>Email</p>
-					<p>
-						{currentUser ? currentUser.email : "No email available"}
-						{currentUser ? currentUser.name : "No name available"}
+					<p style={{ fontFamily: "Oswald , sans-serif", fontSize: "18px" }}>
+						Name : {currentUser ? currentUser.displayName : "No name available"}
+					</p>
+
+					<p style={{ fontFamily: "Oswald , sans-serif", fontSize: "18px" }}>
+						Email : {currentUser ? currentUser.email : "No email available"}
 					</p>
 
 					<div className='userimage'></div>

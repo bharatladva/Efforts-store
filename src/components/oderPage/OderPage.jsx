@@ -181,13 +181,13 @@ export default function OderPage({ onClose, price, productNames }) {
 										class='field__label'
 										for='address'
 									>
-										Address
+										full Address
 									</span>
 									<input
 										class='field__input'
 										type='text'
-										id='address'
-										value={formValues.address || ""}
+										id='full address'
+										value={formValues.fullAddress || ""}
 										onChange={handleChange}
 									/>
 								</label>
@@ -252,6 +252,7 @@ export default function OderPage({ onClose, price, productNames }) {
 											value={formValues.state || ""}
 											onChange={handleChange}
 										>
+											<option value=''></option>
 											<option value='gujrat'>gujrat</option>
 										</select>
 									</label>
