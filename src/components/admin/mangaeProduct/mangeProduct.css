@@ -65,6 +65,10 @@
 	overflow-y: auto;
 }
 
+.recipe-edit::-webkit-scrollbar {
+	display: none;
+}
+
 .recipe-edit__remove-button-container {
 	text-align: end;
 }
@@ -99,7 +103,7 @@
 
 textarea.recipe-edit__input {
 	resize: none;
-	height: 150px;
+	height: 130px;
 }
 
 .recipe-edit__ingredient-grid {

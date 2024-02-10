@@ -113,6 +113,37 @@ export default function ProductEdit({ product }) {
 					&times;
 				</button>
 			</div>
+			<div className='edit-image'>
+				<div>
+					<CloudinaryUploadWidget
+						uwConfig={uwConfig}
+						setPublicId={(publicId) => {
+							setPublicId(publicId);
+							handleChange({
+								mainImage: `https://res.cloudinary.com/${cloudName}/image/upload/${publicId}`,
+							});
+						}}
+					/>
+
+					<div style={{ width: "100px" }}>
+						<AdvancedImage
+							style={{ maxWidth: "100%" }}
+							cldImg={myImage}
+							plugins={[responsive(), placeholder()]}
+						/>
+					</div>
+				</div>
+
+				{formData.mainImage ? (
+					<img
+						src={formData.mainImage}
+						alt='not found'
+						style={{ width: "150px" }}
+					/>
+				) : (
+					<p>No main image.</p>
+				)}
+			</div>
 			<div className='recipe-edit__details-grid'>
 				<label
 					htmlFor='name'
@@ -262,40 +293,8 @@ export default function ProductEdit({ product }) {
 					className='btn btn--primary'
 					onClick={() => handleReviewAdd()}
 				>
-					Add Ingredient
+					Add review
 				</button>
-			</div>
-
-			<div className='edit-image'>
-				<div>
-					<CloudinaryUploadWidget
-						uwConfig={uwConfig}
-						setPublicId={(publicId) => {
-							setPublicId(publicId);
-							handleChange({
-								mainImage: `https://res.cloudinary.com/${cloudName}/image/upload/${publicId}`,
-							});
-						}}
-					/>
-
-					<div style={{ width: "100px" }}>
-						<AdvancedImage
-							style={{ maxWidth: "100%" }}
-							cldImg={myImage}
-							plugins={[responsive(), placeholder()]}
-						/>
-					</div>
-				</div>
-
-				{formData.mainImage ? (
-					<img
-						src={formData.mainImage}
-						alt='not found'
-						style={{ width: "150px" }}
-					/>
-				) : (
-					<p>No main image.</p>
-				)}
 			</div>
 
 			<div className='recipe-edit__add-ingredient-btn-container'>
