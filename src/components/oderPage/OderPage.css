@@ -6,8 +6,8 @@
 
 .popup {
 	position: fixed;
-	height: 500px;
-	width: 800px;
+	height: fit-content;
+	width: 54.5%;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
@@ -46,16 +46,17 @@
 }
 .popup-content {
 	display: flex;
+	flex-wrap: wrap;
 	height: 100%;
 }
 
 .address {
-	width: 50%;
+	width: 440px;
 	height: 100%;
 }
 
 .totalPrice {
-	width: 50%;
+	width: 440px;
 	height: 100%;
 }
 

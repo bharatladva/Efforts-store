@@ -2,9 +2,11 @@
 
 // OderPage.js
 import React, { useState, useEffect, useContext } from "react";
+import { v4 as uuidv4 } from "uuid";
 import "./OderPage.css";
 import { useAuth } from "../../components/user/AuthContext";
-import { UserDataContext } from "../user/UserDataContext";
+import AddresValues from "./AddresValues";
+
 const API_URL = process.env.REACT_APP_API_URL;
 
 export default function OderPage({ onClose, cartItems }) {
@@ -54,7 +56,7 @@ export default function OderPage({ onClose, cartItems }) {
 	const amount = calculateTotalPrice() * 100;
 	console.log(amount);
 	const currency = "INR";
-	const receiptId = "qwsaq1";
+	const receiptId = uuidv4();
 
 	const paymentHandler = async (e) => {
 		const response = await fetch(`${API_URL}/order`, {
@@ -77,7 +79,7 @@ export default function OderPage({ onClose, cartItems }) {
 			currency,
 			name: "Efforts Store", //your business name
 			description: "Test Transaction",
-			image: "../assets/images/984024fe-c3a8-4d83-8d7b-fcbb34e068f8.jpg",
+			image: "../assets/images/logo.jpeg",
 			order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
 			handler: async function (response) {
 				const body = {
@@ -108,6 +110,30 @@ export default function OderPage({ onClose, cartItems }) {
 			},
 		};
 		var rzp1 = new window.Razorpay(options);
+
+		rzp1.on("payment.success", async function (response) {
+			const { payment_id: payment_id } = response;
+			// Create the object containing order details
+			const orderDetails = {
+				receiptId: receiptId,
+
+				payment_id: payment_id,
+				paymentStatus: "success",
+				totalPrice: calculateTotalPrice(),
+
+				products: cartItems.map((item) => ({
+					_id: item._id,
+					name: item.name,
+					quantity: quantities[cartItems.indexOf(item)],
+					price: item.price.toFixed(2),
+				})),
+			};
+			console.log(orderDetails);
+			// Perform further actions like sending order details to server
+		});
+		rzp1.open();
+		e.preventDefault();
+
 		rzp1.on("payment.failed", function (response) {
 			setErrorMessage(
 				response.error.code,
@@ -130,25 +156,6 @@ export default function OderPage({ onClose, cartItems }) {
 		e.preventDefault();
 	};
 
-	//---------------------------------------------------------------------------------address hendle
-
-	const { handleAddress } = useContext(UserDataContext);
-
-	const [formValues, setFormValues] = useState({});
-
-	const handleChange = (e) => {
-		const { id, value } = e.target;
-		setFormValues({ ...formValues, [id]: value });
-	};
-
-	const handleAddressSubmit = (e) => {
-		e.preventDefault();
-		handleAddress(formValues);
-		//console.log(formValues);
-	};
-
-	//---------------------------------------------------------------------------------address hendle
-
 	return (
 		<div className='popup'>
 			<div className='popup-content'>
@@ -164,143 +171,22 @@ export default function OderPage({ onClose, cartItems }) {
 						<button onClick={() => setErrorMessage(null)}>Ok</button>
 					</div>
 				)}
-				<div className='address'>
-					<div className='container'>
-						<h1>Shipping</h1>
-						<p>Please enter your shipping details.</p>
-						<form onSubmit={handleAddressSubmit}>
-							<div className='form'>
-								<div className='fields fields--2'>
-									<label className='field'>
-										<span
-											className='field__label'
-											htmlFor='lendMarck'
-										>
-											lendMarck
-										</span>
-										<input
-											className='field__input'
-											type='text'
-											id='lendMarck'
-											value={formValues.lendMarck || ""}
-											onChange={handleChange}
-										/>
-									</label>
-									<label class='field'>
-										<span
-											className='field__label'
-											htmlForor='phonenumber'
-										>
-											Phone number
-										</span>
-										<input
-											className='field__input'
-											type='text'
-											id='phone'
-											value={formValues.phone || ""}
-											onChange={handleChange}
-										/>
-									</label>
-								</div>
-								<label className='field'>
-									<span
-										className='field__label'
-										htmlFor='FullAddress'
-									>
-										Full Address
-									</span>
-									<input
-										className='field__input'
-										type='text'
-										id='fullAddress' // Changed from 'full address'
-										value={formValues.fullAddress || ""}
-										onChange={handleChange}
-									/>
-								</label>
 
-								<label className='field'>
-									<span
-										className='field__label'
-										htmlFor='country'
-									>
-										Country
-									</span>
-									<select
-										className='field__input'
-										id='country'
-										value={formValues.country || ""}
-										onChange={handleChange}
-									>
-										<option value=''></option>
-										<option value='india'>India</option>
-									</select>
-								</label>
-								<div className='fields fields--3'>
-									<label className='field'>
-										<span
-											className='field__label'
-											htmlFor='zipcode'
-										>
-											Zip code
-										</span>
-										<input
-											className='field__input'
-											type='text'
-											id='zipcode'
-											value={formValues.zipcode || ""}
-											onChange={handleChange}
-										/>
-									</label>
-									<label class='field'>
-										<span
-											className='field__label'
-											htmlFor='city'
-										>
-											City
-										</span>
-										<input
-											className='field__input'
-											type='text'
-											id='city'
-											value={formValues.city || ""}
-											onChange={handleChange}
-										/>
-									</label>
-									<label className='field'>
-										<span
-											className='field__label'
-											htmlFor='state'
-										>
-											State
-										</span>
-										<select
-											className='field__input'
-											id='state'
-											value={formValues.state || ""}
-											onChange={handleChange}
-										>
-											<option value=''></option>
-											<option value='gujrat'>gujrat</option>
-										</select>
-									</label>
-								</div>
-							</div>
-							<hr />
-							<button
-								className='button'
-								type='submit'
-							>
-								Submit
-							</button>
-						</form>
-					</div>
-				</div>
+				<AddresValues />
 				<div className='totalPrice address'>
 					<div className='container '>
 						<h1>Invoice</h1>
 						<div>
 							<div className='invoiceDiv'>
-								<strong>Invoice ID:</strong> #12345
+								<strong>Invoice ID:</strong>
+								<span
+									style={{
+										textWrap: "wrap",
+										width: "200px",
+									}}
+								>
+									{receiptId}
+								</span>
 							</div>
 							<div className='invoiceDiv'>
 								<strong>Invoice Date:</strong> {new Date().toLocaleDateString()}
@@ -312,7 +198,12 @@ export default function OderPage({ onClose, cartItems }) {
 									<div>
 										{Array.isArray(cartItems) &&
 											cartItems.map((item, index) => (
-												<div key={index}>{item.name}</div>
+												<div
+													key={index}
+													style={{ margin: "5px 0" }}
+												>
+													{item.name}
+												</div>
 											))}
 									</div>
 								</div>
@@ -322,7 +213,10 @@ export default function OderPage({ onClose, cartItems }) {
 									<div>
 										{Array.isArray(cartItems) &&
 											cartItems.map((item, index) => (
-												<div key={index}>
+												<div
+													key={index}
+													style={{ margin: "5px 0" }}
+												>
 													<button
 														onClick={() =>
 															handleDecreaseQuantity(index)
@@ -346,7 +240,12 @@ export default function OderPage({ onClose, cartItems }) {
 									<strong>Price:</strong>
 									{Array.isArray(cartItems) &&
 										cartItems.map((item, index) => (
-											<div key={index}>₹{item.price.toFixed(2)}</div>
+											<div
+												key={index}
+												style={{ margin: "5px 0" }}
+											>
+												₹{item.price.toFixed(2)}
+											</div>
 										))}
 								</div>
 							</div>
@@ -357,8 +256,6 @@ export default function OderPage({ onClose, cartItems }) {
 							</div>
 						</div>
 						<hr />
-						<br />
-						<br />
 						<button
 							className='button chackOut'
 							onClick={paymentHandler}

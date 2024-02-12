@@ -112,7 +112,7 @@ const Cart = () => {
 		return total + itemPrice * itemQuantity;
 	}, 0);
 
-	const productNames = productData.map((product) => product.data.product.name);
+	//const productNames = productData.map((product) => product.data.product.name);
 
 	//-----------------------------------------------------------------------------------------------
 
@@ -123,6 +123,7 @@ const Cart = () => {
 		if (Array.isArray(productData) && productData.length > 0) {
 			const updatedCartItems = productData.map((product) => {
 				return {
+					_id: product.data.product._id,
 					name: product.data.product.name,
 					price: product.data.product.price,
 					quantity: product.quantity,
@@ -222,8 +223,7 @@ const Cart = () => {
 								<OderPage
 									onClose={closePopup}
 									cartItems={cartItems}
-									price={totalPrice}
-									productNames={productNames}
+									//price={totalPrice}
 								/>
 							)}
 						</div>
