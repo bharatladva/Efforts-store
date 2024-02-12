@@ -1,28 +1,46 @@
 /** @format */
 
 // OderPage.js
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./OderPage.css";
 import { useAuth } from "../../components/user/AuthContext";
+import { UserDataContext } from "../user/UserDataContext";
 const API_URL = process.env.REACT_APP_API_URL;
 
-export default function OderPage({ onClose, price, productNames }) {
+export default function OderPage({ onClose, cartItems }) {
 	const { currentUser } = useAuth();
-	const [quantity, setQuantity] = useState(1);
+
 	const [errorMessage, setErrorMessage] = useState(null);
 
-	const handleDecreaseQuantity = () => {
-		if (quantity > 1) {
-			setQuantity(quantity - 1);
+	const [quantities, setQuantities] = useState([]);
+
+	useEffect(() => {
+		if (cartItems && cartItems.length > 0) {
+			const initialQuantities = cartItems.map((item) => item.quantity || 1);
+			setQuantities(initialQuantities);
+		}
+	}, [cartItems]);
+
+	const handleDecreaseQuantity = (index) => {
+		if (quantities[index] > 1) {
+			const newQuantities = [...quantities];
+			newQuantities[index] -= 1;
+			setQuantities(newQuantities);
 		}
 	};
 
-	const handleIncreaseQuantity = () => {
-		setQuantity(quantity + 1);
+	const handleIncreaseQuantity = (index) => {
+		const newQuantities = [...quantities];
+		newQuantities[index] += 1;
+		setQuantities(newQuantities);
 	};
 
 	const calculateTotalPrice = () => {
-		return (quantity * price).toFixed(2);
+		let totalPrice = 0;
+		cartItems.forEach((item, index) => {
+			totalPrice += item.price * quantities[index];
+		});
+		return totalPrice.toFixed(2);
 	};
 
 	const handleIncreaseQuantityForStock = () => {
@@ -78,7 +96,7 @@ export default function OderPage({ onClose, price, productNames }) {
 			},
 			prefill: {
 				//We recommend using the prefill parameter to auto-fill customer's contact information, especially their phone number
-				name: currentUser.name, //your customer's name
+				name: currentUser.displayName, //your customer's name
 				email: currentUser.email, //your customer's email
 				contact: "9000000000", //Provide the customer's phone number for better conversion rates
 			},
@@ -112,16 +130,24 @@ export default function OderPage({ onClose, price, productNames }) {
 		e.preventDefault();
 	};
 
+	//---------------------------------------------------------------------------------address hendle
+
+	const { handleAddress } = useContext(UserDataContext);
+
 	const [formValues, setFormValues] = useState({});
 
 	const handleChange = (e) => {
-		setFormValues({ ...formValues, [e.target.id]: e.target.value });
+		const { id, value } = e.target;
+		setFormValues({ ...formValues, [id]: value });
 	};
 
-	const handleSubmit = (e) => {
+	const handleAddressSubmit = (e) => {
 		e.preventDefault();
-		console.log(formValues);
+		handleAddress(formValues);
+		//console.log(formValues);
 	};
+
+	//---------------------------------------------------------------------------------address hendle
 
 	return (
 		<div className='popup'>
@@ -139,36 +165,36 @@ export default function OderPage({ onClose, price, productNames }) {
 					</div>
 				)}
 				<div className='address'>
-					<div class='container'>
+					<div className='container'>
 						<h1>Shipping</h1>
 						<p>Please enter your shipping details.</p>
-						<form onSubmit={handleSubmit}>
-							<div class='form'>
-								<div class='fields fields--2'>
-									<label class='field'>
+						<form onSubmit={handleAddressSubmit}>
+							<div className='form'>
+								<div className='fields fields--2'>
+									<label className='field'>
 										<span
-											class='field__label'
-											for='firstname'
+											className='field__label'
+											htmlFor='lendMarck'
 										>
-											Full name
+											lendMarck
 										</span>
 										<input
-											class='field__input'
+											className='field__input'
 											type='text'
-											id='firstname'
-											value={formValues.firstname || ""}
+											id='lendMarck'
+											value={formValues.lendMarck || ""}
 											onChange={handleChange}
 										/>
 									</label>
 									<label class='field'>
 										<span
-											class='field__label'
-											for='phonenumber'
+											className='field__label'
+											htmlForor='phonenumber'
 										>
 											Phone number
 										</span>
 										<input
-											class='field__input'
+											className='field__input'
 											type='text'
 											id='phone'
 											value={formValues.phone || ""}
@@ -176,30 +202,31 @@ export default function OderPage({ onClose, price, productNames }) {
 										/>
 									</label>
 								</div>
-								<label class='field'>
+								<label className='field'>
 									<span
-										class='field__label'
-										for='address'
+										className='field__label'
+										htmlFor='FullAddress'
 									>
-										full Address
+										Full Address
 									</span>
 									<input
-										class='field__input'
+										className='field__input'
 										type='text'
-										id='full address'
+										id='fullAddress' // Changed from 'full address'
 										value={formValues.fullAddress || ""}
 										onChange={handleChange}
 									/>
 								</label>
-								<label class='field'>
+
+								<label className='field'>
 									<span
-										class='field__label'
-										for='country'
+										className='field__label'
+										htmlFor='country'
 									>
 										Country
 									</span>
 									<select
-										class='field__input'
+										className='field__input'
 										id='country'
 										value={formValues.country || ""}
 										onChange={handleChange}
@@ -208,16 +235,16 @@ export default function OderPage({ onClose, price, productNames }) {
 										<option value='india'>India</option>
 									</select>
 								</label>
-								<div class='fields fields--3'>
-									<label class='field'>
+								<div className='fields fields--3'>
+									<label className='field'>
 										<span
-											class='field__label'
-											for='zipcode'
+											className='field__label'
+											htmlFor='zipcode'
 										>
 											Zip code
 										</span>
 										<input
-											class='field__input'
+											className='field__input'
 											type='text'
 											id='zipcode'
 											value={formValues.zipcode || ""}
@@ -226,28 +253,28 @@ export default function OderPage({ onClose, price, productNames }) {
 									</label>
 									<label class='field'>
 										<span
-											class='field__label'
-											for='city'
+											className='field__label'
+											htmlFor='city'
 										>
 											City
 										</span>
 										<input
-											class='field__input'
+											className='field__input'
 											type='text'
 											id='city'
 											value={formValues.city || ""}
 											onChange={handleChange}
 										/>
 									</label>
-									<label class='field'>
+									<label className='field'>
 										<span
-											class='field__label'
-											for='state'
+											className='field__label'
+											htmlFor='state'
 										>
 											State
 										</span>
 										<select
-											class='field__input'
+											className='field__input'
 											id='state'
 											value={formValues.state || ""}
 											onChange={handleChange}
@@ -260,7 +287,7 @@ export default function OderPage({ onClose, price, productNames }) {
 							</div>
 							<hr />
 							<button
-								class='button'
+								className='button'
 								type='submit'
 							>
 								Submit
@@ -280,26 +307,50 @@ export default function OderPage({ onClose, price, productNames }) {
 							</div>
 							<hr />
 							<div className='invoiceDiv'>
-								<strong>Product Names:</strong>
+								<div className='invoiceDiv2'>
+									<strong>Products:</strong>
+									<div>
+										{Array.isArray(cartItems) &&
+											cartItems.map((item, index) => (
+												<div key={index}>{item.name}</div>
+											))}
+									</div>
+								</div>
+								<div className='invoiceDiv2'>
+									<strong>Quantity:</strong>
 
-								<div>
-									{Array.isArray(productNames) &&
-										productNames.map((name, index) => (
-											<div key={index}>{name}</div>
+									<div>
+										{Array.isArray(cartItems) &&
+											cartItems.map((item, index) => (
+												<div key={index}>
+													<button
+														onClick={() =>
+															handleDecreaseQuantity(index)
+														}
+													>
+														-
+													</button>
+													{quantities[index]}
+													<button
+														onClick={() =>
+															handleIncreaseQuantity(index)
+														}
+													>
+														+
+													</button>
+												</div>
+											))}
+									</div>
+								</div>
+								<div className='invoiceDiv2'>
+									<strong>Price:</strong>
+									{Array.isArray(cartItems) &&
+										cartItems.map((item, index) => (
+											<div key={index}>₹{item.price.toFixed(2)}</div>
 										))}
 								</div>
 							</div>
-							<div className='invoiceDiv'>
-								<strong>Quantity:</strong>
-								<div>
-									<button onClick={handleDecreaseQuantity}>-</button>
-									{quantity}
-									<button onClick={handleIncreaseQuantity}>+</button>
-								</div>
-							</div>
-							<div className='invoiceDiv'>
-								<strong>Product Price:</strong> ₹{price.toFixed(2)}
-							</div>
+
 							<hr />
 							<div className='invoiceDiv'>
 								<strong>Total Price:</strong> ₹{calculateTotalPrice()}

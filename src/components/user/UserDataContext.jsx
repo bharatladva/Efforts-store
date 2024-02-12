@@ -91,6 +91,33 @@ export function UserDataProvider({ children }) {
 		}
 	}
 
+	async function handleAddress(address) {
+		if (!currentUser) {
+			window.alert(`Please Log in to your Account to Rate this Movie`);
+			return;
+		}
+
+		try {
+			console.log("address: ", address);
+			let uid = currentUser.uid;
+			const response = await fetch(`${API_URL}/user/add-address`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					uid,
+					address,
+				}),
+			});
+
+			const responseData = await response.json();
+			console.log(responseData);
+		} catch (error) {
+			console.error("Error adding address:", error);
+		}
+	}
+
 	async function handleRate(_id, value) {
 		if (!currentUser) {
 			window.alert(`Please Log in to your Account to Rate this Movie`);
@@ -172,6 +199,7 @@ export function UserDataProvider({ children }) {
 		handleFavorite,
 		handleAddToCart,
 		handleRate,
+		handleAddress,
 		itemsState,
 		fetchUserData,
 	};

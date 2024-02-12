@@ -22,6 +22,7 @@ const Cart = () => {
 	const [isPopupOpen, setPopupOpen] = useState(false);
 
 	const openPopup = () => {
+		console.log("Cart Items:", cartItems);
 		setPopupOpen(true);
 	};
 
@@ -89,7 +90,7 @@ const Cart = () => {
 		}
 	}, [dbList]);
 
-	console.log("dblist", dbList);
+	//----------------------------------------------------------------------------------------qty price productNames
 
 	const handleDecreaseQuantity = (index) => {
 		const updatedProductData = [...productData];
@@ -112,7 +113,24 @@ const Cart = () => {
 	}, 0);
 
 	const productNames = productData.map((product) => product.data.product.name);
-	console.log(productNames);
+
+	//-----------------------------------------------------------------------------------------------
+
+	const [cartItems, setCartItems] = useState([]);
+
+	useEffect(() => {
+		// Populate the cart items array when product data is available
+		if (Array.isArray(productData) && productData.length > 0) {
+			const updatedCartItems = productData.map((product) => {
+				return {
+					name: product.data.product.name,
+					price: product.data.product.price,
+					quantity: product.quantity,
+				};
+			});
+			setCartItems(updatedCartItems);
+		}
+	}, [productData]);
 
 	if (
 		Array.isArray(productData) &&
@@ -203,6 +221,7 @@ const Cart = () => {
 							{isPopupOpen && (
 								<OderPage
 									onClose={closePopup}
+									cartItems={cartItems}
 									price={totalPrice}
 									productNames={productNames}
 								/>
