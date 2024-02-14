@@ -23,6 +23,33 @@ export default function OderPage({ onClose, cartItems }) {
 		}
 	}, [cartItems]);
 
+	const [address, setAddress] = useState({});
+
+	useEffect(() => {
+		if (currentUser) {
+			const uid = currentUser.uid;
+
+			fetch(`${API_URL}/user/get-user-data-list?uid=${uid}&dataType=address`, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			})
+				.then((response) => {
+					if (!response.ok) {
+						throw new Error("HTTP error " + response.status);
+					}
+					return response.json();
+				})
+				.then((data) => {
+					setAddress(data.arrayData[0]);
+				})
+				.catch((error) => {
+					console.error(error);
+				});
+		}
+	}, []);
+
 	const handleDecreaseQuantity = (index) => {
 		if (quantities[index] > 1) {
 			const newQuantities = [...quantities];
@@ -59,7 +86,7 @@ export default function OderPage({ onClose, cartItems }) {
 	const receiptId = uuidv4();
 
 	const paymentHandler = async (e) => {
-		const response = await fetch(`${API_URL}/order`, {
+		const response = await fetch(`${API_URL}/razorpay`, {
 			method: "POST",
 			body: JSON.stringify({
 				amount,
@@ -74,7 +101,7 @@ export default function OderPage({ onClose, cartItems }) {
 		console.log(order);
 
 		var options = {
-			key: process.env.RAZORPAY_KEY_ID, // Enter the Key ID generated from the Dashboard
+			key: process.env.REACT_APP_RAZORPAY_KEY_ID, // Enter the Key ID generated from the Dashboard
 			amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
 			currency,
 			name: "Efforts Store", //your business name
@@ -86,7 +113,7 @@ export default function OderPage({ onClose, cartItems }) {
 					...response,
 				};
 
-				const validateRes = await fetch(`${API_URL}/validate`, {
+				const validateRes = await fetch(`${API_URL}/razorpay/validate`, {
 					method: "POST",
 					body: JSON.stringify(body),
 					headers: {
@@ -94,8 +121,41 @@ export default function OderPage({ onClose, cartItems }) {
 					},
 				});
 				const jsonRes = await validateRes.json();
-				console.log(jsonRes);
+
+				const orderData = {
+					uid: currentUser.uid,
+					name: currentUser.displayName,
+					email: currentUser.email,
+					address: address,
+
+					date: new Date().toLocaleString(),
+					orderStatus: "created",
+					orderId: jsonRes.orderId,
+					paymentId: jsonRes.paymentId,
+					paymentStatus: jsonRes.msg,
+					totalPrice: calculateTotalPrice(),
+					products: cartItems.map((item) => ({
+						_id: item._id,
+						name: item.name,
+						quantity: quantities[cartItems.indexOf(item)],
+						price: item.price.toFixed(2),
+					})),
+				};
+
+				const orderResponse = await fetch(`${API_URL}/order`, {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(orderData),
+				});
+
+				const data = await orderResponse.json();
+				console.log("orderCreated", data);
+
+				console.log("orderData", orderData);
 			},
+
 			prefill: {
 				//We recommend using the prefill parameter to auto-fill customer's contact information, especially their phone number
 				name: currentUser.displayName, //your customer's name
@@ -111,29 +171,6 @@ export default function OderPage({ onClose, cartItems }) {
 		};
 		var rzp1 = new window.Razorpay(options);
 
-		rzp1.on("payment.success", async function (response) {
-			const { payment_id: payment_id } = response;
-			// Create the object containing order details
-			const orderDetails = {
-				receiptId: receiptId,
-
-				payment_id: payment_id,
-				paymentStatus: "success",
-				totalPrice: calculateTotalPrice(),
-
-				products: cartItems.map((item) => ({
-					_id: item._id,
-					name: item.name,
-					quantity: quantities[cartItems.indexOf(item)],
-					price: item.price.toFixed(2),
-				})),
-			};
-			console.log(orderDetails);
-			// Perform further actions like sending order details to server
-		});
-		rzp1.open();
-		e.preventDefault();
-
 		rzp1.on("payment.failed", function (response) {
 			setErrorMessage(
 				response.error.code,
@@ -144,13 +181,6 @@ export default function OderPage({ onClose, cartItems }) {
 				response.error.metadata.order_id,
 				response.error.metadata.payment_id
 			);
-			alert(response.error.code);
-			alert(response.error.description);
-			alert(response.error.source);
-			alert(response.error.step);
-			alert(response.error.reason);
-			alert(response.error.metadata.order_id);
-			alert(response.error.metadata.payment_id);
 		});
 		rzp1.open();
 		e.preventDefault();
@@ -177,17 +207,6 @@ export default function OderPage({ onClose, cartItems }) {
 					<div className='container '>
 						<h1>Invoice</h1>
 						<div>
-							<div className='invoiceDiv'>
-								<strong>Invoice ID:</strong>
-								<span
-									style={{
-										textWrap: "wrap",
-										width: "200px",
-									}}
-								>
-									{receiptId}
-								</span>
-							</div>
 							<div className='invoiceDiv'>
 								<strong>Invoice Date:</strong> {new Date().toLocaleDateString()}
 							</div>

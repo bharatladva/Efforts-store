@@ -16,10 +16,15 @@ const AdminDaskbord = () => {
 					<p>manage your products </p>
 				</div>
 			</Link>
-			<div className='box box2'>
-				<h1>Orders</h1>
-				<p>manage your products</p>
-			</div>
+			<Link
+				className='box box2'
+				to={`/orderManage`}
+			>
+				<div>
+					<h1>Orders</h1>
+					<p>manage your products</p>
+				</div>
+			</Link>
 			<div className='box box2'>
 				<h1>FAQ'S</h1>
 				<p>manage your FAQ'S</p>

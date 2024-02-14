@@ -71,7 +71,6 @@ const Cart = () => {
 			try {
 				const resolvedProductData = await Promise.all(ProductDataPromises);
 
-				// Initialize quantity for each product to 1
 				const updatedProductData = resolvedProductData.map((product) => ({
 					...product,
 					quantity: 1,
@@ -90,7 +89,7 @@ const Cart = () => {
 		}
 	}, [dbList]);
 
-	//----------------------------------------------------------------------------------------qty price productNames
+	//----------------------------------------------------------------------------------------qty price
 
 	const handleDecreaseQuantity = (index) => {
 		const updatedProductData = [...productData];
@@ -111,8 +110,6 @@ const Cart = () => {
 		const itemQuantity = product.quantity || 0; // Use 0 if quantity is missing or falsy
 		return total + itemPrice * itemQuantity;
 	}, 0);
-
-	//const productNames = productData.map((product) => product.data.product.name);
 
 	//-----------------------------------------------------------------------------------------------
 

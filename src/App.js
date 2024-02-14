@@ -22,6 +22,7 @@ import UserDataLists from "./components/user/UserDataList";
 
 import AdminDaskbord from "./components/admin/AdminDaskbord";
 import ManageProduct from "./components/admin/mangaeProduct/ManageProduct";
+import OrderManage from "./components/admin/orderManage/OrderManage";
 import Products from "./components/products/Products";
 
 function ScrollToTop() {
@@ -47,6 +48,7 @@ function App() {
 						/>
 
 						<Routes>
+							{/* ------------------------------------------ */}
 							<Route
 								path='/admin'
 								element={<AdminDaskbord />}
@@ -55,6 +57,12 @@ function App() {
 								path='/manageProduct'
 								element={<ManageProduct />}
 							/>
+							<Route
+								path='/orderManage'
+								element={<OrderManage />}
+							/>
+
+							{/* -------------------------------------- */}
 
 							<Route
 								path='/'
@@ -72,6 +80,7 @@ function App() {
 								path='/productPage/:_id'
 								element={<ProductPage />}
 							/>
+							{/* ---------------------------------------------- */}
 							<Route
 								path='/update-profile'
 								element={<UpdateProfile />}
@@ -92,6 +101,7 @@ function App() {
 								path='/user/:dataType'
 								element={<UserDataLists />}
 							/>
+							{/* ----------------------------------------------- */}
 						</Routes>
 						<Footer />
 					</UserDataProvider>
