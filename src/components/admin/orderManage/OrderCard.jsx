@@ -11,7 +11,7 @@ export default function OrderCard() {
 			<div className='order-box'>
 				<h2>Customer</h2>
 				<div className='order-box-values'>
-					<h3>Name</h3>
+					<h3>Name</h3> <span>bharay</span>
 				</div>
 				<div className='order-box-values'>
 					<h3>Email</h3>

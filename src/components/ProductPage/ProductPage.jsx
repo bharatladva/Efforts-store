@@ -58,7 +58,7 @@ const ProductPage = () => {
 		setPopupOpen(false);
 	};
 
-	console.log("itemsState pp");
+	let cartItems = {};
 
 	return (
 		<>
@@ -173,8 +173,14 @@ const ProductPage = () => {
 								{isPopupOpen && (
 									<OderPage
 										onClose={closePopup}
-										price={product.price}
-										productNames={[product.name]}
+										cartItems={[
+											{
+												_id: _id,
+												name: product.name,
+												price: product.price,
+												quantity: 1,
+											},
+										]}
 									/>
 								)}
 							</div>
