@@ -9,6 +9,7 @@ import Cart from "./common/Cart/Cart";
 import Header from "./common/header/Header";
 import Footer from "./common/footer/Footer";
 import ProductPage from "./components/ProductPage/ProductPage";
+import Products from "./components/products/Products";
 
 import { AuthProvider } from "./components/user/AuthContext";
 import { UserDataProvider } from "./components/user/UserDataContext";
@@ -23,7 +24,6 @@ import UserDataLists from "./components/user/UserDataList";
 import AdminDaskbord from "./components/admin/AdminDaskbord";
 import ManageProduct from "./components/admin/mangaeProduct/ManageProduct";
 import OrderManage from "./components/admin/orderManage/OrderManage";
-import Products from "./components/products/Products";
 
 function ScrollToTop() {
 	const location = useLocation();

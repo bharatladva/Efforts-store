@@ -28,9 +28,9 @@ const Shop = () => {
 							</div>
 						</div>
 						<div className='product-content  grid1'>
-							{shopItems.map((productItem) => (
+							{shopItems.map((productItem, index) => (
 								<FlashCard
-									key={productItem._id}
+									key={productItem._id || index}
 									productItems={productItem}
 								/>
 							))}

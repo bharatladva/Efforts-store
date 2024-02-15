@@ -23,7 +23,7 @@ const Dcard = () => {
 					return (
 						<>
 							<Link
-								key={value.id}
+								key={value.id || index}
 								to={`/productPage/${value.id}`}
 							>
 								<div

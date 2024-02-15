@@ -50,7 +50,10 @@ const TopCart = () => {
 				{Tdata.map((value, index) => {
 					return (
 						<>
-							<Link to={`/productPage/${value.id}`}>
+							<Link
+								key={index}
+								to={`/productPage/${value.id}`}
+							>
 								<div
 									className='box product'
 									key={index}
