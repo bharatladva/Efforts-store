@@ -50,6 +50,15 @@ export default function OderPage({ onClose, cartItems }) {
 		}
 	}, []);
 
+	let products = cartItems.map((item) => ({
+		_id: item._id,
+		name: item.name,
+		quantity: quantities[cartItems.indexOf(item)],
+		price: item.price.toFixed(2),
+	}));
+
+	console.log(products);
+
 	const handleDecreaseQuantity = (index) => {
 		if (quantities[index] > 1) {
 			const newQuantities = [...quantities];
@@ -134,12 +143,7 @@ export default function OderPage({ onClose, cartItems }) {
 					paymentId: jsonRes.paymentId,
 					paymentStatus: jsonRes.msg,
 					totalPrice: calculateTotalPrice(),
-					products: cartItems.map((item) => ({
-						_id: item._id,
-						name: item.name,
-						quantity: quantities[cartItems.indexOf(item)],
-						price: item.price.toFixed(2),
-					})),
+					products: products,
 				};
 
 				const orderResponse = await fetch(`${API_URL}/order`, {
