@@ -166,8 +166,8 @@ const Cart = () => {
 										<div className='cart-details'>
 											<h3>{data.name}</h3>
 											<h4>
-												${data.price}.00 * {product.quantity}
-												<span>${productQty}.00</span>
+												₹{data.price}.00 * {product.quantity}
+												<span>₹{productQty}.00</span>
 											</h4>
 										</div>
 										<div className='cart-items-function'>

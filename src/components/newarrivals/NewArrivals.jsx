@@ -1,11 +1,27 @@
 /** @format */
 
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Dcard from "../discount/Dcard";
 import "./style.css";
-import Ndata from "./Ndata";
 
+const API_URL = process.env.REACT_APP_API_URL;
 const NewArrivals = () => {
+	const [products, setProducts] = useState();
+
+	useEffect(() => {
+		fetchProducts();
+	}, []);
+
+	const fetchProducts = async () => {
+		try {
+			const response = await fetch(`${API_URL}/products?addTo=New Arrivals`);
+			const data = await response.json();
+
+			setProducts(data.data.products);
+		} catch (error) {
+			console.error("Error fetching products:", error);
+		}
+	};
 	return (
 		<>
 			<section className='NewArrivals background'>
@@ -24,8 +40,8 @@ const NewArrivals = () => {
 						</div>
 					</div>
 					<div className='content grid product'>
-						{Ndata ? (
-							Ndata.map((productItem) => (
+						{products ? (
+							products.map((productItem) => (
 								<Dcard
 									key={productItem._id}
 									productItems={productItem}

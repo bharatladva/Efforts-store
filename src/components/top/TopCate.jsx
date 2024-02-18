@@ -1,13 +1,12 @@
 /** @format */
 
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import "./style.css";
 import TopCart from "./TopCart";
-
+const API_URL = process.env.REACT_APP_API_URL;
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Tdata from "./Tdata";
 
 const SampleNextArrow = (props) => {
 	const { onClick } = props;
@@ -38,6 +37,22 @@ const SamplePrevArrow = (props) => {
 };
 
 const TopCate = () => {
+	const [products, setProducts] = useState();
+
+	useEffect(() => {
+		fetchProducts();
+	}, []);
+
+	const fetchProducts = async () => {
+		try {
+			const response = await fetch(`${API_URL}/products?addTo=Top products`);
+			const data = await response.json();
+
+			setProducts(data.data.products);
+		} catch (error) {
+			console.error("Error fetching products:", error);
+		}
+	};
 	const settings = {
 		dots: false,
 		infinite: true,
@@ -63,9 +78,9 @@ const TopCate = () => {
 						</div>
 					</div>
 
-					{Tdata ? (
+					{products ? (
 						<Slider {...settings}>
-							{Tdata.map((productItem) => (
+							{products.map((productItem) => (
 								<TopCart
 									key={productItem._id}
 									productItems={productItem}

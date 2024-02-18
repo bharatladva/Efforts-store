@@ -1,16 +1,32 @@
 /** @format */
 
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Dcard from "./Dcard";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Ddata from "./Ddata";
-import "../newarrivals/style.css";
 
-const DiscountItems = Ddata;
+import "../newarrivals/style.css";
+const API_URL = process.env.REACT_APP_API_URL;
 
 const Discount = () => {
+	const [products, setProducts] = useState();
+
+	useEffect(() => {
+		fetchProducts();
+	}, []);
+
+	const fetchProducts = async () => {
+		try {
+			const response = await fetch(`${API_URL}/products?addTo=Big Discounts`);
+			const data = await response.json();
+
+			setProducts(data.data.products);
+		} catch (error) {
+			console.error("Error fetching products:", error);
+		}
+	};
+
 	const settings = {
 		dots: false,
 		slidesToShow: 6,
@@ -37,9 +53,9 @@ const Discount = () => {
 						</div>
 					</div>
 
-					{DiscountItems ? (
+					{products ? (
 						<Slider {...settings}>
-							{DiscountItems.map((DiscountItem) => (
+							{products.map((DiscountItem) => (
 								<Dcard
 									key={DiscountItem._id}
 									productItems={DiscountItem}
