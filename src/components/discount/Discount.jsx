@@ -2,8 +2,23 @@
 
 import React from "react";
 import Dcard from "./Dcard";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Ddata from "./Ddata";
+import "../newarrivals/style.css";
+
+const DiscountItems = Ddata;
 
 const Discount = () => {
+	const settings = {
+		dots: false,
+		slidesToShow: 6,
+		slidesToScroll: 1,
+		infinite: true,
+		autoplay: true,
+	};
+
 	return (
 		<>
 			<section className='Discount background NewArrivals'>
@@ -21,7 +36,19 @@ const Discount = () => {
 							<i className='fa-solid fa-caret-right'></i>
 						</div>
 					</div>
-					<Dcard />
+
+					{DiscountItems ? (
+						<Slider {...settings}>
+							{DiscountItems.map((DiscountItem) => (
+								<Dcard
+									key={DiscountItem._id}
+									productItems={DiscountItem}
+								/>
+							))}
+						</Slider>
+					) : (
+						<p>Loading...</p>
+					)}
 				</div>
 			</section>
 		</>

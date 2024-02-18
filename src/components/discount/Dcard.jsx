@@ -1,50 +1,31 @@
 /** @format */
 
 import React from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Ddata from "./Ddata";
-import "../newarrivals/style.css";
 import { Link } from "react-router-dom";
 
-const Dcard = () => {
-	const settings = {
-		dots: false,
-		slidesToShow: 6,
-		slidesToScroll: 1,
-		infinite: true,
-		autoplay: true,
-	};
+const Dcard = ({ productItems }) => {
+	const { _id, name, price, mainImage } = productItems;
 	return (
 		<>
-			<Slider {...settings}>
-				{Ddata.map((value, index) => {
-					return (
-						<>
-							<Link
-								key={value.id || index}
-								to={`/productPage/${value.id}`}
-							>
-								<div
-									className='box product'
-									key={value.id}
-								>
-									<div className='img'>
-										<img
-											src={value.mainImage}
-											alt=''
-											width='100%'
-										/>
-									</div>
-									<h4>{value.name}</h4>
-									<span>₹{value.price}</span>
-								</div>
-							</Link>
-						</>
-					);
-				})}
-			</Slider>
+			<Link
+				key={_id}
+				to={`/productPage/${_id}`}
+			>
+				<div
+					className='box product'
+					key={_id}
+				>
+					<div className='img'>
+						<img
+							src={mainImage}
+							alt=''
+							width='100%'
+						/>
+					</div>
+					<h4>{name}</h4>
+					<span>₹{price}</span>
+				</div>
+			</Link>
 		</>
 	);
 };

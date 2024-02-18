@@ -1,79 +1,32 @@
 /** @format */
 
 import React from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Tdata from "./Tdata";
 import { Link } from "react-router-dom";
-const SampleNextArrow = (props) => {
-	const { onClick } = props;
-	return (
-		<div
-			className='control-btn'
-			onClick={onClick}
-		>
-			<button className='next'>
-				<i className='fa fa-long-arrow-alt-right'></i>
-			</button>
-		</div>
-	);
-};
 
-const SamplePrevArrow = (props) => {
-	const { onClick } = props;
-	return (
-		<div
-			className='control-btn'
-			onClick={onClick}
-		>
-			<button className='prev'>
-				<i className='fa fa-long-arrow-alt-left'></i>
-			</button>
-		</div>
-	);
-};
-
-const TopCart = () => {
-	const settings = {
-		dots: false,
-		infinite: true,
-		slidesToShow: 3,
-		slidesToScroll: 1,
-		autoplay: true,
-		nextArrow: <SampleNextArrow />,
-		prevArrow: <SamplePrevArrow />,
-	};
+const TopCart = ({ productItems }) => {
+	const { _id, name, price, mainImage, discount } = productItems;
 	return (
 		<>
-			<Slider {...settings}>
-				{Tdata.map((value, index) => {
-					return (
-						<>
-							<Link
-								key={index}
-								to={`/productPage/${value.id}`}
-							>
-								<div
-									className='box product'
-									key={index}
-								>
-									<div className='nametop d_flex'>
-										<span className='tleft'>{value.para}</span>
-										<span className='tright'>{value.desc}</span>
-									</div>
-									<div className='img'>
-										<img
-											src={value.mainImage}
-											alt=''
-										/>
-									</div>
-								</div>
-							</Link>
-						</>
-					);
-				})}
-			</Slider>
+			<Link
+				key={_id}
+				to={`/productPage/${_id}`}
+			>
+				<div
+					className='box product'
+					key={_id}
+				>
+					<div className='nametop d_flex'>
+						{/*<span className='tleft'>{value.para}</span>*/}
+						{/*<span className='tright'>{value.desc}</span>*/}
+					</div>
+					<div className='img'>
+						<img
+							src={mainImage}
+							alt=''
+						/>
+					</div>
+				</div>
+			</Link>
 		</>
 	);
 };

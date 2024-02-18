@@ -58,12 +58,7 @@ export default function SignInPage() {
 						className={`switch-container ${isSwitched ? "is-hidden" : ""}`}
 						id='switch-c1'
 					>
-						<div className='logo'>
-							<img
-								src='../assets/images/984024fe-c3a8-4d83-8d7b-fcbb34e068f8.jpg'
-								alt=''
-							/>
-						</div>
+						<div className='signin-logo'></div>
 						<h2 className='switch__title title'>Welcome Back!</h2>
 						<p className='switch__description description'>
 							To keep connected with us please LogIn with your personal info
@@ -80,12 +75,7 @@ export default function SignInPage() {
 						className={`switch-container ${!isSwitched ? "is-hidden" : ""}`}
 						id='switch-c2'
 					>
-						<div className='logo'>
-							<img
-								src='../assets/images/984024fe-c3a8-4d83-8d7b-fcbb34e068f8.jpg'
-								alt=''
-							/>
-						</div>
+						<div className='signin-logo'></div>
 						<h2 className='switch__title title'>Hello Friends!</h2>
 						<p className='switch__description description'>
 							In order to stay connected with us, please log in using your personal
