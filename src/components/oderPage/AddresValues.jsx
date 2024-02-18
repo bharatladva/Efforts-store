@@ -22,7 +22,7 @@ export default function AddresValues() {
 		<div className='address'>
 			<div className='container'>
 				<h1>Shipping</h1>
-				<p>Please enter your shipping details.</p>
+				<p>Please enter your shipping details. befor buy</p>
 				<form onSubmit={handleAddressSubmit}>
 					<div className='form'>
 						<div className='fields fields--2'>

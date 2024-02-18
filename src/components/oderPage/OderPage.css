@@ -7,7 +7,10 @@
 .popup {
 	position: fixed;
 	height: fit-content;
+	max-height: 80vh;
 	width: 55%;
+	min-width: fit-content;
+
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
@@ -16,8 +19,12 @@
 	border-radius: 8px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	z-index: 1000;
+	overflow-y: scroll;
 }
 
+.popup::-webkit-scrollbar {
+	display: none;
+}
 .error-popup {
 	position: fixed;
 	top: 50%;
@@ -47,15 +54,11 @@
 .popup-content {
 	display: flex;
 	flex-wrap: wrap;
-	height: 100%;
+	height: fit-content;
+	width: fit-content;
 }
 
 .address {
-	width: 440px;
-	height: 100%;
-}
-
-.totalPrice {
 	width: 440px;
 	height: 100%;
 }
@@ -92,9 +95,7 @@ hr {
 
 .address .container {
 	max-width: 100%;
-
 	height: 100%;
-	margin: auto;
 	padding: 20px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	border-radius: 8px;

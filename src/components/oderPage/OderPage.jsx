@@ -207,7 +207,7 @@ export default function OderPage({ onClose, cartItems }) {
 				)}
 
 				<AddresValues />
-				<div className='totalPrice address'>
+				<div className=' address'>
 					<div className='container '>
 						<h1>Invoice</h1>
 						<div>

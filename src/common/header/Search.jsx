@@ -1,13 +1,16 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../components/assets/images/logo.jpeg";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../components/user/AuthContext";
 import Navbar from "./Navbar";
+import { SearchBar } from "./searchBar/SearchBar";
+import { SearchResultsList } from "./searchBar/SearchResultsList";
 
 const Search = () => {
 	let { currentUser } = useAuth();
+	const [results, setResults] = useState([]);
 	// fixed Header
 	window.addEventListener("scroll", function () {
 		const search = document.querySelector(".search");
@@ -30,15 +33,8 @@ const Search = () => {
 							}
 						</Link>
 					</div>
-
-					<div className='search-box f_flex'>
-						<i className='fa fa-search'></i>
-						<input
-							type='text'
-							placeholder='Search and hit enter...'
-						/>
-						<span>All</span>
-					</div>
+					<SearchBar setResults={setResults} />
+					{results && results.length > 0 && <SearchResultsList results={results} />}
 					<Navbar />
 
 					<div className='icon f_flex width'>
