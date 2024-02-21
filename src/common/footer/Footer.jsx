@@ -3,6 +3,7 @@
 import React from "react";
 import "./style.css";
 import logo from "../../components/assets/images/logo.jpeg";
+import { Link } from "react-router-dom";
 
 import { useAuth } from "../../components/user/AuthContext";
 
@@ -42,11 +43,21 @@ const Footer = () => {
 						<div className='box'>
 							<h2>About Us</h2>
 							<ul>
-								<li>Careers</li>
 								<li>Our Stores</li>
 								<li>Our Cares</li>
 								<li>Terms & Conditions</li>
 								<li>Privacy Policy</li>
+								<li>
+									<Link
+										style={{
+											color: "red",
+											fontSize: "1.2rem",
+										}}
+										to='https://bharatladva.github.io/cv/'
+									>
+										Developer
+									</Link>
+								</li>
 							</ul>
 						</div>
 						<div className='box'>
@@ -63,10 +74,11 @@ const Footer = () => {
 							<h2>Contact Us</h2>
 							<ul>
 								<li>
-									70 Washington Square South, New York, NY 10012, United States{" "}
+									Blue Chip Complex, 708/09, opp. Parsi agiyari ground, Sarod,
+									Sayajiganj, Vadodara, Gujarat 390020{" "}
 								</li>
-								<li>Email: uilib.help@gmail.com</li>
-								<li>Phone: +1 1123 456 780</li>
+								<li>Email: Sales@effortsgroup.in</li>
+								<li>Phone: +91 8000 628 628</li>
 							</ul>
 						</div>
 					</div>
