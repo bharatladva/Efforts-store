@@ -25,11 +25,11 @@ const AdminDaskbord = () => {
 					<p>manage your products</p>
 				</div>
 			</Link>
-			<div className='box box2'>
+			<div className='box box3'>
 				<h1>FAQ'S</h1>
 				<p>manage your FAQ'S</p>
 			</div>
-			<div className='box box2'>
+			<div className='box box4'>
 				<h1>Services</h1>
 				<p>manage your services</p>
 			</div>

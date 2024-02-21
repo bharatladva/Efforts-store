@@ -1,0 +1,157 @@
+/**
+ * contact Us form by Ujjal Kar
+ * 
+ * 
+ * color: #3125AF; purple
+ * color: #BE6CD3; pink
+ *
+ * @format
+ */
+
+.ContectUs {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding-top: 10px;
+	background: #f6f9fc;
+
+	background: url(./../assets/images/pexels-diego-vivanco.jpg);
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.contectUs-box {
+	display: flex;
+	width: fit-content;
+	gap: 100px;
+	background: #fff;
+	border-radius: 10px;
+	margin-bottom: 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	padding: 10px;
+}
+
+.contectUs-map {
+	width: 100%;
+	height: 40vh;
+	padding: 0 5%;
+	margin-bottom: 20px;
+}
+
+.ContectUs-input {
+	flex: auto;
+	box-sizing: border-box;
+	width: 500px;
+}
+
+.ContectUs .suggest {
+	flex: auto;
+	box-sizing: border-box;
+}
+
+.ContectUs-input h3 {
+	font-size: 2rem;
+	text-transform: uppercase;
+	letter-spacing: 5px;
+}
+
+.ContectUs .suggest h3 {
+	font-size: 2rem;
+	text-transform: uppercase;
+	letter-spacing: 5px;
+}
+
+.ContectUs .icons {
+	width: 28px;
+}
+
+.ContectUs label {
+	color: #aaa;
+	display: block;
+	text-transform: uppercase;
+	font-weight: 700;
+	padding: 15px 0;
+}
+
+.ContectUs .float {
+	float: left;
+	margin-right: 73px;
+}
+
+.ContectUs .float:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.contectUs-msg {
+	border-radius: 10px;
+	width: 90%;
+	height: 100px;
+	padding: 5px;
+}
+
+.ContectUs input[type="text"],
+input[type="email"],
+input[type="number"] {
+	border: none;
+	border-bottom: 2px solid #ababaa;
+	padding: 5px 0;
+	transition: all 0.3s;
+	width: 87%;
+}
+.ContectUs input[type="text"] {
+	width: 118%;
+}
+.ContectUs input[type="email"] {
+	width: 40%;
+}
+
+.ContectUs input[type="text"]#message {
+	border: none;
+	border-bottom: 2px solid #ababaa;
+	padding: 5px 0;
+	transition: all 0.3s;
+	width: 90%;
+}
+
+.ContectUs input[type="text"]#message:focus {
+	outline: none;
+	border-bottom: 2px solid #534cb6;
+}
+
+.ContectUs input[type="text"]:focus,
+input[type="email"]:focus {
+	outline: none;
+	border-bottom: 2px solid #534cb6;
+}
+.ContectUs #btngrp {
+	padding: 10px 0;
+}
+
+.ContectUs .btn {
+	border: none;
+	padding: 12px 30px;
+	border-radius: 100px;
+	text-transform: uppercase;
+	cursor: pointer;
+	font-weight: bold;
+	color: #fff;
+	letter-spacing: 2px;
+	background-image: linear-gradient(to right, #3125af, #be6cd3);
+	text-align: center;
+	display: block;
+	box-sizing: border-box;
+	transition: all 0.3s;
+}
+
+.ContectUs .btn:hover {
+	box-shadow: 0 7px 15px rgba(0, 0, 0, 0.4);
+}
+
+.ContectUs .suggest h4 {
+	margin-top: 0;
+}
