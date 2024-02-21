@@ -39,7 +39,7 @@ const NewArrivals = () => {
 							<i className='fa-solid fa-caret-right'></i>
 						</div>
 					</div>
-					<div className='content grid product'>
+					<div className='newArrivals-products'>
 						{products ? (
 							products.map((productItem) => (
 								<Dcard

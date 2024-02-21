@@ -1,16 +1,34 @@
 /** @format */
 
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Catg from "./Catg";
 
 import "./style.css";
 import FlashCard from "../flashDeals/FlashCard";
+const API_URL = process.env.REACT_APP_API_URL;
 
 import sdata from "./Sdata";
 
 const { shopItems } = sdata;
 
 const Shop = () => {
+	const [products, setProducts] = useState();
+
+	useEffect(() => {
+		fetchProducts();
+	}, []);
+
+	const fetchProducts = async () => {
+		try {
+			const response = await fetch(`${API_URL}/products?addTo=Shope`);
+			const data = await response.json();
+
+			setProducts(data.data.products);
+		} catch (error) {
+			console.error("Error fetching products:", error);
+		}
+	};
+
 	return (
 		<>
 			<section className='shop background'>
@@ -28,12 +46,16 @@ const Shop = () => {
 							</div>
 						</div>
 						<div className='product-content  grid1'>
-							{shopItems.map((productItem, index) => (
-								<FlashCard
-									key={productItem._id || index}
-									productItems={productItem}
-								/>
-							))}
+							{products ? (
+								products.map((productItem) => (
+									<FlashCard
+										key={productItem._id}
+										productItems={productItem}
+									/>
+								))
+							) : (
+								<p>Loading...</p>
+							)}
 						</div>
 					</div>
 				</div>

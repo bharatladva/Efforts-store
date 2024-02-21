@@ -13,6 +13,9 @@ const Dcard = ({ productItems }) => {
 			>
 				<div
 					className='box product'
+					style={{
+						width: "230px",
+					}}
 					key={_id}
 				>
 					<div className='img'>

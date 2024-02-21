@@ -257,6 +257,7 @@ export default function ProductEdit({ product }) {
 					<option value='Big Discounts'>Big Discounts</option>
 					<option value='Top products'>Top products</option>
 					<option value='New Arrivals'>New Arrivals</option>
+					<option value='Shope'>Shope</option>
 				</select>
 
 				<label
