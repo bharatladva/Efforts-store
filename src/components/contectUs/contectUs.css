@@ -96,8 +96,8 @@
 }
 
 .ContectUs input[type="text"],
-input[type="email"],
-input[type="number"] {
+.ContectUs input[type="email"],
+.ContectUs input[type="number"] {
 	border: none;
 	border-bottom: 2px solid #ababaa;
 	padding: 5px 0;
@@ -125,7 +125,7 @@ input[type="number"] {
 }
 
 .ContectUs input[type="text"]:focus,
-input[type="email"]:focus {
+.ContectUs input[type="email"]:focus {
 	outline: none;
 	border-bottom: 2px solid #534cb6;
 }
