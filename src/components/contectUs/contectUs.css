@@ -50,6 +50,7 @@
 .ContectUs .suggest {
 	flex: auto;
 	box-sizing: border-box;
+	width: 300px;
 }
 
 .ContectUs-input h3 {

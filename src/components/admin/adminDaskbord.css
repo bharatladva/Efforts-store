@@ -44,3 +44,17 @@
 	background-repeat: no-repeat;
 	background-color: #fff;
 }
+.adminDaskbordcontainer .box3 {
+	background: url(./../assets/images/faq-svgrepo-com.svg);
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-color: #fff;
+}
+.adminDaskbordcontainer .box4 {
+	background: url(./../assets/images/services-svgrepo-com.svg);
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-color: #fff;
+}

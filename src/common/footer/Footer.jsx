@@ -52,6 +52,7 @@ const Footer = () => {
 										style={{
 											color: "red",
 											fontSize: "1.2rem",
+											letterSpacing: "1px",
 										}}
 										to='https://bharatladva.github.io/cv/'
 									>
