@@ -7,10 +7,6 @@ import "./style.css";
 import FlashCard from "../flashDeals/FlashCard";
 const API_URL = process.env.REACT_APP_API_URL;
 
-import sdata from "./Sdata";
-
-const { shopItems } = sdata;
-
 const Shop = () => {
 	const [products, setProducts] = useState();
 

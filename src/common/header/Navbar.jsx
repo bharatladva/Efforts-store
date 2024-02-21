@@ -27,7 +27,7 @@ const Navbar = () => {
 								<Link to='/Abaut'>Abaut us</Link>
 							</li>
 							<li>
-								<Link to='/track'>order</Link>
+								<Link to='/orderManage'>order</Link>
 							</li>
 							<li>
 								<Link to='/contectUs'>contact</Link>
