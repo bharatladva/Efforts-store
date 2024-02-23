@@ -28,17 +28,10 @@ const AboutUs = () => {
 						energy, ushering in a brighter, sustainable tomorrow. Join us in this
 						journey towards a cleaner, greener future.
 					</p>
-					<ul>
-						<li>
-							<p>High-Quality Solutions</p>
-						</li>
-						<li>
-							<p>Solar Energy Revolution</p>
-						</li>
-						<li>
-							<p>Customer-Centric Approach</p>
-						</li>
-					</ul>
+
+					<p>✔️ High-Quality Solutions</p>
+					<p>✔️ Solar Energy Revolution</p>
+					<p>✔️ Customer-Centric Approach</p>
 				</div>
 			</div>
 
