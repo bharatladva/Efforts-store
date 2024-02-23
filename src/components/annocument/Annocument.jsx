@@ -4,17 +4,23 @@ import React from "react";
 
 const Annocument = () => {
 	const mystyle = {
-		width: "30%",
+		width: "500px",
 		height: "340px",
 	};
 	const mystyle1 = {
-		width: "68%",
+		width: "500px",
 		height: "340px",
 	};
 	return (
 		<>
 			<section className='annocument background'>
-				<div className='container d_flex'>
+				<div
+					className='container d_flex'
+					style={{
+						display: "flex",
+						flexWrap: "wrap",
+					}}
+				>
 					<div
 						className='img'
 						style={mystyle}

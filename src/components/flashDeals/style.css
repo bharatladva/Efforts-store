@@ -23,3 +23,11 @@
 	max-width: 297.5px;
 	max-height: 350px;
 }
+
+@media (min-width: 900px) {
+	.flash-card-box {
+		width: 200px;
+		height: 250px;
+		border: 1px solid red;
+	}
+}
