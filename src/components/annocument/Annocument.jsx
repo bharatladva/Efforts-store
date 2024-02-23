@@ -4,11 +4,11 @@ import React from "react";
 
 const Annocument = () => {
 	const mystyle = {
-		width: "500px",
+		minWidth: "500px",
 		height: "340px",
 	};
 	const mystyle1 = {
-		width: "500px",
+		minWidth: "500px",
 		height: "340px",
 	};
 	return (

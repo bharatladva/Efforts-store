@@ -6,7 +6,8 @@
 	justify-content: center;
 	gap: 20px;
 	padding: 50px;
-	height: 80vh;
+	height: fit-content;
+	min-height: 80vh;
 
 	background: #f6f9fc;
 }
