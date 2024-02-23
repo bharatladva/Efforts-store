@@ -25,6 +25,7 @@ import AdminDaskbord from "./components/admin/AdminDaskbord";
 import ManageProduct from "./components/admin/mangaeProduct/ManageProduct";
 import OrderManage from "./components/admin/orderManage/OrderManage";
 import ContectUs from "./components/contectUs/ContectUs";
+import AboutUs from "./components/abautus/AboutUs";
 
 function ScrollToTop() {
 	const location = useLocation();
@@ -80,6 +81,10 @@ function App() {
 							<Route
 								path='/contectUs'
 								element={<ContectUs />}
+							/>
+							<Route
+								path='/AbautUs'
+								element={<AboutUs />}
 							/>
 							<Route
 								path='/productPage/:_id'

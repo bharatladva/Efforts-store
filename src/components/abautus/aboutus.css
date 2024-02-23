@@ -1,0 +1,55 @@
+/** @format */
+
+.about-container {
+	max-width: 100%;
+	margin: 0 auto;
+	padding: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+.about-container h1 {
+	color: #0f3460;
+}
+
+.about-container span {
+	color: gray;
+}
+
+.about-container img {
+	width: 500px;
+	height: 500px;
+	background: url(./../assets/images/About-Efforts-Solar-EV.jpg);
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-color: #fff;
+	border-radius: 20px;
+}
+
+.about-container .box {
+	width: 500px;
+}
+
+.about-container .details {
+	display: flex;
+	width: fit-content;
+	border: 0;
+}
+
+.about-container .misition {
+	display: flex;
+	gap: 100px;
+}
+
+.boxse {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 200px;
+	width: 600px;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

@@ -83,12 +83,19 @@ export default function UserDataLists() {
 			Array.isArray(dbList) &&
 			productData.length === dbList.length
 		) {
-			return productData.map((response, index) => (
-				<FlashCard
-					key={index}
-					productItems={response.data.product}
-				/>
-			));
+			return productData.map((response, index) => {
+				const productItems = response.data.product;
+				if (productItems && productItems._id) {
+					return (
+						<FlashCard
+							key={index}
+							productItems={productItems}
+						/>
+					);
+				} else {
+					return null; // Or any fallback component you want
+				}
+			});
 		} else {
 			return "Loading...";
 		}

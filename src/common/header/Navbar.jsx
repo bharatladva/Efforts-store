@@ -24,7 +24,7 @@ const Navbar = () => {
 								<Link to='/admin'>Admin</Link>
 							</li>
 							<li>
-								<Link to='/Abaut'>Abaut us</Link>
+								<Link to='/AbautUs'>Abaut us</Link>
 							</li>
 							<li>
 								<Link to='/orderManage'>order</Link>
