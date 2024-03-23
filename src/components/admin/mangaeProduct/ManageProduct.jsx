@@ -46,7 +46,7 @@ export default function ManageProduct() {
 	async function handleProductAdd() {
 		try {
 			const newProduct = {
-				mainImage: "./images/discount/discount-1.png",
+				mainImage: "",
 				name: "name",
 				price: 0,
 

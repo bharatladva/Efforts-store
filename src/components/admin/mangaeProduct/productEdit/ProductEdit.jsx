@@ -49,6 +49,7 @@ export default function ProductEdit({ product }) {
 
 	function handleChange(changes) {
 		const updatedProduct = { ...product, ...changes };
+		console.log(product._id);
 		handleProductChange(product._id, updatedProduct);
 		setFormData(updatedProduct);
 	}
@@ -87,7 +88,7 @@ export default function ProductEdit({ product }) {
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify(formData),
+				body: JSON.stringify(formData), // Send only the updated form data
 			});
 
 			const data = await response.json();
