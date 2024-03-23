@@ -25,7 +25,7 @@ export default function UserDataLists() {
 		if (currentUser) {
 			const uid = currentUser.uid;
 
-			fetch(`${API_URL}/user/get-user-data-list?uid=${uid}&dataType=${dataType}`, {
+			fetch(`${API_URL}/Firebaseuser/get-user-data-list?uid=${uid}&dataType=${dataType}`, {
 				method: "GET",
 				headers: {
 					"Content-Type": "application/json",

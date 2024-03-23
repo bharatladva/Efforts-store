@@ -25,7 +25,7 @@ export function UserDataProvider({ children }) {
 			const currentItemState = itemsState[_id] || {};
 			const currentIsFavoriteState = currentItemState.isFavorite || false;
 
-			const response = await fetch(`${API_URL}/user/add-to-favorites`, {
+			const response = await fetch(`${API_URL}/Firebaseuser/add-to-favorites`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -65,7 +65,7 @@ export function UserDataProvider({ children }) {
 			const isProductInCart = itemsState[_id]?.inCart;
 			console.log(isProductInCart);
 
-			const response = await fetch(`${API_URL}/user/add-to-cart`, {
+			const response = await fetch(`${API_URL}/Firebaseuser/add-to-cart`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -100,7 +100,7 @@ export function UserDataProvider({ children }) {
 		try {
 			console.log("address: ", address);
 			let uid = currentUser.uid;
-			const response = await fetch(`${API_URL}/user/add-address`, {
+			const response = await fetch(`${API_URL}/Firebaseuser/add-address`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -126,7 +126,7 @@ export function UserDataProvider({ children }) {
 		try {
 			let itemToAdd = { _id, selectedRating: value };
 			let uid = currentUser.uid;
-			const response = await fetch(`${API_URL}/user/rate-media`, {
+			const response = await fetch(`${API_URL}/Firebaseuser/rate-media`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -166,7 +166,7 @@ export function UserDataProvider({ children }) {
 		if (currentUser) {
 			try {
 				const response = await fetch(
-					`${API_URL}/user/search-media-data?uid=${currentUser.uid}&id=${_id}`
+					`${API_URL}/Firebaseuser/search-media-data?uid=${currentUser.uid}&id=${_id}`
 				);
 				const data = await response.json();
 
