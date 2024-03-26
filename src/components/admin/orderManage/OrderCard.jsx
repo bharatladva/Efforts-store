@@ -57,6 +57,11 @@ export default function OrderCard({ order }) {
 			</div>
 			<div className='order-box'>
 				<h2>products</h2>
+				<div className='order-box-values'>
+					<strong>name</strong>
+					<strong>quantity</strong>
+					<strong>price</strong>
+				</div>
 				{order.Products ? (
 					order.Products.map((Product) => (
 						<div

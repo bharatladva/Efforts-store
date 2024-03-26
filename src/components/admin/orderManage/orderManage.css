@@ -38,6 +38,7 @@
 
 .order-box-values {
 	display: flex;
+	align-items: center;
 	justify-content: space-between;
 	padding-right: 100px;
 	margin: 5px 0;
