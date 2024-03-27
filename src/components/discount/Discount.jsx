@@ -18,7 +18,8 @@ const Discount = () => {
 
 	const fetchProducts = async () => {
 		try {
-			const response = await fetch(`${API_URL}/products?addTo=Big Discounts`);
+			//const response = await fetch(`${API_URL}/products?addTo=Big Discounts`);
+			const response = await fetch(`${API_URL}/products?addTo=Flash Delas`);
 			const data = await response.json();
 
 			setProducts(data.data.products);

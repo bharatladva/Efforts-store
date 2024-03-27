@@ -29,7 +29,7 @@ export default function OderPage({ onClose, cartItems }) {
 		if (currentUser) {
 			const uid = currentUser.uid;
 
-			fetch(`${API_URL}/user/get-user-data-list?uid=${uid}&dataType=address`, {
+			fetch(`${API_URL}/Firebaseuser/get-user-data-list?uid=${uid}&dataType=address`, {
 				method: "GET",
 				headers: {
 					"Content-Type": "application/json",

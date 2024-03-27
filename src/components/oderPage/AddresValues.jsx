@@ -37,6 +37,7 @@ export default function AddresValues() {
 									className='field__input'
 									type='text'
 									id='lendMarck'
+									required
 									value={formValues.lendMarck || ""}
 									onChange={handleChange}
 								/>
@@ -50,7 +51,7 @@ export default function AddresValues() {
 								</span>
 								<input
 									className='field__input'
-									type='text'
+									type='number'
 									id='phone'
 									value={formValues.phone || ""}
 									onChange={handleChange}
@@ -85,9 +86,9 @@ export default function AddresValues() {
 								id='country'
 								value={formValues.country || ""}
 								onChange={handleChange}
+								defaultValue='india'
 							>
-								<option value=''></option>
-								<option value='india'>India</option>
+								<option value>India</option>
 							</select>
 						</label>
 						<div className='fields fields--3'>
@@ -133,9 +134,14 @@ export default function AddresValues() {
 									id='state'
 									value={formValues.state || ""}
 									onChange={handleChange}
+									defaultValue='gujrat'
 								>
-									<option value=''></option>
-									<option value='gujrat'>gujrat</option>
+									<option
+										value='gujrat'
+										selected
+									>
+										gujrat
+									</option>
 								</select>
 							</label>
 						</div>
