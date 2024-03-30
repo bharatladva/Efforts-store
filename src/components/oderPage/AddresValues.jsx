@@ -6,22 +6,85 @@ import { UserDataContext } from "../user/UserDataContext";
 export default function AddresValues() {
 	const { handleAddress } = useContext(UserDataContext);
 
-	const [formValues, setFormValues] = useState({});
+	const [formData, setFormData] = useState({
+		city: "",
+		country: "India",
+		fullAddress: "",
+		lendMarck: "",
+		phone: 0,
+		state: "gujrat",
+		zipcode: 0,
+	});
+
+	const [fieldErrors, setFieldErrors] = useState({});
+	const [errorMessage, setErrorMessage] = useState("");
 
 	const handleChange = (e) => {
-		const { id, value } = e.target;
-		setFormValues({ ...formValues, [id]: value });
+		const { name, value } = e.target;
+		setFormData((prevData) => ({
+			...prevData,
+			[name]: value,
+		}));
+		// Validate field on change
+		validateField(name, value);
 	};
 
 	const handleAddressSubmit = (e) => {
 		e.preventDefault();
-		handleAddress(formValues);
+		if (!isFormValid()) {
+			setErrorMessage("Please fill in all required fields with valid data.");
+			return;
+		}
+		console.log(formData); // You can do something with the form data here, like sending it to a server
+		// Proceed with payment
+		handleAddress(formData);
+	};
+
+	const validateField = (name, value) => {
+		switch (name) {
+			case "phone":
+				setFieldErrors((prevErrors) => ({
+					...prevErrors,
+					phone: validatePhoneNumber(value) ? "" : "Invalid phone number format",
+				}));
+				break;
+			case "zipcode":
+				setFieldErrors((prevErrors) => ({
+					...prevErrors,
+					zipcode: validateZipCode(value) ? "" : "Invalid zipcode format",
+				}));
+				break;
+			default:
+				break;
+		}
+	};
+
+	const isFormValid = () => {
+		return Object.values(fieldErrors).every((error) => error === "");
+	};
+
+	const validatePhoneNumber = (phone) => {
+		const regex = /^\d{10}$/;
+		return regex.test(phone);
+	};
+
+	const validateZipCode = (zipcode) => {
+		const regex = /^\d{6}$/;
+		return regex.test(zipcode);
 	};
 
 	return (
 		<div className='address'>
 			<div className='container'>
+				{Object.values(fieldErrors).some((error) => error !== "") && (
+					<div className='error-message'>
+						{Object.values(fieldErrors).map((error, index) => (
+							<p key={index}>{error}</p>
+						))}
+					</div>
+				)}
 				<h1>Shipping</h1>
+				{errorMessage && <div className='error-message'>{errorMessage}</div>}
 				<p>Please enter your shipping details. befor buy</p>
 				<form onSubmit={handleAddressSubmit}>
 					<div className='form'>
@@ -37,15 +100,16 @@ export default function AddresValues() {
 									className='field__input'
 									type='text'
 									id='lendMarck'
+									name='lendMarck'
 									required
-									value={formValues.lendMarck || ""}
+									value={formData.lendMarck || ""}
 									onChange={handleChange}
 								/>
 							</label>
-							<label class='field'>
+							<label className='field'>
 								<span
 									className='field__label'
-									htmlForor='phonenumber'
+									htmlFor='phone'
 								>
 									Phone number
 								</span>
@@ -53,7 +117,8 @@ export default function AddresValues() {
 									className='field__input'
 									type='number'
 									id='phone'
-									value={formValues.phone || ""}
+									name='phone'
+									value={formData.phone || ""}
 									onChange={handleChange}
 								/>
 							</label>
@@ -61,15 +126,16 @@ export default function AddresValues() {
 						<label className='field'>
 							<span
 								className='field__label'
-								htmlFor='FullAddress'
+								htmlFor='fullAddress'
 							>
 								Full Address
 							</span>
 							<input
 								className='field__input'
 								type='text'
-								id='fullAddress' // Changed from 'full address'
-								value={formValues.fullAddress || ""}
+								id='fullAddress'
+								name='fullAddress'
+								value={formData.fullAddress || ""}
 								onChange={handleChange}
 							/>
 						</label>
@@ -84,7 +150,8 @@ export default function AddresValues() {
 							<select
 								className='field__input'
 								id='country'
-								value={formValues.country || ""}
+								name='country'
+								value={formData.country || ""}
 								onChange={handleChange}
 								defaultValue='india'
 							>
@@ -101,9 +168,10 @@ export default function AddresValues() {
 								</span>
 								<input
 									className='field__input'
-									type='text'
+									type='number'
 									id='zipcode'
-									value={formValues.zipcode || ""}
+									name='zipcode'
+									value={formData.zipcode || ""}
 									onChange={handleChange}
 								/>
 							</label>
@@ -118,7 +186,8 @@ export default function AddresValues() {
 									className='field__input'
 									type='text'
 									id='city'
-									value={formValues.city || ""}
+									name='city'
+									value={formData.city || ""}
 									onChange={handleChange}
 								/>
 							</label>
@@ -132,7 +201,8 @@ export default function AddresValues() {
 								<select
 									className='field__input'
 									id='state'
-									value={formValues.state || ""}
+									name='state'
+									value={formData.state || ""}
 									onChange={handleChange}
 									defaultValue='gujrat'
 								>
