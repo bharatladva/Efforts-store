@@ -18,6 +18,7 @@ export default function AddresValues() {
 
 	const [fieldErrors, setFieldErrors] = useState({});
 	const [errorMessage, setErrorMessage] = useState("");
+	const [successMessage, setSuccessMessage] = useState("");
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -29,15 +30,30 @@ export default function AddresValues() {
 		validateField(name, value);
 	};
 
-	const handleAddressSubmit = (e) => {
+	const handleAddressSubmit = async (e) => {
+		// Modified to handle async operation
 		e.preventDefault();
 		if (!isFormValid()) {
 			setErrorMessage("Please fill in all required fields with valid data.");
 			return;
 		}
-		console.log(formData); // You can do something with the form data here, like sending it to a server
-		// Proceed with payment
-		handleAddress(formData);
+		try {
+			await handleAddress(formData); // Wait for address submission
+			setSuccessMessage("Address submitted successfully!"); // Set success message
+			setFormData({
+				// Clear form data
+				city: "",
+				country: "India",
+				fullAddress: "",
+				lendMarck: "",
+				phone: 0,
+				state: "gujrat",
+				zipcode: 0,
+			});
+		} catch (error) {
+			console.error("Error submitting address:", error);
+			setErrorMessage("Failed to submit address. Please try again later."); // Display error message if submission fails
+		}
 	};
 
 	const validateField = (name, value) => {
@@ -76,6 +92,13 @@ export default function AddresValues() {
 	return (
 		<div className='address'>
 			<div className='container'>
+				{/* Success message */}
+				{successMessage && <div className='success-message'>{successMessage}</div>}
+
+				{/* Error message */}
+				{errorMessage && <div className='error-message'>{errorMessage}</div>}
+				{/* Rest of the component */}
+				{/* ... */}
 				{Object.values(fieldErrors).some((error) => error !== "") && (
 					<div className='error-message'>
 						{Object.values(fieldErrors).map((error, index) => (

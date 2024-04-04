@@ -2,10 +2,13 @@
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../components/user/AuthContext";
 
 const Navbar = () => {
 	// Toogle Menu
+	let { currentUser } = useAuth();
 	const [MobileMenu, setMobileMenu] = useState(false);
+
 	return (
 		<>
 			<header className='header'>
@@ -20,9 +23,15 @@ const Navbar = () => {
 							<li>
 								<Link to='/Products'>Products</Link>
 							</li>
-							<li>
-								<Link to='/admin'>Admin</Link>
-							</li>
+
+							{currentUser.email === "bharatladva77@gmail.com" ? (
+								<li>
+									<Link to='/admin'>Admin</Link>
+								</li>
+							) : (
+								" "
+							)}
+
 							<li>
 								<Link to='/AbautUs'>Abaut us</Link>
 							</li>

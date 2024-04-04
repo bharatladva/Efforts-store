@@ -81,14 +81,6 @@ export default function OderPage({ onClose, cartItems }) {
 		return totalPrice.toFixed(2);
 	};
 
-	const handleIncreaseQuantityForStock = () => {
-		if (quantity < stock) {
-			setQuantity(quantity + 1);
-		} else {
-			setErrorMessage("Order Quantity cannot exceed the available stock.");
-		}
-	};
-
 	const amount = calculateTotalPrice() * 100;
 	console.log(amount);
 	const currency = "INR";
@@ -187,9 +179,17 @@ export default function OderPage({ onClose, cartItems }) {
 			);
 		});
 		rzp1.open();
-		e.preventDefault();
+		if (e) {
+			e.preventDefault(); // Check if e is defined before using it
+		}
 	};
-
+	const handleCheckout = () => {
+		if (!address || Object.keys(address).length === 0) {
+			setErrorMessage("Please add an address before checking out.");
+		} else {
+			paymentHandler();
+		}
+	};
 	return (
 		<div className='popup'>
 			<div className='popup-content'>
@@ -281,7 +281,7 @@ export default function OderPage({ onClose, cartItems }) {
 						<hr />
 						<button
 							className='button chackOut'
-							onClick={paymentHandler}
+							onClick={handleCheckout}
 						>
 							Chack Out
 						</button>
