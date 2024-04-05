@@ -70,6 +70,14 @@ export default function AddresValues() {
 					zipcode: validateZipCode(value) ? "" : "Invalid zipcode format",
 				}));
 				break;
+			case "fullAddress":
+				setFieldErrors((prevErrors) => ({
+					...prevErrors,
+					fullAddress: validateFullAddress(value)
+						? ""
+						: "Full address must be 50 letters or more",
+				}));
+				break;
 			default:
 				break;
 		}
@@ -77,6 +85,10 @@ export default function AddresValues() {
 
 	const isFormValid = () => {
 		return Object.values(fieldErrors).every((error) => error === "");
+	};
+
+	const validateFullAddress = (address) => {
+		return address.length >= 50;
 	};
 
 	const validatePhoneNumber = (phone) => {
