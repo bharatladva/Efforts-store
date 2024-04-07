@@ -1,10 +1,41 @@
 /** @format */
-
-import React from "react";
+import React, { useState } from "react";
 import orderManage from "./OrderManage";
 import Products from "../../products/Products";
+const API_URL = process.env.REACT_APP_API_URL;
 
 export default function OrderCard({ order }) {
+	const [showConfirmation, setShowConfirmation] = useState(false);
+
+	async function handleCancelOrder() {
+		setShowConfirmation(true);
+	}
+
+	async function confirmCancelOrder() {
+		try {
+			const response = await fetch(`${API_URL}/order/${order._id}`, {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ orderStatus: "cancel" }),
+			});
+
+			const data = await response.json();
+
+			if (data.success) {
+				// Handle success
+			}
+		} catch (error) {
+			console.error("Error canceling order:", error);
+		}
+		setShowConfirmation(false);
+	}
+
+	function cancelCancelOrder() {
+		setShowConfirmation(false);
+	}
+
 	return (
 		<div
 			className='orderCard'
@@ -77,6 +108,31 @@ export default function OrderCard({ order }) {
 					<p>No products found</p>
 				)}
 			</div>
+			<button
+				className='button'
+				onClick={handleCancelOrder}
+			>
+				Cancel Order
+			</button>
+			{showConfirmation && (
+				<div className='confirmationDialog'>
+					<p>Are you sure you want to cancel this order?</p>
+					<div>
+						<button
+							className='confirmButton'
+							onClick={confirmCancelOrder}
+						>
+							Yes
+						</button>
+						<button
+							className='cancelButton'
+							onClick={cancelCancelOrder}
+						>
+							No
+						</button>
+					</div>
+				</div>
+			)}
 		</div>
 	);
 }
