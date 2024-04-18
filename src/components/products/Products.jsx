@@ -15,7 +15,8 @@ export default function Products() {
 
 	const fetchProducts = async () => {
 		try {
-			const response = await fetch(`${API_URL}/products`);
+			//const response = await fetch(`${API_URL}/products`);
+			const response = await fetch(`${API_URL}/products?addTo=Flash Delas`);
 			const data = await response.json();
 			console.log(data);
 			setProducts(data.data.products);

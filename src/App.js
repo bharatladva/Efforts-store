@@ -26,6 +26,7 @@ import ManageProduct from "./components/admin/mangaeProduct/ManageProduct";
 import OrderManage from "./components/admin/orderManage/OrderManage";
 import ContectUs from "./components/contectUs/ContectUs";
 import AboutUs from "./components/abautus/AboutUs";
+//import TAndc from "./components/tAndc/TAndc";
 
 function ScrollToTop() {
 	const location = useLocation();
@@ -90,6 +91,10 @@ function App() {
 								path='/productPage/:_id'
 								element={<ProductPage />}
 							/>
+							{/*<Route
+								path='/t&c'
+								element={<TAndc />}
+							/>*/}
 							{/* ---------------------------------------------- */}
 							<Route
 								path='/update-profile'

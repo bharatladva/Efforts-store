@@ -44,6 +44,7 @@ const Footer = () => {
 							<ul>
 								<li>Our Stores</li>
 								<li>Our Cares</li>
+								<Link to={"/t&c"}></Link>
 								<li>Terms & Conditions</li>
 								<li>Privacy Policy</li>
 								<li>

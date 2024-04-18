@@ -26,7 +26,7 @@ const Annocument = () => {
 						style={mystyle}
 					>
 						<img
-							src='./images/banner-1.png'
+							src='https://res.cloudinary.com/drpsngpm1/image/upload/v1706261182/WhatsApp_Image_2023-12-29_at_9.55.54_AM_lfx7ep.jpg'
 							width='100%'
 							height='100%'
 							alt=''
