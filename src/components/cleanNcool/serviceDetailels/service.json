@@ -1,0 +1,171 @@
+[
+	{
+		"id": "1",
+		"name": "Premium Solar Care",
+		"price": 3500,
+		"ratings": "4.9 (1.2M)",
+		"description": "Our Premium Solar Care plan offers comprehensive maintenance and cleaning services to ensure optimal performance and longevity of your solar panel system.",
+		"included": [
+			"Thorough Site Evaluation",
+			"Customized System Design Consultation",
+			"Professional Installation by Certified Technicians",
+			"24/7 Monitoring and Proactive Maintenance",
+			"Extensive Warranty Coverage and Lifetime Support"
+		],
+		"excluded": [
+			"Structural Modifications (if needed, additional charges may apply)",
+			"Tree Trimming or Removal (available as an optional add-on service)",
+			"Electrical Upgrades beyond standard installation requirements",
+			"Roof Repair or Replacement (recommended to be handled separately)"
+		],
+
+		"steps": [
+			{
+				"step": "Initial Assessment and Safety Check",
+				"explain": "Our technicians conduct a detailed inspection of your solar panels, ensuring they are free from debris and any potential safety hazards."
+			},
+			{
+				"step": "Gentle Cleaning with Eco-Friendly Solutions",
+				"explain": "Using environmentally friendly cleaning agents, we delicately remove dirt, dust, and grime to restore your panels' efficiency without causing harm to the environment."
+			},
+			{
+				"step": "Thorough Rinsing and Drying Process",
+				"explain": "We meticulously rinse your panels to ensure all cleaning solutions and residues are washed away, followed by a careful drying process to prevent streaks or water spots."
+			},
+			{
+				"step": "Final Inspection and Performance Optimization",
+				"explain": "A final inspection is conducted to guarantee your panels are spotless and functioning optimally. Any issues or concerns are addressed to maximize energy production and savings."
+			}
+		],
+		"faqs": [
+			{
+				"q": "Why is regular cleaning and maintenance important for solar panels?",
+				"a": "Regular maintenance ensures peak performance and extends the lifespan of your solar panels by preventing efficiency losses caused by dirt, debris, and environmental factors."
+			},
+			{
+				"q": "What indicators suggest that my solar panels need cleaning?",
+				"a": "Signs include reduced energy production, visible accumulation of dirt or debris, and noticeable water spots. Regular inspections can also help identify cleaning needs."
+			},
+			{
+				"q": "Does the Premium Solar Care plan include additional services?",
+				"a": "In addition to cleaning, our plan includes proactive maintenance, performance optimization, and comprehensive support to address any issues with your solar panel system."
+			},
+			{
+				"q": "How can clean solar panels improve energy efficiency and savings?",
+				"a": "Clean panels maximize sunlight absorption, leading to optimal energy production. This results in higher energy savings on electricity bills and a greater return on your solar investment."
+			}
+		]
+	},
+	{
+		"id": "2",
+		"name": "Essential Solar Maintenance",
+		"price": 2500,
+		"ratings": "4.7 (800K)",
+		"description": "Our Essential Solar Maintenance plan offers fundamental cleaning and maintenance services to keep your solar panel system operating efficiently.",
+		"included": [
+			"Basic Site Evaluation and Inspection",
+			"System Design Review and Consultation",
+			"Professional Installation by Trained Experts",
+			"Regular Monitoring and Standard Maintenance",
+			"Standard Warranty Coverage and Technical Support"
+		],
+		"excluded": [
+			"Major Structural Modifications (additional fees may apply)",
+			"Specialized Tree Trimming or Removal Services",
+			"Advanced Electrical Upgrades beyond installation requirements",
+			"Extensive Roof Repair or Replacement"
+		],
+		"steps": [
+			{
+				"step": "Initial Inspection and Safety Check",
+				"explain": "Our technicians conduct a basic inspection to identify visible debris or damage, ensuring your system meets safety standards."
+			},
+			{
+				"step": "Standard Cleaning Process",
+				"explain": "Using industry-standard cleaning methods, we remove surface dirt and grime to maintain your panels' efficiency and performance."
+			},
+			{
+				"step": "Routine Rinsing and Drying",
+				"explain": "We rinse the panels thoroughly with water and ensure they are properly dried to prevent water spots and streaks."
+			},
+			{
+				"step": "Basic Inspection for Performance Check",
+				"explain": "A brief performance check is conducted to ensure your panels are functioning adequately. Any minor issues are noted for future attention."
+			}
+		],
+		"faqs": [
+			{
+				"q": "Why should I choose the Essential Solar Maintenance plan?",
+				"a": "This plan offers cost-effective maintenance solutions to keep your solar panels in good condition, ensuring reliable energy production and modest savings on electricity bills."
+			},
+			{
+				"q": "When is it necessary to consider upgrading to a higher-tier plan?",
+				"a": "Consider upgrading if you require more comprehensive services, such as advanced cleaning techniques, extended warranty coverage, or specialized technical support."
+			},
+			{
+				"q": "Does the Essential Solar Maintenance plan cover emergency repairs?",
+				"a": "While emergency repairs are not included, our technical support team is available to address urgent issues and schedule timely repairs as needed."
+			},
+			{
+				"q": "Can routine cleaning and maintenance help prevent system failures?",
+				"a": "Yes, regular maintenance helps identify potential issues early, preventing system failures and minimizing downtime, thus maximizing your solar investment."
+			}
+		]
+	},
+	{
+		"id": "3",
+		"name": "Basic Solar Clean-Up",
+		"price": 1800,
+		"ratings": "4.5 (600K)",
+		"description": "Our Basic Solar Clean-Up plan offers essential cleaning services to maintain the cleanliness and performance of your solar panel system.",
+		"included": [
+			"Basic Visual Inspection for Debris",
+			"Standard System Design Overview",
+			"Installation Check and Safety Assessment",
+			"Periodic Monitoring and Minimal Maintenance",
+			"Limited Warranty Coverage and Technical Assistance"
+		],
+		"excluded": [
+			"Major Structural Modifications or Repairs",
+			"Specialized Tree Trimming or Removal",
+			"Advanced Electrical Upgrades",
+			"Extensive Roof Repairs"
+		],
+		"steps": [
+			{
+				"step": "Visual Debris Inspection",
+				"explain": "We visually inspect your panels for any visible debris or obstructions that may hinder performance."
+			},
+			{
+				"step": "Standard Cleaning Procedure",
+				"explain": "We utilize basic cleaning techniques to remove surface dirt and grime, ensuring your panels maintain optimal efficiency."
+			},
+			{
+				"step": "Simple Rinsing Process",
+				"explain": "A standard rinse is performed to wash away any remaining debris or cleaning solutions, leaving your panels clean and spot-free."
+			},
+			{
+				"step": "Basic Performance Check",
+				"explain": "We conduct a basic performance check to ensure your panels are functioning adequately. Any minor issues are noted for future reference."
+			}
+		],
+		"faqs": [
+			{
+				"q": "Why should I opt for the Basic Solar Clean-Up plan?",
+				"a": "This plan offers budget-friendly cleaning solutions to maintain basic cleanliness and functionality of your solar panels, ideal for those seeking essential maintenance on a limited budget."
+			},
+			{
+				"q": "Can I upgrade to a higher-tier plan in the future?",
+				"a": "Certainly! If you find your needs evolving or requiring more comprehensive services, you can always upgrade to a higher-tier plan for additional benefits and coverage."
+			},
+			{
+				"q": "Does the Basic Solar Clean-Up plan include emergency support?",
+				"a": "While emergency support is not included, our technical team is available to assist with basic inquiries and scheduling of routine maintenance tasks."
+			},
+			{
+				"q": "Will regular cleaning and maintenance extend the lifespan of my solar panels?",
+				"a": "Yes, routine cleaning and maintenance help prevent dirt buildup and potential damage, thereby extending the lifespan of your solar panels and ensuring consistent performance."
+			}
+		]
+	}
+]

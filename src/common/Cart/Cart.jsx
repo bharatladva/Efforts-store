@@ -76,7 +76,7 @@ const Cart = () => {
 					quantity: 1,
 				}));
 
-				console.log(updatedProductData);
+				console.log("updatedProductData", updatedProductData);
 
 				setProductData(updatedProductData);
 			} catch (error) {

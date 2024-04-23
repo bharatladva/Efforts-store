@@ -26,7 +26,11 @@ import ManageProduct from "./components/admin/mangaeProduct/ManageProduct";
 import OrderManage from "./components/admin/orderManage/OrderManage";
 import ContectUs from "./components/contectUs/ContectUs";
 import AboutUs from "./components/abautus/AboutUs";
-//import TAndc from "./components/tAndc/TAndc";
+
+import ServicePage from "./components/cleanNcool/servicePage/ServicePage";
+import ServiceDetailes from "./components/cleanNcool/serviceDetailels/ServiceDetailes";
+import ServiceBookPage from "./components/cleanNcool/serviceBookPage/ServiceBookPage";
+import OrderManage2 from "./components/cleanNcool/orderManage/OrderManage";
 
 function ScrollToTop() {
 	const location = useLocation();
@@ -116,6 +120,25 @@ function App() {
 								path='/user/:dataType'
 								element={<UserDataLists />}
 							/>
+							{/* ----------------------------------------------- */}
+
+							<Route
+								path='/ServicePage/:id'
+								element={<ServicePage />}
+							/>
+							<Route
+								path='/Service/:id'
+								element={<ServiceDetailes />}
+							/>
+							<Route
+								path='/ServiceBookPage'
+								element={<ServiceBookPage />}
+							/>
+							<Route
+								path='/MyService'
+								element={<OrderManage2 />}
+							/>
+
 							{/* ----------------------------------------------- */}
 						</Routes>
 						<Footer />

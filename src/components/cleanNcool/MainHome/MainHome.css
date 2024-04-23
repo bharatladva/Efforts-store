@@ -1,0 +1,200 @@
+/** @format */
+.MainHome {
+	display: flex;
+	width: 100%;
+	min-height: 75vh;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 100px;
+	padding: 50px 0;
+}
+
+.MainHome .box-main {
+	width: 600px;
+	height: 550px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	border-radius: 8px;
+}
+
+.MainHome h1 {
+	font-size: 3rem;
+	font-weight: 100;
+	line-height: 1;
+}
+
+.achievement {
+	width: 400px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.ach {
+	display: flex;
+	justify-content: space-between;
+	gap: 10px;
+}
+
+.ach-details {
+	display: flex;
+	flex-direction: column;
+}
+
+:root {
+	/* colors */
+	--blue-gray: hsl(210, 46%, 95%);
+	--purple: hsl(263, 55%, 52%);
+	--dark-blue-gray: hsl(217, 19%, 35%);
+	--dark-blue-black: hsl(219, 29%, 14%);
+	--white: hsl(0, 0%, 100%);
+
+	/* fonts */
+	--font: "Barlow Semi Condensed", sans-serif;
+	--base-font-size: 1.3rem;
+}
+
+.testimonial {
+	background-color: #fff;
+
+	box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+	font-size: 1.3rem;
+}
+
+.testimonial--purple {
+	width: 100%;
+	height: 275px;
+	border-top-left-radius: 10px;
+}
+
+.testimonial--purple img {
+	border-top-left-radius: 10px;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.testimonial--blue-grey {
+	background-color: var(--dark-blue-gray);
+	border-top-right-radius: 10px;
+}
+
+.testimonial--blue-grey img {
+	border-top-right-radius: 10px;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.testimonial--pink {
+	background-color: lightcoral;
+	border-bottom-left-radius: 10px;
+}
+
+.testimonial--pink img {
+	border-bottom-left-radius: 10px;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.testimonial--blue-black {
+	height: 275px;
+	background-color: var(--dark-blue-black);
+	border-bottom-right-radius: 10px;
+}
+
+.testimonial--blue-black img {
+	border-bottom-right-radius: 10px;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+@media (min-width: 1100px) {
+	.testimonials {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-gap: 10px;
+	}
+
+	.testimonial {
+		margin: 0;
+	}
+
+	.testimonial--purple {
+		grid-column: 1 / span 2;
+	}
+
+	.testimonial--two_row {
+		grid-column: 4;
+		grid-row: 1 / span 2;
+	}
+
+	.testimonial--blue-black {
+		grid-column: 2 / span 2;
+	}
+
+	.testimonial--purple {
+		background-position: top 0 right 80px;
+		background-size: 20%;
+	}
+}
+
+.d_flex {
+	display: flex;
+	justify-content: space-between;
+}
+
+.box-items {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin: 50px 0;
+	width: 500px;
+	padding: 20px;
+	height: 500px;
+
+	border-radius: 8px;
+	transition: transform 0.3s ease-in-out;
+	border: 1px solid rgba(128, 128, 128, 0.221);
+}
+
+.box-items:hover {
+	transform: scale(1.05);
+}
+
+.box-items h2 {
+	color: rgb(70, 70, 70);
+	font-weight: 100;
+}
+
+.category_1 {
+	display: flex;
+	gap: 20px;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.ServiceBox {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	border-radius: 10px;
+	width: 135px;
+	height: 100px;
+	padding: 5px;
+	text-wrap: nowrap;
+}
+
+.ServiceBox p {
+	color: rgb(70, 70, 70);
+	font-weight: 100;
+}
+
+.ServiceBox img {
+	border: 1px solid rgba(128, 128, 128, 0.221);
+	width: 100%;
+	height: 75% !important;
+	border-radius: 10px;
+}

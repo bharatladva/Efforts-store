@@ -1,0 +1,199 @@
+/** @format */
+
+.servicesPage {
+	display: flex;
+	gap: 30px;
+	margin: 0 5%;
+}
+
+/*----------------------------------------------------------*/
+
+.services-options {
+	display: flex;
+	flex-direction: column;
+	margin-top: 30px;
+	width: fit-content;
+
+	padding-bottom: 30px;
+	height: fit-content;
+}
+
+.services-options h1 {
+	font-size: 2.5rem;
+	font-weight: 100;
+}
+
+.services-box-items {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin: 50px 0;
+	width: 325px;
+	padding: 20px;
+	height: 200px;
+
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s ease-in-out;
+}
+
+.services-boxs {
+	width: 75px;
+	height: 100px;
+	text-align: center;
+}
+
+.services-boxs p {
+	color: rgb(79, 79, 79);
+}
+
+.services-category_1 {
+	display: flex;
+	gap: 20px;
+	flex-wrap: wrap;
+}
+.services-category_1 img {
+	width: 100%;
+	height: 43%;
+	border-radius: 12px;
+}
+
+.services-box-items h2 {
+	font-weight: 100;
+	color: gray;
+}
+
+/*-------------------------------------------------------------------*/
+
+.servis-details {
+	height: fit-content;
+	width: 75%;
+	margin: 30px 0;
+	height: fit-content;
+	overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+	display: none;
+}
+
+.services-cards-list {
+	height: fit-content;
+	margin-top: 30px;
+	border-top: 0.5px solid rgba(128, 128, 128, 0.191);
+	display: flex;
+}
+
+.services-slider {
+	height: 50vh;
+	border: 1px solid rgba(128, 128, 128, 0.235);
+	border-radius: 10px;
+}
+
+/*-----------------------------------------------------------------------------*/
+
+.services-cards {
+	margin-top: 10px;
+	width: 65%;
+	height: 100%;
+}
+
+/*-------------------------------------------------------------------------------*/
+
+.cart-offer {
+	width: 40%;
+}
+
+#cartpage div p {
+	margin-left: 10px;
+	margin-top: -1px;
+	margin-bottom: -1px;
+}
+#cartpage div p:last-child {
+	margin-left: 30px;
+}
+
+#cartpage div:first-child i {
+	color: rgb(77, 77, 192);
+}
+
+#cartpage div i {
+	color: green;
+}
+
+#cartpagebar {
+	position: sticky;
+	float: right;
+	width: 40%;
+	border-left: 1px solid rgb(224, 216, 216);
+	border-top: 1px solid rgb(224, 216, 216);
+	padding-left: 20px;
+	height: 500px;
+}
+#container {
+	width: 100%;
+	margin: auto;
+	position: sticky;
+	top: 0;
+	display: block;
+	background-color: white;
+	/* z-index: 0.5; */
+}
+#cartpage div {
+	background-color: rgb(238, 235, 235);
+	margin: 10px;
+	padding: 10px;
+	width: 80%;
+	border-radius: 10px;
+}
+#cartpage {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 500px;
+}
+
+#waxingflex {
+	display: flex;
+	justify-content: space-between;
+	border-top: 2px solid rgb(224, 216, 216);
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+#waxingflex div:last-child p {
+	background-color: white;
+	text-align: center;
+	color: blueviolet;
+	font-weight: bold;
+	border-radius: 10px;
+	padding: 10px 0px;
+	width: 80px;
+	align-items: center;
+	margin: auto;
+	border: 1px solid silver;
+}
+
+#desdiv {
+	margin-top: -35px;
+	border-top: 1px solid rgb(224, 216, 216);
+}
+#waxingflex + div h3 {
+	color: blueviolet;
+}
+#OrderPlace {
+	/* top: 40%; */
+	/* width: 40%; */
+	width: 100%;
+	height: 50px;
+	font-size: 18px;
+	border-radius: 10px;
+	border: none;
+	background-color: rgb(110, 66, 229);
+	color: white;
+	cursor: pointer;
+}
+
+/* payment button css statrs... */
+
+/*---- NUMBER OF SLIDE CONFIGURATION ----*/

@@ -1,0 +1,72 @@
+/** @format */
+
+.servicesCard {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: fit-content;
+	padding: 20px;
+	border: 1px solid rgba(128, 128, 128, 0.235);
+	border-radius: 10px;
+	margin-bottom: 5px;
+}
+
+.servicesCard p {
+	margin: 5px 0;
+	font-size: 0.9rem;
+}
+
+.packagecolor {
+	display: flex;
+	gap: 10px;
+}
+.parentdiv {
+	height: fit-content;
+
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+}
+
+.ditails {
+	display: flex;
+	flex-direction: column;
+	border-bottom: 0.5px dashed rgba(128, 128, 128, 0.246);
+	justify-content: space-between;
+}
+
+.seconddiv {
+	height: fit-content;
+}
+
+.edit,
+.add {
+	padding: 7px 30px;
+	background-color: white;
+	border: 1px solid silver;
+	border-radius: 10px;
+	font-size: 15px;
+	font-weight: bold;
+	position: relative;
+	bottom: 20px;
+	cursor: pointer;
+}
+.add {
+	color: blueviolet;
+}
+.edit {
+	margin-top: 20px;
+}
+
+.smallimage {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.smallimage img {
+	border-radius: 10px;
+	width: 150px;
+	height: 100px;
+	border: 1px solid rgba(128, 128, 128, 0.238);
+}

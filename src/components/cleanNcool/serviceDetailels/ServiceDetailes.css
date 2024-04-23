@@ -1,0 +1,150 @@
+/** @format */
+
+.ServiceDetailes {
+	height: fit-content;
+	margin: 0 5%;
+	padding: 0 10%;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.serviceHead {
+	height: 60vh;
+
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	justify-content: space-between;
+}
+
+.ServiceDetailes .services-options {
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.ServiceDetailes .add {
+	margin-top: 50px;
+}
+
+.ServiceDetailes .services-slider {
+	height: 100%;
+	margin-top: 20px;
+	width: 100%;
+}
+
+.included-exclude h2 {
+	font-size: 22px;
+}
+
+.included-exclude {
+	padding: 0 20px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.included-list,
+.excluded-list {
+	margin-left: 20px;
+	list-style-type: none;
+	padding: 0;
+}
+
+.included-list li,
+.excluded-list li {
+	padding: 10px 0;
+}
+
+.included-list li:last-child,
+.excluded-list li:last-child {
+	border-bottom: none;
+}
+
+.included-list li::before {
+	content: "✔️"; /* Bullet character */
+	color: #007bff; /* Bullet color */
+	font-weight: bold;
+	display: inline-block;
+	width: 1em;
+	margin-left: -1em;
+	margin-right: 30px;
+}
+
+.excluded-list li::before {
+	margin-right: 30px;
+	content: "❌"; /* Bullet character */
+	color: #dc3545; /* Bullet color */
+	font-weight: bold;
+	display: inline-block;
+	width: 1em;
+	margin-left: -1em;
+}
+
+.stepsOfProsess {
+	height: fit-content;
+}
+
+/* ServiceDetailes.css */
+
+.back-button {
+	/*position: absolute;*/
+	/*background-color: #007bff;*/
+	color: rgb(10, 9, 9);
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-bottom: 20px;
+}
+
+.back-button:hover {
+	background-color: #0056b3;
+}
+
+/* Adjust other styles as needed */
+
+.login-prompt {
+	position: fixed;
+	display: flex;
+	flex-direction: column;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #ffffff;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.login-prompt h2 {
+	margin-bottom: 10px;
+	font-size: 20px;
+}
+
+.login-prompt button {
+	/*padding: 10px 20px;*/
+	background-color: #007bff;
+	color: #ffffff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.login-prompt button:hover {
+	background-color: #0056b3;
+}
+
+.close-button {
+	position: absolute;
+	width: 25px;
+	right: 0;
+	top: 0;
+	color: white;
+	border: none;
+	padding: 7px 14px;
+	cursor: pointer;
+	font-size: 16px;
+}

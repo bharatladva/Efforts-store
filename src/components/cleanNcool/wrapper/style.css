@@ -1,0 +1,43 @@
+/** @format */
+
+.wrapper {
+	text-align: center;
+}
+
+.service .wrapper-contener {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	width: 100%;
+}
+.service .wrapper-product {
+	width: 200px;
+	margin: 10px;
+	background: #fff;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper .img {
+	margin: auto;
+	width: 70px;
+	height: 70px;
+	line-height: 70px;
+	margin-bottom: 20px;
+}
+.wrapper .img i {
+	font-size: 25px;
+}
+.wrapper .product {
+	padding: 10px;
+}
+.wrapper .product h3 {
+	font-weight: 500;
+}
+.wrapper p {
+	font-size: 15px;
+	margin-top: 20px;
+	color: grey;
+}

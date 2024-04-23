@@ -1,0 +1,81 @@
+/**
+ * Styling
+ *
+ * @format
+ */
+
+.timeline {
+	height: 100%;
+	margin: 20px 0;
+	position: relative;
+	max-width: 100%;
+}
+.timeline:before {
+	background-color: black;
+	content: "";
+	margin-left: -1px;
+	position: absolute;
+	top: 0;
+	left: 2em;
+	width: 2px;
+	height: 100%;
+}
+
+.timeline-event {
+	position: relative;
+}
+.timeline-event:hover .timeline-event-icon {
+	/*-moz-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	background-color: #a83279;*/
+}
+
+.timeline-event-copy {
+	padding: 2em;
+	position: relative;
+	top: -1.875em;
+	left: 4em;
+	width: 80%;
+}
+.timeline-event-copy h3 {
+	font-size: 1.75em;
+}
+.timeline-event-copy h4 {
+	font-size: 1.2em;
+	margin-bottom: 1.2em;
+}
+.timeline-event-copy strong {
+	font-weight: 700;
+}
+.timeline-event-copy p:not(.timeline-event-thumbnail) {
+	padding-bottom: 1.2em;
+}
+
+.timeline-event-icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	/*padding: 10px;*/
+	border-radius: 20px;
+
+	/*-moz-transition: -moz-transform 0.2s ease-in;
+	-o-transition: -o-transform 0.2s ease-in;
+	-webkit-transition: -webkit-transform 0.2s ease-in;
+	transition: transform 0.2s ease-in;*/
+	/*-moz-transform: rotate(45deg);*/
+	/*-ms-transform: rotate(45deg);*/
+	/*-webkit-transform: rotate(45deg);*/
+	/*transform: rotate(45deg);*/
+	background-color: black;
+	outline: 10px solid white;
+	display: block;
+	margin: 0.5em 0.5em 0.5em -0.5em;
+	position: absolute;
+	top: 0;
+	left: 2em;
+	width: 1.5em;
+	height: 1.5em;
+}

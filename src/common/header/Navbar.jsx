@@ -33,13 +33,16 @@ const Navbar = () => {
 							)}
 
 							<li>
-								<Link to='/AbautUs'>About us</Link>
-							</li>
-							<li>
 								<Link to='/orderManage'>order</Link>
 							</li>
 							<li>
+								<Link to='/MyService'>MyService</Link>
+							</li>
+							<li>
 								<Link to='/contectUs'>contact</Link>
+							</li>
+							<li>
+								<Link to='/AbautUs'>About us</Link>
 							</li>
 						</ul>
 
